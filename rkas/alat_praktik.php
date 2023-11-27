@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+include "koneksi.php";
+?>
 <head>
 
     <meta charset="utf-8">
@@ -246,52 +248,53 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" action="prosesalatpraktik.php">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Data:</label>
-                                    <select class="form-control" id="sumber_dana">
-                                        <option>BOS</option>
-                                        <option>BOPD</option>
-                                        <option>KOMITE</option>
-                                        <option>BANTUAN</option>
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                        <option value="BOS">BOS</option>
+                                        <option value="BOPD">BOPD</option>
+                                        <option value="KOMITE">KOMITE</option>
+                                        <option value="BANTUAN">BANTUAN</option>
                                     </select>
                                     <!-- <input type="text" class="form-control form-control-user" id="sumber"
                                         placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
                                     <label for="tahun_ajuan">Tahun Ajuan:</label>
-                                    <select class="form-control" id="tahun_ajuan">
-                                        <option>2020</option>
-                                        <option>2021</option>
-                                        <option>2022</option>
-                                        <option>2023</option>
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
                                     </select>
                                     <!-- <input type="text" class="form-control form-control-user" id="sumber"
                                         placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="nama_item"
+                                    <input type="text" class="form-control form-control-user" id="nama_item" name="nama_item"
                                         placeholder="Masukkan Nama Item..">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="merk"
+                                    <input type="text" class="form-control form-control-user" id="merk" name="merk"
                                         placeholder="Masukkan merk..">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="spesifikasi"
+                                    <input type="text" class="form-control form-control-user" id="spesifikasi" name="spesifikasi"
                                         placeholder="Masukkan spesifikasi..">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="harga"
+                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
                                         placeholder="Masukkan harga..">
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="qty"
+                                    <input type="number" class="form-control form-control-user" id="qty" name="qty"
                                         placeholder="Masukkan Jumlah beli..">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="kebutuhan"
+                                    <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
                                         placeholder="untuk kebutuhan..">
                                 </div>
                                 
@@ -308,9 +311,7 @@
                                 </div>
                                 </div> -->
                                 
-                                <a href="alat_bahan.php" class="btn btn-primary btn-user btn-block">
-                                    Simpan  
-                                </a>
+                                <input type="submit" value="Simpan" style="width : 100%;" class="btn btn-primary btn-user btn-block">
                                 <hr>
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
