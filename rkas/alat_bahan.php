@@ -83,7 +83,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahan.php">Bahan Parktik</a>
+                        <a class="collapse-item" href="alat_bahan.php">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktik.php">Alat Praktik</a>
                         <a class="collapse-item" href="#">Sarana</a>
                         
@@ -249,7 +249,7 @@
                             <form class="user">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
-                                    <label for="sumber_dana">Sumber Data:</label>
+                                    <label for="sumber_dana">Sumber Dana:</label>
                                     <select class="form-control" id="sumber_dana">
                                         <option>BOS</option>
                                         <option>BOPD</option>
