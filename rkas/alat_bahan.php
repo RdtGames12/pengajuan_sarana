@@ -249,7 +249,7 @@ include "koneksi.php";
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Bahan Praktik!</h1>
                             </div>
-                            <form class="user" action="prosesalatbahan.php">
+                            <form class="user" action="prosesalatbahan.php" method="post">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -336,7 +336,7 @@ include "koneksi.php";
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No1</th>
+                                            <th>No</th>
                                             <th>Nama Item</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
