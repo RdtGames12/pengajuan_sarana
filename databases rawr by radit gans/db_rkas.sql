@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2023 pada 05.28
+-- Waktu pembuatan: 27 Nov 2023 pada 05.41
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -119,7 +119,8 @@ CREATE TABLE `tb_status_ajuan` (
 -- Indeks untuk tabel `tb_det_keg`
 --
 ALTER TABLE `tb_det_keg`
-  ADD PRIMARY KEY (`id_det`);
+  ADD PRIMARY KEY (`id_det`),
+  ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
 
 --
 -- Indeks untuk tabel `tb_kas`
@@ -143,7 +144,8 @@ ALTER TABLE `tb_pengeluaran`
 -- Indeks untuk tabel `tb_status_ajuan`
 --
 ALTER TABLE `tb_status_ajuan`
-  ADD PRIMARY KEY (`id_status`);
+  ADD PRIMARY KEY (`id_status`),
+  ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
