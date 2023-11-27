@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2023 pada 05.22
+-- Waktu pembuatan: 27 Nov 2023 pada 05.28
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -110,6 +110,74 @@ CREATE TABLE `tb_status_ajuan` (
   `periode_cair` int(11) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `tb_det_keg`
+--
+ALTER TABLE `tb_det_keg`
+  ADD PRIMARY KEY (`id_det`);
+
+--
+-- Indeks untuk tabel `tb_kas`
+--
+ALTER TABLE `tb_kas`
+  ADD PRIMARY KEY (`id_trans`);
+
+--
+-- Indeks untuk tabel `tb_pemasukan`
+--
+ALTER TABLE `tb_pemasukan`
+  ADD PRIMARY KEY (`id_pemasukan`);
+
+--
+-- Indeks untuk tabel `tb_pengeluaran`
+--
+ALTER TABLE `tb_pengeluaran`
+  ADD PRIMARY KEY (`id_pemasukan`);
+
+--
+-- Indeks untuk tabel `tb_status_ajuan`
+--
+ALTER TABLE `tb_status_ajuan`
+  ADD PRIMARY KEY (`id_status`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_det_keg`
+--
+ALTER TABLE `tb_det_keg`
+  MODIFY `id_det` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_kas`
+--
+ALTER TABLE `tb_kas`
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pemasukan`
+--
+ALTER TABLE `tb_pemasukan`
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pengeluaran`
+--
+ALTER TABLE `tb_pengeluaran`
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_status_ajuan`
+--
+ALTER TABLE `tb_status_ajuan`
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
