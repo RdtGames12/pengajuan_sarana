@@ -248,10 +248,10 @@ include "koneksi.php";
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
                             </div>
-                            <form class="user" action="prosesalatpraktik.php">
+                            <form class="user" action="prosesalatpraktik.php" method="POST">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
-                                    <label for="sumber_dana">Sumber Data:</label>
+                                    <label for="sumber_dana">Sumber Dana:</label>
                                     <select class="form-control" id="sumber_dana" name="sumber_dana">
                                         <option value="BOS">BOS</option>
                                         <option value="BOPD">BOPD</option>
