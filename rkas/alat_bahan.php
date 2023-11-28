@@ -1,5 +1,6 @@
 <?php
 include "koneksi.php";
+$sql = "SELECT * FROM tb_bahan ORDER BY id_bahan DESC";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -345,18 +346,19 @@ include "koneksi.php";
                                         </tr>
                                     </thead>
                                     <tfoot>
+                                    <?php foreach ($sql as $row) : ?>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
+                                            <th><?= $row["id_bahan"];?></th>
+                                            <th><?= $row["item"];?></th>
+                                            <th><?= $row["spesifikasi"];?></th>
+                                            <th><?= $row["harga"];?></th>
+                                            <th><?= $row["qty"];?></th>
+                                            <th><?$subtotal = $row["harga"] * $row["qty"];?></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        
                                     </tbody>
+                                    <?php endforeach;?>
                                 </table>
                             </div>
                         </div>
