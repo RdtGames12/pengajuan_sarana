@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Nov 2023 pada 07.02
+-- Waktu pembuatan: 28 Nov 2023 pada 02.39
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -67,6 +67,31 @@ CREATE TABLE `tb_akses` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_alat`
+--
+
+CREATE TABLE `tb_alat` (
+  `id_alat` int(11) NOT NULL,
+  `sumber_dana` varchar(10) NOT NULL,
+  `tahun_ajuan` int(4) NOT NULL,
+  `item` varchar(50) NOT NULL,
+  `merk` varchar(50) NOT NULL,
+  `spesifikasi` varchar(50) NOT NULL,
+  `harga` int(10) NOT NULL,
+  `qty` int(20) NOT NULL,
+  `kebutuhan_untuk` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_alat`
+--
+
+INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`) VALUES
+(1, 'BOS', 2021, 'Obeng', '--', 'Obeng -', 25000, 3, 'Membuka Baud');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_bagian`
 --
 
@@ -75,6 +100,32 @@ CREATE TABLE `tb_bagian` (
   `nama_bagian` varchar(60) NOT NULL,
   `id_akses` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_bahan`
+--
+
+CREATE TABLE `tb_bahan` (
+  `id_bahan` int(11) NOT NULL,
+  `sumber_dana` varchar(10) NOT NULL,
+  `tahun_ajuan` int(4) NOT NULL,
+  `item` varchar(50) NOT NULL,
+  `merk` varchar(50) NOT NULL,
+  `spesifikasi` varchar(50) NOT NULL,
+  `harga` int(10) NOT NULL,
+  `qty` int(20) NOT NULL,
+  `kebutuhan_untuk` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_bahan`
+--
+
+INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`) VALUES
+(1, 'BOS', 2021, 'Processor', 'Intel', 'I3 7100', 1250000, 3, 'Upgrade PC'),
+(2, 'BOS', 2021, 'Processor', 'AMD', 'Ryzen 3 3500U', 4000000, 5, 'Upgrade PC');
 
 -- --------------------------------------------------------
 
@@ -90,7 +141,7 @@ CREATE TABLE `tb_det_alat` (
   `spesifikasi` varchar(50) NOT NULL,
   `satuan` varchar(50) NOT NULL,
   `harga` int(10) NOT NULL,
-  `qty` varchar(20) NOT NULL,
+  `qty` int(20) NOT NULL,
   `jumlah` int(10) NOT NULL,
   `pajak` int(10) NOT NULL,
   `sub_total` int(10) NOT NULL,
@@ -229,11 +280,23 @@ ALTER TABLE `tb_akses`
   ADD PRIMARY KEY (`id_akses`);
 
 --
+-- Indeks untuk tabel `tb_alat`
+--
+ALTER TABLE `tb_alat`
+  ADD PRIMARY KEY (`id_alat`);
+
+--
 -- Indeks untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   ADD PRIMARY KEY (`id_bagian`),
   ADD UNIQUE KEY `id_akses` (`id_akses`);
+
+--
+-- Indeks untuk tabel `tb_bahan`
+--
+ALTER TABLE `tb_bahan`
+  ADD PRIMARY KEY (`id_bahan`);
 
 --
 -- Indeks untuk tabel `tb_det_alat`
@@ -304,16 +367,28 @@ ALTER TABLE `tb_akses`
   MODIFY `id_akses` int(4) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_alat`
+--
+ALTER TABLE `tb_alat`
+  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   MODIFY `id_bagian` int(4) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `tb_bahan`
+--
+ALTER TABLE `tb_bahan`
+  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `tb_det_alat`
 --
 ALTER TABLE `tb_det_alat`
-  MODIFY `id_det` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_det` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_det_keg`
