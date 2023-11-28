@@ -85,7 +85,7 @@ include "koneksi.php";
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahan.php">Bahan Parktik</a>
+                        <a class="collapse-item" href="alat_bahan.php">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktik.php">Alat Praktik</a>
                         <a class="collapse-item" href="#">Sarana</a>
                         
