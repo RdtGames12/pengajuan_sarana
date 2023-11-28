@@ -344,17 +344,23 @@ include "koneksi.php";
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
+                                            <?php
+                                            include "koneksi.php";
+                                            $sql = mysqli_query($conn, "SELECT * FROM tb_alat");
+                                            foreach ($sql as $row) :
+                                            ?>
+                                            <th><?= $row["id_alat"];?></th>
+                                            <th><?= $row["item"];?></th>
+                                            <th><?= $row["spesifikasi"];?></th>
+                                            <th><?= $row["harga"];?></th>
+                                            <th><?= $row["qty"];?></th>
+                                            <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        
+                                    
                                     </tbody>
+                                    <?php endforeach;?>
                                 </table>
                             </div>
                         </div>
