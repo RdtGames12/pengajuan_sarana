@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2023 pada 02.39
+-- Waktu pembuatan: 28 Nov 2023 pada 07.22
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -64,6 +64,18 @@ CREATE TABLE `tb_akses` (
   `jenis` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `tb_akses`
+--
+
+INSERT INTO `tb_akses` (`id_akses`, `jenis`) VALUES
+(1, 'Jurusan'),
+(2, 'Waka'),
+(3, 'TU'),
+(4, 'Kepsek'),
+(5, 'Admin'),
+(6, 'Validator');
+
 -- --------------------------------------------------------
 
 --
@@ -100,6 +112,23 @@ CREATE TABLE `tb_bagian` (
   `nama_bagian` varchar(60) NOT NULL,
   `id_akses` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_bagian`
+--
+
+INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `id_akses`) VALUES
+(1, 'Mekatronika', 1),
+(2, 'PPLG', 1),
+(3, 'Kimia', 1),
+(4, 'Animasi', 1),
+(5, 'DKV', 1),
+(6, 'Pemesinan', 1),
+(7, 'Wakil Kepala Sekolah', 2),
+(8, 'Tata Usaha', 3),
+(9, 'Kepala Sekolah', 4),
+(10, 'Admin', 5),
+(11, 'Validator', 6);
 
 -- --------------------------------------------------------
 
@@ -256,6 +285,13 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `tb_user`
+--
+
+INSERT INTO `tb_user` (`id_user`, `nama_user`, `nama`, `password`, `id_bagian`, `status`) VALUES
+(1, 'Admin', 'Administrator', '@SMKN2cmi', 10, '');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -289,8 +325,7 @@ ALTER TABLE `tb_alat`
 -- Indeks untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
-  ADD PRIMARY KEY (`id_bagian`),
-  ADD UNIQUE KEY `id_akses` (`id_akses`);
+  ADD PRIMARY KEY (`id_bagian`);
 
 --
 -- Indeks untuk tabel `tb_bahan`
@@ -364,7 +399,7 @@ ALTER TABLE `tb_ajuan_keg`
 -- AUTO_INCREMENT untuk tabel `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id_akses` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_akses` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_alat`
@@ -376,7 +411,7 @@ ALTER TABLE `tb_alat`
 -- AUTO_INCREMENT untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
-  MODIFY `id_bagian` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bagian` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bahan`
@@ -424,7 +459,7 @@ ALTER TABLE `tb_status_ajuan`
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
