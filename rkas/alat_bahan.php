@@ -276,7 +276,7 @@ include "koneksi.php";
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nama_item" name="nama_item"
-                                        placeholder="Masukkan Nama Item..">
+                                        placeholder="Masukkan nama Item..">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="merk" name="merk"
