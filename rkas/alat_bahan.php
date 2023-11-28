@@ -249,7 +249,7 @@ include "koneksi.php";
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Bahan Praktik!</h1>
                             </div>
-                            <form class="user" action="prosesalatbahan.php" method="post">
+                            <form class="user" action="prosesalatbahan.php" method="POST">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
