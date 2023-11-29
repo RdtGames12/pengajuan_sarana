@@ -7,7 +7,7 @@ $pass = $_POST['password'];
 $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE nama_user='$user'");
 
 foreach ($sql as $row) :
-    if ($user == $row['nama_user'] && $pass == $row['pass']) {
+    if ($user == $row['nama_user'] && $pass == $row['password']) {
         $id = $row['id_bagian'];
         if ($id == 1) {
             echo "
