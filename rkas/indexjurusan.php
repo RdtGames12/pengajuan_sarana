@@ -1,3 +1,8 @@
+<?php
+include 'koneksi.php';
+$id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -178,7 +183,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql as $row) :
+                                echo $row['nama']; 
+                                    endforeach;
+                                    ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
