@@ -22,7 +22,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+    <form action="loginproses.php" method="POST">
     <div class="container">
 
         <!-- Outer Row -->
@@ -43,12 +43,12 @@
                                     <form class="user">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="user" aria-describedby="user"
+                                                id="user" name="user" aria-describedby="user"
                                                 placeholder="Masukkan user Anda...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="password" name="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -57,10 +57,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        
-                                        <a href="index.php" class="btn btn-primary btn-user btn-block">
-                                            <input type="submit" value="Login" name="simpan">
-                                        </a>
+                                            <input type="submit" name="simpan" value="Login">
                                         <hr>
                                         <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
@@ -97,7 +94,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+</form>
 </body>
 
 </html>
