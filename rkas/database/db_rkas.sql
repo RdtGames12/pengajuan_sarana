@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Nov 2023 pada 07.22
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Generation Time: Nov 29, 2023 at 04:19 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_ajuan_alat`
+-- Table structure for table `tb_ajuan_alat`
 --
 
 CREATE TABLE `tb_ajuan_alat` (
@@ -35,12 +35,12 @@ CREATE TABLE `tb_ajuan_alat` (
   `total` varchar(10) NOT NULL,
   `status` varchar(30) NOT NULL,
   `sumber_dana` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_ajuan_keg`
+-- Table structure for table `tb_ajuan_keg`
 --
 
 CREATE TABLE `tb_ajuan_keg` (
@@ -51,21 +51,21 @@ CREATE TABLE `tb_ajuan_keg` (
   `total` int(10) NOT NULL,
   `status` varchar(30) NOT NULL,
   `sumber_dana` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_akses`
+-- Table structure for table `tb_akses`
 --
 
 CREATE TABLE `tb_akses` (
   `id_akses` int(4) NOT NULL,
   `jenis` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_akses`
+-- Dumping data for table `tb_akses`
 --
 
 INSERT INTO `tb_akses` (`id_akses`, `jenis`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `tb_akses` (`id_akses`, `jenis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_alat`
+-- Table structure for table `tb_alat`
 --
 
 CREATE TABLE `tb_alat` (
@@ -92,10 +92,10 @@ CREATE TABLE `tb_alat` (
   `harga` int(10) NOT NULL,
   `qty` int(20) NOT NULL,
   `kebutuhan_untuk` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_alat`
+-- Dumping data for table `tb_alat`
 --
 
 INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`) VALUES
@@ -104,17 +104,17 @@ INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_bagian`
+-- Table structure for table `tb_bagian`
 --
 
 CREATE TABLE `tb_bagian` (
   `id_bagian` int(4) NOT NULL,
   `nama_bagian` varchar(60) NOT NULL,
   `id_akses` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_bagian`
+-- Dumping data for table `tb_bagian`
 --
 
 INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `id_akses`) VALUES
@@ -133,7 +133,7 @@ INSERT INTO `tb_bagian` (`id_bagian`, `nama_bagian`, `id_akses`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_bahan`
+-- Table structure for table `tb_bahan`
 --
 
 CREATE TABLE `tb_bahan` (
@@ -146,10 +146,10 @@ CREATE TABLE `tb_bahan` (
   `harga` int(10) NOT NULL,
   `qty` int(20) NOT NULL,
   `kebutuhan_untuk` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_bahan`
+-- Dumping data for table `tb_bahan`
 --
 
 INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`) VALUES
@@ -159,7 +159,7 @@ INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_det_alat`
+-- Table structure for table `tb_det_alat`
 --
 
 CREATE TABLE `tb_det_alat` (
@@ -177,12 +177,12 @@ CREATE TABLE `tb_det_alat` (
   `kebutuhan_untuk` text NOT NULL,
   `link_siplah` varchar(100) NOT NULL,
   `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_det_keg`
+-- Table structure for table `tb_det_keg`
 --
 
 CREATE TABLE `tb_det_keg` (
@@ -197,12 +197,12 @@ CREATE TABLE `tb_det_keg` (
   `pajak` int(11) NOT NULL,
   `sub_total` int(11) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_kas`
+-- Table structure for table `tb_kas`
 --
 
 CREATE TABLE `tb_kas` (
@@ -216,12 +216,12 @@ CREATE TABLE `tb_kas` (
   `kredit` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pemasukan`
+-- Table structure for table `tb_pemasukan`
 --
 
 CREATE TABLE `tb_pemasukan` (
@@ -234,12 +234,12 @@ CREATE TABLE `tb_pemasukan` (
   `jumlah` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pengeluaran`
+-- Table structure for table `tb_pengeluaran`
 --
 
 CREATE TABLE `tb_pengeluaran` (
@@ -252,12 +252,12 @@ CREATE TABLE `tb_pengeluaran` (
   `jumlah` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_status_ajuan`
+-- Table structure for table `tb_status_ajuan`
 --
 
 CREATE TABLE `tb_status_ajuan` (
@@ -267,12 +267,12 @@ CREATE TABLE `tb_status_ajuan` (
   `id_user` int(11) NOT NULL,
   `periode_cair` int(11) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user`
+-- Table structure for table `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -282,184 +282,193 @@ CREATE TABLE `tb_user` (
   `password` varchar(100) NOT NULL,
   `id_bagian` int(4) NOT NULL,
   `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tb_user`
+-- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `nama_user`, `nama`, `password`, `id_bagian`, `status`) VALUES
-(1, 'Admin', 'Administrator', '@SMKN2cmi', 10, '');
+(1, 'Admin', 'Administrator', '@SMKN2cmi', 10, ''),
+(2, 'Meka', 'Mekatronika', '@MEKAcmi', 1, ''),
+(3, 'PPLG', 'Pengembangan Perangkat Lunak dan GIM', '@PPLGcmi', 1, ''),
+(4, 'Kimia', 'KIMIA', '@KIMIAcmi', 1, ''),
+(5, 'Animasi', 'Animasi', '@Animacmi', 1, ''),
+(6, 'DKV', 'Desain Komunikasi Visual', '@DKVcmi', 1, ''),
+(7, 'TPA', 'Teknik Pemesinan', '@TPAcmi', 1, ''),
+(8, 'Wakepsek', 'Wakil Kepala Sekolah\r\n', '@WAKEPSEKcmi', 2, ''),
+(9, 'TU', 'Tata Usaha', '@TUcmi', 3, ''),
+(10, 'KEPSEK', 'Kepala Sekolah', '@KEPSEKcmi', 4, ''),
+(11, 'VDTR', 'Validator', '@VDTRcmi', 11, '');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `tb_ajuan_alat`
+-- Indexes for table `tb_ajuan_alat`
 --
 ALTER TABLE `tb_ajuan_alat`
   ADD PRIMARY KEY (`id_ajuan`),
   ADD UNIQUE KEY `id_user` (`id_user`);
 
 --
--- Indeks untuk tabel `tb_ajuan_keg`
+-- Indexes for table `tb_ajuan_keg`
 --
 ALTER TABLE `tb_ajuan_keg`
   ADD PRIMARY KEY (`id_ajuan_keg`),
   ADD UNIQUE KEY `id_user_keg` (`id_user_keg`);
 
 --
--- Indeks untuk tabel `tb_akses`
+-- Indexes for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
   ADD PRIMARY KEY (`id_akses`);
 
 --
--- Indeks untuk tabel `tb_alat`
+-- Indexes for table `tb_alat`
 --
 ALTER TABLE `tb_alat`
   ADD PRIMARY KEY (`id_alat`);
 
 --
--- Indeks untuk tabel `tb_bagian`
+-- Indexes for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   ADD PRIMARY KEY (`id_bagian`);
 
 --
--- Indeks untuk tabel `tb_bahan`
+-- Indexes for table `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
   ADD PRIMARY KEY (`id_bahan`);
 
 --
--- Indeks untuk tabel `tb_det_alat`
+-- Indexes for table `tb_det_alat`
 --
 ALTER TABLE `tb_det_alat`
   ADD PRIMARY KEY (`id_det`),
   ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
 
 --
--- Indeks untuk tabel `tb_det_keg`
+-- Indexes for table `tb_det_keg`
 --
 ALTER TABLE `tb_det_keg`
   ADD PRIMARY KEY (`id_det`),
   ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
 
 --
--- Indeks untuk tabel `tb_kas`
+-- Indexes for table `tb_kas`
 --
 ALTER TABLE `tb_kas`
   ADD PRIMARY KEY (`id_trans`);
 
 --
--- Indeks untuk tabel `tb_pemasukan`
+-- Indexes for table `tb_pemasukan`
 --
 ALTER TABLE `tb_pemasukan`
   ADD PRIMARY KEY (`id_pemasukan`);
 
 --
--- Indeks untuk tabel `tb_pengeluaran`
+-- Indexes for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
   ADD PRIMARY KEY (`id_pemasukan`);
 
 --
--- Indeks untuk tabel `tb_status_ajuan`
+-- Indexes for table `tb_status_ajuan`
 --
 ALTER TABLE `tb_status_ajuan`
   ADD PRIMARY KEY (`id_status`),
   ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
 
 --
--- Indeks untuk tabel `tb_user`
+-- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id_user`),
-  ADD UNIQUE KEY `id_bagian` (`id_bagian`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `tb_ajuan_alat`
+-- AUTO_INCREMENT for table `tb_ajuan_alat`
 --
 ALTER TABLE `tb_ajuan_alat`
   MODIFY `id_ajuan` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_ajuan_keg`
+-- AUTO_INCREMENT for table `tb_ajuan_keg`
 --
 ALTER TABLE `tb_ajuan_keg`
   MODIFY `id_ajuan_keg` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_akses`
+-- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
   MODIFY `id_akses` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_alat`
+-- AUTO_INCREMENT for table `tb_alat`
 --
 ALTER TABLE `tb_alat`
   MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_bagian`
+-- AUTO_INCREMENT for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   MODIFY `id_bagian` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_bahan`
+-- AUTO_INCREMENT for table `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
   MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_det_alat`
+-- AUTO_INCREMENT for table `tb_det_alat`
 --
 ALTER TABLE `tb_det_alat`
   MODIFY `id_det` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_det_keg`
+-- AUTO_INCREMENT for table `tb_det_keg`
 --
 ALTER TABLE `tb_det_keg`
   MODIFY `id_det` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_kas`
+-- AUTO_INCREMENT for table `tb_kas`
 --
 ALTER TABLE `tb_kas`
   MODIFY `id_trans` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pemasukan`
+-- AUTO_INCREMENT for table `tb_pemasukan`
 --
 ALTER TABLE `tb_pemasukan`
   MODIFY `id_pemasukan` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pengeluaran`
+-- AUTO_INCREMENT for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
   MODIFY `id_pemasukan` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_status_ajuan`
+-- AUTO_INCREMENT for table `tb_status_ajuan`
 --
 ALTER TABLE `tb_status_ajuan`
   MODIFY `id_status` int(4) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user`
+-- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

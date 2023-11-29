@@ -57,7 +57,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                            <input type="submit" name="simpan" value="Login">
+                                        <input type="submit" value="Login" name="simpan" style="width : 100%;" class="btn btn-primary btn-user btn-block">
                                         <hr>
                                         <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
