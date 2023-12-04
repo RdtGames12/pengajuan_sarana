@@ -16,6 +16,13 @@ foreach ($sql as $row) :
                 window.location.href='indexjurusan.php?id=$row[id_user]';
             </script>
         ";
+        } elseif ($id == 10) {
+            echo "
+            <script>
+                alert('Login Berhasil');
+                window.location.href='index.php';
+            </script>
+        ";
         }
     }else {
         echo "
