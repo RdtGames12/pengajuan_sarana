@@ -1,7 +1,8 @@
 <?php
 include "koneksi.php";
 $sql = mysqli_query($conn, "SELECT * FROM tb_alat");
-
+$id = $_GET['id'];
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if (isset($_POST['simpan'])) {
     $sumber_dana = $_POST['sumber_dana'];
     $tahun_ajuan = $_POST['tahun_ajuan'];
@@ -11,20 +12,40 @@ if (isset($_POST['simpan'])) {
     $harga = $_POST['harga'];
     $qty = $_POST['qty'];
     $kebutuhan = $_POST['kebutuhan'];
-    $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan')");
-
+    foreach ($sql1 as $row) :
+        if ($id == 2) {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Mekatronika')");
+        }
+        elseif ($id == 3) {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'PPLG')");
+        }
+        elseif ($id == 4) {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Kimia')");
+        }
+        elseif ($id == 5) {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Animasi')");
+        }
+        elseif ($id == 6) {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'DKV')");
+        }
+        elseif ($id == 7) {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Pemesinan')");
+        } else {
+            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan')");
+        }
+        endforeach;
     if ($proses) {
         echo "
         <script>
             alert('Data Berhasil Masuk!');
-            window.location.href='alat_praktik.php';
+            window.location.href='alat_praktikjurusan.php?id=$id';
         </script>
         ";
     } else {
         echo "
     <script>
         alert('Data Gagal Masuk');  
-        window.location.href='alat_praktik.php';
+        window.location.href='alat_praktikjurusan.php?id=$id';
     </script>
     ";
     }
