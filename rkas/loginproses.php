@@ -20,7 +20,7 @@ foreach ($sql as $row) :
             echo "
             <script>
                 alert('Login Berhasil');
-                window.location.href='index.php';
+                window.location.href='admin.php';
             </script>
         ";
         }
@@ -28,7 +28,7 @@ foreach ($sql as $row) :
         echo "
         <script>
             alert('Username atau Password Tidak Ditemukan');
-            window.location.href='login.php';
+            window.location.href='index.php';
         </script>
         ";
     }
