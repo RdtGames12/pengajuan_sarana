@@ -13,14 +13,21 @@ foreach ($sql as $row) :
             echo "
             <script>
                 alert('Login Berhasil');
-                window.location.href='indexjurusan.php?id=$row[id_user]';
+                window.location.href='homejurusan.php?id=$row[id_user]';
             </script>
         ";
         } elseif ($id == 2) {
             echo "
             <script>
                 alert('Login Berhasil');
-                window.location.href='indexwakepsek.php?id=$row[id_user]';
+                window.location.href='homewakepsek.php?id=$row[id_user]';
+            </script>
+        ";
+        }elseif ($id == 3) {
+            echo "
+            <script>
+                alert('Login Berhasil');
+                window.location.href='hometu.php?id=$row[id_user]';
             </script>
         ";
         }elseif ($id == 10) {
