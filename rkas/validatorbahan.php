@@ -245,9 +245,9 @@ if ($id == 702205615) {
                                         <th><?= $row["jurusan"];?></th>
                                         <th><?= $row["kebutuhan_untuk"];?></th>
                                         <th>
-                                            <a href="terimapengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');">Terima</a>
+                                            <a href="terimapengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
                                             |
-                                            <a href="tolakpengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');">Tolak</a>
+                                            <a href="tolakpengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
                                         </th>
                                         </tr>
                                     
