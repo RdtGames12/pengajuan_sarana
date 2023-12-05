@@ -1,8 +1,26 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
-$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
+if ($id == 356758684) {
+    $jurusan =  'Mekatronika';
+}
+elseif ($id == 287839666) {
+    $jurusan =  'PPLG';
+}
+elseif ($id == 499308321) {
+    $jurusan =  'Kimia';
+}
+elseif ($id == 257802071) {
+    $jurusan =  'Animasi';
+}
+elseif ($id == 6083232) {
+    $jurusan =  'DKV';
+}
+elseif ($id == 899055276) {
+    $jurusan =  'Pemesinan';
+}
+$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat  WHERE jurusan = '$jurusan'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
