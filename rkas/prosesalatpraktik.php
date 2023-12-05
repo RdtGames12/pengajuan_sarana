@@ -12,28 +12,26 @@ if (isset($_POST['simpan'])) {
     $harga = $_POST['harga'];
     $qty = $_POST['qty'];
     $kebutuhan = $_POST['kebutuhan'];
-    foreach ($sql1 as $row) :
-        if ($id == 2) {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Mekatronika')");
-        }
-        elseif ($id == 3) {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'PPLG')");
-        }
-        elseif ($id == 4) {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Kimia')");
-        }
-        elseif ($id == 5) {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Animasi')");
-        }
-        elseif ($id == 6) {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'DKV')");
-        }
-        elseif ($id == 7) {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Pemesinan')");
-        } else {
-            $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan')");
-        }
-        endforeach;
+    if ($id == 356758684) {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Mekatronika')");
+    }
+    elseif ($id == 287839666) {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'PPLG')");
+    }
+    elseif ($id == 499308321) {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Kimia')");
+    }
+    elseif ($id == 257802071) {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Animasi')");
+    }
+    elseif ($id == 6083232) {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'DKV')");
+    }
+    elseif ($id == 899055276) {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk, jurusan) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan', 'Pemesinan')");
+    } else {
+        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, kebutuhan_untuk) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$kebutuhan')");
+    }
     if ($proses) {
         echo "
         <script>

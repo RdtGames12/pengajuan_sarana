@@ -1,8 +1,26 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
-$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
+if ($id == 356758684) {
+    $jurusan =  'Mekatronika';
+}
+elseif ($id == 287839666) {
+    $jurusan =  'PPLG';
+}
+elseif ($id == 499308321) {
+    $jurusan =  'Kimia';
+}
+elseif ($id == 257802071) {
+    $jurusan =  'Animasi';
+}
+elseif ($id == 6083232) {
+    $jurusan =  'DKV';
+}
+elseif ($id == 899055276) {
+    $jurusan =  'Pemesinan';
+}
+$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat  WHERE jurusan = '$jurusan'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -38,7 +56,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index2.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homejurusan.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -50,7 +68,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index2.php">
+                <a class="nav-link" href="homejurusan.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
