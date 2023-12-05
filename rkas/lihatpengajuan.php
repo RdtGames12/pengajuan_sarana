@@ -225,15 +225,16 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             </div>
                             <hr>
                         </div>
-    <form action="lihatpengajuan.php" method="POST">
+    <form action="lihatpengajuan.php?id=<?= $id ?>" method="POST">
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
                             <select name="ajuan">
-                                <option value="bahan">Ajuan Bahan</option>
-                                <option value="alat">Ajuan Alat</option>
+                                <option value="Ajuan Bahan" name="bahan1">Ajuan Bahan</option>
+                                <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
                             </select>
                             <input type="submit" name="cari" value="cari">
+                                </form>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
@@ -249,10 +250,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <?php
                                 if (isset($_POST['cari'])) {
                                     $cari = $_POST['ajuan'];
-                                    $bahan = $_POST['bahan'];
-                                    $alat = $_POST['alat'];
                                 
-                                if ($cari == alat) {
+                                if ($cari == 'Ajuan Alat') {
                                     ?>
                                         <?php $no = 0;?>
                                     <?php foreach ($alat as $row) : ?>
@@ -266,21 +265,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </tr>
                                 
                                     <?php endforeach; } ?>
-                                </table>
                             </div>
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                    </tr>
-                                    
-                            <?php if ($cari == bahan) {
+                            <?php if ($cari == 'Ajuan Bahan') {
                                     ?>
                                         <?php $no = 0;?>
                                     <?php foreach ($bahan as $row) : ?>
@@ -293,7 +279,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
                                     </tr>
                                 
-                                    <?php endforeach; } }?>
+                                    <?php endforeach; } 
+                                }?>
                                 </table>
                             </div>
                         </div>
