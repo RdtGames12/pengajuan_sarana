@@ -3,6 +3,31 @@ include "koneksi.php";
 $id = $_GET['id'];
 $sql = mysqli_query($conn, "SELECT * FROM tb_alat");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+$id = $_GET['id'];
+if ($id == 356758684) {
+    $jurusan =  'Mekatronika';
+    $profil = '<img class="img-profile rounded-circle" src="img/logomeka.png">';
+}
+elseif ($id == 287839666) {
+    $jurusan =  'PPLG';
+    $profil = '<img class="img-profile rounded-circle" src="img/logorpl.png">';
+}
+elseif ($id == 499308321) {
+    $jurusan =  'Kimia';
+    $profil = '<img class="img-profile rounded-circle" src="img/logokimia.png">';
+}
+elseif ($id == 257802071) {
+    $jurusan =  'Animasi';
+    $profil = '<img class="img-profile rounded-circle" src="img/logoanimasi.png">';
+}
+elseif ($id == 6083232) {
+    $jurusan =  'DKV';
+    $profil = '<img class="img-profile rounded-circle" src="img/logodkv.png">';
+}
+elseif ($id == 899055276) {
+    $jurusan =  'Pemesinan';
+    $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,7 +143,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="login.html">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
+                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
                         <a class="collapse-item" href="forgot-password.html">TU</a>
                         
                         
@@ -188,8 +213,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <?= $profil ?>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
