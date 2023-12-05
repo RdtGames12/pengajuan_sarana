@@ -275,10 +275,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Item</th>
+                                            <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
                                             <th>Jumlah Beli</th>
                                             <th>Sub Total</th>
+                                            <th>Status</th>
                                     </tr>
                                 <?php
                                 if (isset($_POST['cari'])) {
@@ -291,10 +293,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
+                                    <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    <th><?= $row['status'];?></th>
                                     </tr>
                                 
                                     <?php endforeach; } ?>
@@ -306,10 +310,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
+                                    <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    <th><?= $row['status'];?></th>
                                     </tr>
                                 
                                     <?php endforeach; } 
