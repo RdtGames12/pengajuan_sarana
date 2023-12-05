@@ -34,7 +34,7 @@ foreach ($sql as $row) :
             echo "
             <script>
                 alert('Login Berhasil');
-                window.location.href='admin.php';
+                window.location.href='admin.php?id=$row[id_user]';
             </script>
         ";
         }

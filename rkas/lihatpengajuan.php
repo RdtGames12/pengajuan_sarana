@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_bahan ORDER BY id_bahan DESC");
+$sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -244,7 +244,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 
                                         <?php $no = 0;?>
                                     <?php foreach ($sql as $row) : ?>
-                                    <tr align="center">
+                                    <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>

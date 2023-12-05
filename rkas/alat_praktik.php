@@ -2,6 +2,9 @@
 <html lang="en">
 <?php
 include "koneksi.php";
+$id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_alat");
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <head>
 
@@ -85,8 +88,8 @@ include "koneksi.php";
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahan.php">Bahan Praktik</a>
-                        <a class="collapse-item" href="alat_praktik.php">Alat Praktik</a>
+                        <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="#">Sarana</a>
                         
                     </div>
@@ -147,7 +150,7 @@ include "koneksi.php";
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="login.html">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="register.html">Program Keahlian</a>
+                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
                         <a class="collapse-item" href="forgot-password.html">TU</a>
                         
                         
@@ -213,7 +216,10 @@ include "koneksi.php";
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle border-bottom-danger" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?php foreach ($sql1 as $row) :
+                                echo $row['nama']; 
+                                    endforeach;
+                                    ?></span>
                                 <img class="img-profile rounded-circle "
                                     src="img/venom.jpg">
                             </a>
@@ -323,48 +329,6 @@ include "koneksi.php";
                                 <!-- </div> -->
                             </form>
                             <hr>
-                        </div>
-
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <?php
-                                            include "koneksi.php";
-                                            $sql = mysqli_query($conn, "SELECT * FROM tb_alat");
-                                            foreach ($sql as $row) :
-                                            ?>
-                                            <th><?= $row["id_alat"];?></th>
-                                            <th><?= $row["item"];?></th>
-                                            <th><?= $row["spesifikasi"];?></th>
-                                            <th><?= $row["harga"];?></th>
-                                            <th><?= $row["qty"];?></th>
-                                            <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    
-                                    </tbody>
-                                    <?php endforeach;?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                         </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>

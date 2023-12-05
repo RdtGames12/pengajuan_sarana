@@ -1,6 +1,8 @@
 <?php
 include "koneksi.php";
 $sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
+$id = $_GET['id'];
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,8 +89,8 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahan.php">Bahan Praktik</a>
-                        <a class="collapse-item" href="alat_praktik.php">Alat Praktik</a>
+                        <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="#">Sarana</a>
                         
                     </div>
@@ -149,7 +151,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="login.html">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="lihatpengajuan.php">Program Keahlian</a>
+                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
                         <a class="collapse-item" href="forgot-password.html">TU</a>
                         
                         
@@ -215,7 +217,10 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle border-bottom-danger" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-900 small">Admin</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?php foreach ($sql1 as $row) :
+                                echo $row['nama']; 
+                                    endforeach;
+                                    ?></span>
                                 <img class="img-profile rounded-circle "
                                     src="img/venom.jpg">
                             </a>

@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_alat ORDER BY id_alat DESC");
+$sql = mysqli_query($conn, "SELECT * FROM tb_alat");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -118,7 +118,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="login.html">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="register.html">Program Keahlian</a>
+                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
                         <a class="collapse-item" href="forgot-password.html">TU</a>
                         
                         
@@ -306,30 +306,28 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
                                             <th>No</th>
                                             <th>Nama Item</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
                                             <th>Jumlah Beli</th>
                                             <th>Sub Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
+                                    </tr>
+                                    
+                                
+                                        <?php $no = 0;?>
                                     <?php foreach ($sql as $row) : ?>
-                                        <tr>
-                                            <th><?= $row["id_alat"];?></th>
-                                            <th><?= $row["item"];?></th>
-                                            <th><?= $row["spesifikasi"];?></th>
-                                            <th><?= $row["harga"];?></th>
-                                            <th><?= $row["qty"];?></th>
-                                            <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    </tbody>
+                                    <tr>
+                                    <th><?php $no += 1; echo $no;?></th>
+                                    <th><?= $row["item"];?></th>
+                                    <th><?= $row["spesifikasi"];?></th>
+                                    <th><?= $row["harga"];?></th>
+                                    <th><?= $row["qty"];?></th>
+                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    </tr>
+                                
                                     <?php endforeach;?>
                                 </table>
                             </div>
