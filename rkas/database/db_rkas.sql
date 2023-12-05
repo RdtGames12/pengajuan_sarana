@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Des 2023 pada 02.20
+-- Waktu pembuatan: 05 Des 2023 pada 07.12
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -100,7 +100,9 @@ CREATE TABLE `tb_alat` (
 --
 
 INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`, `jurusan`) VALUES
-(1, 'BOS', 2021, 'Obeng', '--', 'Obeng -', 25000, 3, 'Membuka Baud', '');
+(1, 'BOS', 2021, 'Obeng', '--', 'Obeng -', 25000, 3, 'Membuka Baud', 'Mekatronika'),
+(2, 'BOS', 2021, 'Avo', 'Avo', 'Avo', 100000, 1, 'Cek Ampere', ''),
+(3, 'BANTUAN', 2023, 'SLR', 'Canon', 'Zoom 100x', 30000000, 1, 'Studio', '');
 
 -- --------------------------------------------------------
 
@@ -155,9 +157,10 @@ CREATE TABLE `tb_bahan` (
 --
 
 INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`, `jurusan`) VALUES
-(1, 'BOS', 2021, 'Processor', 'Intel', 'I3 7100', 1250000, 3, 'Upgrade PC', ''),
-(2, 'BOS', 2021, 'Processor', 'AMD', 'Ryzen 3 3500U', 4000000, 5, 'Upgrade PC', ''),
-(3, 'BOS', 2021, 'tes', 'tes', 'tes', 125, 125, 'tes', 'Animasi');
+(1, 'BOS', 2021, 'Processor', 'Intel', 'I3 7100', 1250000, 3, 'Upgrade PC', 'PPLG'),
+(2, 'BOS', 2021, 'Processor', 'AMD', 'Ryzen 3 3500U', 4000000, 5, 'Upgrade PC', 'PPLG'),
+(3, 'BOS', 2021, 'tes', 'tes', 'tes', 125, 125, 'tes', 'Animasi'),
+(4, 'BOS', 2023, 'Scope', '-', 'Zoom', 250000, 2, 'Zoom In', 'DKV');
 
 -- --------------------------------------------------------
 
@@ -279,7 +282,7 @@ CREATE TABLE `tb_status_ajuan` (
 --
 
 CREATE TABLE `tb_user` (
-  `id_user` int(4) NOT NULL,
+  `id_user` int(10) NOT NULL,
   `nama_user` varchar(60) NOT NULL,
   `nama` char(100) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -292,17 +295,17 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `nama_user`, `nama`, `password`, `id_bagian`, `status`) VALUES
-(22913, 'Animasi', 'Animasi', '@Animacmi', 1, ''),
-(34638, 'Admin', 'Administrator', '@SMKN2cmi', 10, ''),
-(39506, 'DKV', 'Desain Komunikasi Visual', '@DKVcmi', 1, ''),
-(46445, 'KEPSEK', 'Kepala Sekolah', '@KEPSEKcmi', 4, ''),
-(50570, 'VDTR', 'Validator', '@VDTRcmi', 11, ''),
-(61396, 'TU', 'Tata Usaha', '@TUcmi', 3, ''),
-(66305, 'Wakepsek', 'Wakil Kepala Sekolah\r\n', '@WAKEPSEKcmi', 2, ''),
-(67987, 'PPLG', 'Pengembangan Perangkat Lunak dan GIM', '@PPLGcmi', 1, ''),
-(70473, 'Kimia', 'KIMIA', '@KIMIAcmi', 1, ''),
-(85750, 'Meka', 'Mekatronika', '@MEKAcmi', 1, ''),
-(86832, 'TPA', 'Teknik Pemesinan', '@TPAcmi', 1, '');
+(6083232, 'DKV', 'Desain Komunikasi Visual', '@DKVcmi', 1, ''),
+(12300945, 'KEPSEK', 'Kepala Sekolah', '@KEPSEKcmi', 4, ''),
+(171128105, 'TU', 'Tata Usaha', '@TUcmi', 3, ''),
+(257802071, 'Animasi', 'Animasi', '@ANIMAcmi', 1, ''),
+(287839666, 'PPLG', 'PPLG', '@PPLGcmi', 1, ''),
+(356758684, 'Meka', 'Mekatronika', '@MEKAcmi', 1, ''),
+(499308321, 'Kimia', 'Kimia Industri', '@KIMIAcmi', 1, ''),
+(641487792, 'Wakepsek', 'Wakil Kepala Sekolah\r\n', '@WAKEPSEKcmi', 2, ''),
+(702205615, 'VDTR', 'Validator', '@VDTRcmi', 11, ''),
+(892963089, 'Admin', 'Administrator', '@SMKN2cmi', 10, ''),
+(899055276, 'TPA', 'Teknik Pemesinan', '@TPAcmi', 1, '');
 
 --
 -- Indexes for dumped tables
@@ -417,7 +420,7 @@ ALTER TABLE `tb_akses`
 -- AUTO_INCREMENT untuk tabel `tb_alat`
 --
 ALTER TABLE `tb_alat`
-  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bagian`
@@ -429,7 +432,7 @@ ALTER TABLE `tb_bagian`
 -- AUTO_INCREMENT untuk tabel `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
-  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_det_alat`
