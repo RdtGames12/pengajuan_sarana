@@ -244,6 +244,13 @@ if ($id == 702205615) {
                                         <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
                                         <th><?= $row["jurusan"];?></th>
                                         <th><?= $row["kebutuhan_untuk"];?></th>
+                                        <th>
+                                            <?php
+                                            echo "<a href=tolakpengajuanbahan.php?idc=$row[id_bahan]'>Terima</a>";
+                                            ?>
+                                            |
+                                            <a href="tolakpengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');">Tolak</a>
+                                        </th>
                                         </tr>
                                     
                                         <?php endforeach;
