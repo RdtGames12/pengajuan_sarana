@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Des 2023 pada 01.46
+-- Waktu pembuatan: 05 Des 2023 pada 02.20
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -292,17 +292,17 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `nama_user`, `nama`, `password`, `id_bagian`, `status`) VALUES
-(1, 'Admin', 'Administrator', '@SMKN2cmi', 10, ''),
-(2, 'Meka', 'Mekatronika', '@MEKAcmi', 1, ''),
-(3, 'PPLG', 'Pengembangan Perangkat Lunak dan GIM', '@PPLGcmi', 1, ''),
-(4, 'Kimia', 'KIMIA', '@KIMIAcmi', 1, ''),
-(5, 'Animasi', 'Animasi', '@Animacmi', 1, ''),
-(6, 'DKV', 'Desain Komunikasi Visual', '@DKVcmi', 1, ''),
-(7, 'TPA', 'Teknik Pemesinan', '@TPAcmi', 1, ''),
-(8, 'Wakepsek', 'Wakil Kepala Sekolah\r\n', '@WAKEPSEKcmi', 2, ''),
-(9, 'TU', 'Tata Usaha', '@TUcmi', 3, ''),
-(10, 'KEPSEK', 'Kepala Sekolah', '@KEPSEKcmi', 4, ''),
-(11, 'VDTR', 'Validator', '@VDTRcmi', 11, '');
+(22913, 'Animasi', 'Animasi', '@Animacmi', 1, ''),
+(34638, 'Admin', 'Administrator', '@SMKN2cmi', 10, ''),
+(39506, 'DKV', 'Desain Komunikasi Visual', '@DKVcmi', 1, ''),
+(46445, 'KEPSEK', 'Kepala Sekolah', '@KEPSEKcmi', 4, ''),
+(50570, 'VDTR', 'Validator', '@VDTRcmi', 11, ''),
+(61396, 'TU', 'Tata Usaha', '@TUcmi', 3, ''),
+(66305, 'Wakepsek', 'Wakil Kepala Sekolah\r\n', '@WAKEPSEKcmi', 2, ''),
+(67987, 'PPLG', 'Pengembangan Perangkat Lunak dan GIM', '@PPLGcmi', 1, ''),
+(70473, 'Kimia', 'KIMIA', '@KIMIAcmi', 1, ''),
+(85750, 'Meka', 'Mekatronika', '@MEKAcmi', 1, ''),
+(86832, 'TPA', 'Teknik Pemesinan', '@TPAcmi', 1, '');
 
 --
 -- Indexes for dumped tables
@@ -466,12 +466,6 @@ ALTER TABLE `tb_pengeluaran`
 --
 ALTER TABLE `tb_status_ajuan`
   MODIFY `id_status` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_user`
---
-ALTER TABLE `tb_user`
-  MODIFY `id_user` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
