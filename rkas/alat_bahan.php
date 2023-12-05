@@ -149,7 +149,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="login.html">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="register.html">Program Keahlian</a>
+                        <a class="collapse-item" href="lihatpengajuan.php">Program Keahlian</a>
                         <a class="collapse-item" href="forgot-password.html">TU</a>
                         
                         
