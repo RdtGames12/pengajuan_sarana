@@ -31,10 +31,17 @@ foreach ($sql as $row) :
             </script>
         ";
         }elseif ($id == 10) {
+        echo "
+        <script>
+            alert('Login Berhasil');
+            window.location.href='admin.php?id=$row[id_user]';
+        </script>
+        ";
+        }elseif ($id == 11) {
             echo "
             <script>
                 alert('Login Berhasil');
-                window.location.href='admin.php?id=$row[id_user]';
+                window.location.href='homevalidator.php?id=$row[id_user]';
             </script>
         ";
         }
