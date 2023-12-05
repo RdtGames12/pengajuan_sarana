@@ -297,42 +297,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <!-- </div> -->
                                 <!-- </div> -->
                             </form>
-                            <hr>
-                        </div>
-
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                    </tr>
-                                    
-                                
-                                        <?php $no = 0;?>
-                                    <?php foreach ($sql as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach;?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
                         </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>

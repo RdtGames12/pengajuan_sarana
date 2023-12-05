@@ -328,7 +328,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <!-- </div> -->
                                 <!-- </div> -->
                             </form>
-                            <hr>
                         </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
