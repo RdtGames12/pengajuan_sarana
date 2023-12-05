@@ -36,7 +36,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index2.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homejurusan.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -48,7 +48,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index2.php">
+                <a class="nav-link" href="homejurusan.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
