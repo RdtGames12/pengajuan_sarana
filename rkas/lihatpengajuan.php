@@ -229,11 +229,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                            <select name="ajuan">
+                            <select class="animated--fade-in" name="ajuan">
                                 <option value="Ajuan Bahan" name="bahan1">Ajuan Bahan</option>
                                 <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
                             </select>
-                            <input type="submit" name="cari" value="cari">
+                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
                         </div>
                         <div class="card-body">
