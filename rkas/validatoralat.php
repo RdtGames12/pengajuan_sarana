@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if ($id == 702205615) {
     $profil = '<img class="img-profile rounded-circle" src="img/undraw_profile.svg">';
@@ -198,7 +198,7 @@ if ($id == 702205615) {
                             </div>
                             <hr>
                         </div>
-    <form action="validatorbahan.php?id=<?= $id ?>" method="POST">
+    <form action="validatoralat.php?id=<?= $id ?>" method="POST">
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
@@ -230,11 +230,11 @@ if ($id == 702205615) {
                                 <?php
                                 if (isset($_POST['cari'])) {
                                     $jurusan = $_POST['jurusan'];
-                                    $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
+                                    $alat = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
                                 
                                 ?>
                                         <?php $no = 0;?>
-                                        <?php foreach ($bahan as $row) : ?>
+                                        <?php foreach ($alat as $row) : ?>
                                         <tr>
                                         <th><?php $no += 1; echo $no;?></th>
                                         <th><?= $row["item"];?></th>
@@ -245,9 +245,9 @@ if ($id == 702205615) {
                                         <th><?= $row["jurusan"];?></th>
                                         <th><?= $row["kebutuhan_untuk"];?></th>
                                         <th>
-                                            <a href="terimapengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');">Terima</a>
+                                            <a href="terimapengajuanalat.php?idc=<?=$row['id_alat']; ?>"onclick ="return confirm('Yakin?');">Terima</a>
                                             |
-                                            <a href="tolakpengajuanbahan.php?idc=<?=$row['id_bahan']; ?>"onclick ="return confirm('Yakin?');">Tolak</a>
+                                            <a href="tolakpengajuanalat.php?idc=<?=$row['id_alat']; ?>"onclick ="return confirm('Yakin?');">Tolak</a>
                                         </th>
                                         </tr>
                                     

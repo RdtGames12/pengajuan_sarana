@@ -83,7 +83,7 @@ if ($id == 702205615) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
                         <a class="collapse-item" href="validatorbahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="register.html">Alat Praktik</a>
+                        <a class="collapse-item" href="validatoralat.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="forgot-password.html">Kegiatan</a>
                         
                         <a class="collapse-item" href="404.html">Sarana</a>
