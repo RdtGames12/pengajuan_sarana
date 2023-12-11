@@ -219,6 +219,7 @@ if ($id == 702205615) {
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Item</th>
+                                            <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
                                             <th>Jumlah Beli</th>
@@ -238,6 +239,7 @@ if ($id == 702205615) {
                                         <tr>
                                         <th><?php $no += 1; echo $no;?></th>
                                         <th><?= $row["item"];?></th>
+                                        <th><?= $row["merk"];?></th>
                                         <th><?= $row["spesifikasi"];?></th>
                                         <th><?= $row["harga"];?></th>
                                         <th><?= $row["qty"];?></th>
