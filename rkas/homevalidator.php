@@ -84,10 +84,10 @@ if ($id == 702205615) {
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
                         <a class="collapse-item" href="validatorbahan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="validatoralat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="forgot-password.html">Kegiatan</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
                         
-                        <a class="collapse-item" href="404.html">Sarana</a>
-                        <a class="collapse-item" href="blank.html">ATK</a>
+                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
             </li>
@@ -101,9 +101,9 @@ if ($id == 702205615) {
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="login.html">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
                         <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
-                        <a class="collapse-item" href="forgot-password.html">TU</a>
+                        <a class="collapse-item" href="#">TU</a>
                         
                         
                     </div>
