@@ -254,7 +254,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
                             </div>
-                            <form class="user" action="prosesalatpraktik.php" method="POST">
+                            <form class="user" action="prosesalatpraktikadmin.php?id=<?= $id ?>" method="POST">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
