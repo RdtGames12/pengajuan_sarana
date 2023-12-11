@@ -280,6 +280,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Harga</th>
                                             <th>Jumlah Beli</th>
                                             <th>Sub Total</th>
+                                            <th>Jurusan</th>
                                             <th>Status</th>
                                     </tr>
                                 <?php
@@ -298,6 +299,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    <th><?= $row['jurusan'];?></th>
                                     <th><?= $row['status'];?></th>
                                     </tr>
                                 
@@ -315,6 +317,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    <th><?= $row['jurusan'];?></th>
                                     <th><?= $row['status'];?></th>
                                     </tr>
                                 
