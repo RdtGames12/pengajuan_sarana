@@ -1,7 +1,10 @@
 <?php
-include 'koneksi.php';
+include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+$sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+
+$id = $_GET['id'];
 if ($id == 356758684) {
     $jurusan =  'Mekatronika';
     $profil = '<img class="img-profile rounded-circle" src="img/logomeka.png">';
@@ -96,13 +99,13 @@ elseif ($id == 899055276) {
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href='alat_bahanjurusan.php?id=<?= $id ?>'>Bahan Praktik</a>
+                        <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="kegiatan_jurusan.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="kegiatan_jurusan.php">Kegiatan</a>
                         
                     </div>
                 </div>
-            </li>-
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -207,7 +210,7 @@ elseif ($id == 899055276) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql as $row) :
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql1 as $row) :
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
@@ -239,9 +242,156 @@ elseif ($id == 899055276) {
                     </ul>
 
                 </nav>
+        <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Kegiatan</h1>
+                            </div>
+                            <form class="user" action="prosesalatkegiatan.php?id=<?= $id ?>" method="POST">
+                                <div class="form-group">
+                                    <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
+                                    <label for="sumber_dana">Sumber Dana:</label>
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                        <option value="BOS">BOS</option>
+                                        <option value="BOPD">BOPD</option>
+                                        <option value="KOMITE">KOMITE</option>
+                                        <option value="BANTUAN">BANTUAN</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="tahun_ajuan">Tahun Ajuan:</label>
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                <label for="nama_kegiatan">Nama Kegiatan</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_kegiatan" name="nama_kegiatan"
+                                        placeholder="Masukkan Nama Kegiatan">
+                                </div>
+                                <div class="form-group">
+                                <label for="bulan">Waktu (bulan ke )</label>
+                                <select class="form-control" id="bulan" name="bulan">
+                                        <option value="1">Januari</option>
+                                        <option value="2">Februari</option>
+                                        <option value="3">Maret</option>
+                                        <option value="4">April</option>
+                                        <option value="5">Mei</option>
+                                        <option value="6">Juni</option>
+                                        <option value="7">Juli</option>
+                                        <option value="8">Agustus</option>
+                                        <option value="9">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="harga">(Biaya/Vol.)</label>
+                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
+                                        placeholder="Masukkan harga/vol">
+                                </div>
+                                <table>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" placeholder="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol2" name="vol2" placeholder="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol3" name="vol3" placeholder="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" placeholder="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                </table>
+                                
+                                
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Ulang Password">
+                                    
+                                </div>
+                                </div> -->
+                                
+                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </a>
+                                <hr>
+                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a> -->
+                            <!-- </div> -->
+                                <!-- </div> -->
+                            </form>
+                        </div>
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
 
-    </div>
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -267,7 +417,6 @@ elseif ($id == 899055276) {
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
