@@ -312,9 +312,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 }?>
                                 </table>
                             </div>
-                            <form action="cetak.php?id=<?= $id ?>" method="POST">
-                                <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cetak" value="Cetak">
-                                </form>
                         </div>
                     </div>
                         </div>

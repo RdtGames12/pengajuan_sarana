@@ -93,7 +93,7 @@ if ($id == 702205615) {
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
+                        <a class="collapse-item" href="#">Program Keahlian</a>
                         <a class="collapse-item" href="#">TU</a>
                         
                         
