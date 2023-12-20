@@ -1,7 +1,6 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 $id = $_GET['id'];
@@ -29,6 +28,7 @@ elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
 }
+$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -247,7 +247,7 @@ elseif ($id == 899055276) {
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Kegiatan</h1>
                             </div>
-                            <form class="user" action="prosesalatkegiatan.php?id=<?= $id ?>" method="POST">
+                            <form class="user" action="proses_kegiatan.php?id=<?= $id ?>" method="POST">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -278,23 +278,23 @@ elseif ($id == 899055276) {
                                 <div class="form-group">
                                 <label for="bulan">Waktu (bulan ke )</label>
                                 <select class="form-control" id="bulan" name="bulan">
-                                        <option value="1">Januari</option>
-                                        <option value="2">Februari</option>
-                                        <option value="3">Maret</option>
-                                        <option value="4">April</option>
-                                        <option value="5">Mei</option>
-                                        <option value="6">Juni</option>
-                                        <option value="7">Juli</option>
-                                        <option value="8">Agustus</option>
-                                        <option value="9">September</option>
-                                        <option value="10">Oktober</option>
-                                        <option value="11">November</option>
-                                        <option value="12">Desember</option>
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="harga">(Biaya/Vol.)</label>
-                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
+                                <label for="biaya">(Biaya/Vol.)</label>
+                                    <input type="number" class="form-control form-control-user" id="biaya" name="biaya"
                                         placeholder="Masukkan harga/vol">
                                 </div>
                                 <table>
@@ -302,7 +302,7 @@ elseif ($id == 899055276) {
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" placeholder="">
+                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" value=1 min=1>
                                         </div>
                                     </td>
                                     <td>
@@ -315,7 +315,7 @@ elseif ($id == 899055276) {
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol2" name="vol2" placeholder="">
+                                        <input type="number" class="form-control form-control" id="vol2" name="vol2"  value=1 min=1>
                                         </div>
                                     </td>
                                     <td>
@@ -328,7 +328,7 @@ elseif ($id == 899055276) {
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol3" name="vol3" placeholder="">
+                                        <input type="number" class="form-control form-control" id="vol3" name="vol3"  value=1 min=1>
                                         </div>
                                     </td>
                                     <td>
@@ -341,7 +341,7 @@ elseif ($id == 899055276) {
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" placeholder="">
+                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" value=1 min=1>
                                         </div>
                                     </td>
                                     <td>
@@ -377,6 +377,30 @@ elseif ($id == 899055276) {
                             <!-- </div> -->
                                 <!-- </div> -->
                             </form>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th>Bulan</th>
+                                            <th>Biaya</th>
+                                            <th>Total</th>
+                                    </tr>
+                                        <?php $no = 0;?>
+                                    <?php foreach ($sql as $row) : ?>
+                                    <tr>
+                                    <th><?php $no += 1; echo $no;?></th>
+                                    <th><?= $row["nama_kegiatan"];?></th>
+                                    <th><?= $row["bulan"];?></th>
+                                    <th><?= $row["biaya"];?></th>
+                                    <th><?= $row["total"];?></th>
+                                    </tr>
+                                
+                                    <?php endforeach; ?>
+                            </div>
+                                </table>
+                            </div>
+                        </div>
                         </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
