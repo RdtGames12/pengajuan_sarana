@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Des 2023 pada 09.08
+-- Waktu pembuatan: 20 Des 2023 pada 04.19
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -232,6 +232,24 @@ CREATE TABLE `tb_kas` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_kegiatan`
+--
+
+CREATE TABLE `tb_kegiatan` (
+  `id_kegiatan` int(11) NOT NULL,
+  `sumber_dana` varchar(50) NOT NULL,
+  `tahun_ajuan` int(4) NOT NULL,
+  `nama_kegiatan` varchar(50) NOT NULL,
+  `bulan` varchar(50) NOT NULL,
+  `biaya` int(20) NOT NULL,
+  `total` int(20) NOT NULL,
+  `jurusan` char(50) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_pemasukan`
 --
 
@@ -375,6 +393,12 @@ ALTER TABLE `tb_kas`
   ADD PRIMARY KEY (`id_trans`);
 
 --
+-- Indeks untuk tabel `tb_kegiatan`
+--
+ALTER TABLE `tb_kegiatan`
+  ADD PRIMARY KEY (`id_kegiatan`);
+
+--
 -- Indeks untuk tabel `tb_pemasukan`
 --
 ALTER TABLE `tb_pemasukan`
@@ -456,6 +480,12 @@ ALTER TABLE `tb_det_keg`
 --
 ALTER TABLE `tb_kas`
   MODIFY `id_trans` int(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_kegiatan`
+--
+ALTER TABLE `tb_kegiatan`
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pemasukan`
