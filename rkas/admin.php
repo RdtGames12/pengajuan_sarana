@@ -29,11 +29,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 <style>
     body {
-        background-image: url(img/background.jpg);
+        background-image: url(img/opback.png);
     }
 </style>
 
-<body id="page-top" background-image=url(img/background.jpg)>
+<body id="page-top" background-image=url(img/opback.png)>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -226,7 +226,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     endforeach;
                                     ?></span>
                                 <img class="img-profile rounded-circle "
-                                    src="img/venom.jpg">
+                                    src="img/opprofil.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
