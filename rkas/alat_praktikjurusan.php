@@ -1,7 +1,6 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_alat");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 $id = $_GET['id'];
 if ($id == 356758684) {
@@ -27,7 +26,7 @@ elseif ($id == 6083232) {
 elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
-}
+}$sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -262,9 +261,9 @@ elseif ($id == 899055276) {
                                 <div class="form-group">
                                     <label for="tahun_ajuan">Tahun Ajuan:</label>
                                     <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
-                                        <option value="2023">2023</option>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
                                     </select>
                                     <!-- <input type="text" class="form-control form-control-user" id="sumber"
                                         placeholder="Sumber Dana"> -->
@@ -319,6 +318,33 @@ elseif ($id == 899055276) {
                             <!-- </div> -->
                                 <!-- </div> -->
                             </form>
+                            <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Item</th>
+                                            <th>Merk</th>
+                                            <th>Spesifikasi</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah Beli</th>
+                                            <th>Sub Total</th>
+                                    </tr>
+                                    <?php $no = 0;?>
+                                    <?php foreach ($sql as $row) : ?>
+                                    <tr>
+                                    <th><?php $no += 1; echo $no;?></th>
+                                    <th><?= $row["item"];?></th>
+                                    <th><?= $row["merk"];?></th>
+                                    <th><?= $row["spesifikasi"];?></th>
+                                    <th><?= $row["harga"];?></th>
+                                    <th><?= $row["qty"];?></th>
+                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    </tr>
+                                
+                                    <?php endforeach; 
+                                ?>
+                                </table>
                         </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
