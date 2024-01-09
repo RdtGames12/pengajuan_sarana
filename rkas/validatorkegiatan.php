@@ -1,7 +1,8 @@
 <?php
-include 'koneksi.php';
+include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+$alat = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if ($id == 702205615) {
     $profil = '<img class="img-profile rounded-circle" src="img/undraw_profile.svg">';
 }
@@ -60,19 +61,9 @@ if ($id == 702205615) {
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-  
-            <!-- Divider -->
-
-
-            <!-- Heading -->
             <div class="sidebar-heading">
-                Lainnya
+                PENGAJUAN
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
                     aria-expanded="true" aria-controls="collapsePages">
@@ -168,7 +159,7 @@ if ($id == 702205615) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql as $row) :
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql1 as $row) :
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
@@ -200,9 +191,89 @@ if ($id == 702205615) {
                     </ul>
 
                 </nav>
+        <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
+                            </div>
+                            <hr>
+                        </div>
+    <form action="validatorkegiatan.php?id=<?= $id ?>" method="POST">
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
+                            <select name="jurusan">
+                                <option value="Mekatronika" name="jurusan1">Mekatronika</option>
+                                <option value="DKV" name="jurusan2">DKV</option>
+                                <option value="PPLG" name="jurusan3">PPLG</option>
+                                <option value="Animasi" name="jurusan4">Animasi</option>
+                                <option value="Kimia" name="jurusan5">Kimia Industri</option>
+                                <option value="Pemesinan" name="jurusan6">Teknik Pemesinan</option>
+                            </select>
+                            <input type="submit" name="cari" value="cari">
+                                </form>
+                        </div>
+                        <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Sumber Dana</th>
+                                            <th>Tahun Ajuan</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th>Bulan</th>
+                                            <th>Biaya</th>
+                                            <th>Total</th>
+                                            <th>Jurusan</th>
+                                            <th>Aksi</th>
+                                    </tr>
+                                <?php
+                                if (isset($_POST['cari'])) {
+                                    $jurusan = $_POST['jurusan'];
+                                    $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE jurusan = '$jurusan'");
+                                
+                                ?>
+                                        <?php $no = 0;?>
+                                        <?php foreach ($alat as $row) : ?>
+                                        <tr>
+                                        <th><?php $no += 1; echo $no;?></th>
+                                        <th><?= $row["sumber_dana"];?></th>
+                                        <th><?= $row["tahun_ajuan"];?></th>
+                                        <th><?= $row["nama_kegiatan"];?></th>
+                                        <th><?= $row["bulan"];?></th>
+                                        <th><?= $row["biaya"];?></th>
+                                        <th><?= $row["total"];?></th>
+                                        <th><?= $row["jurusan"];?></th>
+                                        <th>
+                                            <a href="terimapengajuankegiatan.php?idc=<?=$row['id_alat']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
+                                            |
+                                            <a href="tolakpengajuankegiatan.php?idc=<?=$row['id_alat']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
+                                        </th>
+                                        </tr>
+                                    
+                                        <?php endforeach;
+                                    }?>
+                            </div>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        </form>
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
 
-    </div>
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -228,7 +299,6 @@ if ($id == 702205615) {
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
