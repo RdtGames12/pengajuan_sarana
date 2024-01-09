@@ -256,11 +256,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <select class="animated--fade-in" name="ajuan">
                                 <option value="Ajuan Bahan" name="bahan1">Ajuan Bahan</option>
                                 <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
+                                <option value="Ajuan Kegiatan" name="kegiatan">Ajuan Kegiatan</option>
                             </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
                         </div>
-                        <div class="card-body">
+                                <?php
+                                if (isset($_POST['cari'])) {
+                                    $cari = $_POST['ajuan'];
+                                
+                                if ($cari == 'Ajuan Alat') {
+                                    ?>
+                                    <div class="card-body">
                         <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
@@ -273,12 +280,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Sub Total</th>
                                             <th>Status</th>
                                     </tr>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $cari = $_POST['ajuan'];
-                                
-                                if ($cari == 'Ajuan Alat') {
-                                    ?>
                                         <?php $no = 0;?>
                                     <?php foreach ($alat as $row) : ?>
                                     <tr>
@@ -293,9 +294,23 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </tr>
                                 
                                     <?php endforeach; } ?>
+                                    </table>
                             </div>
                             <?php if ($cari == 'Ajuan Bahan') {
                                     ?>
+                                    <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Item</th>
+                                            <th>Merk</th>
+                                            <th>Spesifikasi</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah Beli</th>
+                                            <th>Sub Total</th>
+                                            <th>Status</th>
+                                    </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($bahan as $row) : ?>
                                     <tr>
@@ -309,9 +324,39 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row['status'];?></th>
                                     </tr>
                                 
-                                    <?php endforeach; } 
-                                }?>
-                                </table>
+                                    <?php endforeach; }  
+                                ?></table> 
+                                <?php 
+                            if ($cari == 'Ajuan Kegiatan') {
+                                ?>
+                                <div class="card-body">
+                    <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <tr>
+                                        <th>No</th>
+                                        <th>Tahun Ajuan</th>
+                                        <th>Sumber Dana</th>
+                                        <th>Nama Kegiatan</th>
+                                        <th>Bulan</th>
+                                        <th>Biaya</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                </tr>
+                                    <?php $no = 0;?>
+                                <?php foreach ($kegiatan as $row) : ?>
+                                <tr>
+                                <th><?php $no += 1; echo $no;?></th>
+                                <th><?= $row["tahun_ajuan"];?></th>
+                                <th><?= $row["sumber_dana"];?></th>
+                                <th><?= $row["nama_kegiatan"];?></th>
+                                <th><?= $row["bulan"];?></th>
+                                <th><?= $row["biaya"];?></th>
+                                <th><?= $row['total'];?></th>
+                                <th><?= $row['status'];?></th>
+                                </tr>
+                            
+                                <?php endforeach; }  
+                            ?></table> <?php } ?>
                             </div>
                         </div>
                     </div>
