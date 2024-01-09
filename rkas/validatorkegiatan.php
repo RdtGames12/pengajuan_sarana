@@ -245,9 +245,9 @@ if ($id == 702205615) {
                                         <th><?= $row["total"];?></th>
                                         <th><?= $row["jurusan"];?></th>
                                         <th>
-                                            <a href="terimapengajuankegiatan.php?idc=<?=$row['id_alat']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
+                                            <a href="terimapengajuankegiatan.php?idc=<?=$row['id_kegiatan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
                                             |
-                                            <a href="tolakpengajuankegiatan.php?idc=<?=$row['id_alat']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
+                                            <a href="tolakpengajuankegiatan.php?idc=<?=$row['id_kegiatan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
                                         </th>
                                         </tr>
                                     
