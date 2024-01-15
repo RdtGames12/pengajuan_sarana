@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$alat = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if ($id == 702205615) {
     $profil = '<img class="img-profile rounded-circle" src="img/undraw_profile.svg">';
@@ -198,20 +198,9 @@ if ($id == 702205615) {
                             </div>
                             <hr>
                         </div>
-    <form action="validatorkegiatan.php?id=<?= $id ?>" method="POST">
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                            <select name="jurusan">
-                                <option value="Mekatronika" name="jurusan1">Mekatronika</option>
-                                <option value="DKV" name="jurusan2">DKV</option>
-                                <option value="PPLG" name="jurusan3">PPLG</option>
-                                <option value="Animasi" name="jurusan4">Animasi</option>
-                                <option value="Kimia" name="jurusan5">Kimia Industri</option>
-                                <option value="Pemesinan" name="jurusan6">Teknik Pemesinan</option>
-                            </select>
-                            <input type="submit" name="cari" value="cari">
-                                </form>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
@@ -224,17 +213,10 @@ if ($id == 702205615) {
                                             <th>Bulan</th>
                                             <th>Biaya</th>
                                             <th>Total</th>
-                                            <th>Jurusan</th>
                                             <th>Aksi</th>
                                     </tr>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $jurusan = $_POST['jurusan'];
-                                    $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE jurusan = '$jurusan'");
-                                
-                                ?>
                                         <?php $no = 0;?>
-                                        <?php foreach ($alat as $row) : ?>
+                                        <?php foreach ($kegiatan as $row) : ?>
                                         <tr>
                                         <th><?php $no += 1; echo $no;?></th>
                                         <th><?= $row["sumber_dana"];?></th>
@@ -243,7 +225,6 @@ if ($id == 702205615) {
                                         <th><?= $row["bulan"];?></th>
                                         <th><?= $row["biaya"];?></th>
                                         <th><?= $row["total"];?></th>
-                                        <th><?= $row["jurusan"];?></th>
                                         <th>
                                             <a href="terimapengajuankegiatan.php?idc=<?=$row['id_kegiatan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
                                             |
@@ -252,7 +233,7 @@ if ($id == 702205615) {
                                         </tr>
                                     
                                         <?php endforeach;
-                                    }?>
+                                    ?>
                             </div>
                                 </table>
                             </div>

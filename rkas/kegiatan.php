@@ -1,34 +1,8 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan ORDER BY id_kegiatan DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-
-$id = $_GET['id'];
-if ($id == 356758684) {
-    $jurusan =  'Mekatronika';
-    $profil = '<img class="img-profile rounded-circle" src="img/logomeka.png">';
-}
-elseif ($id == 287839666) {
-    $jurusan =  'PPLG';
-    $profil = '<img class="img-profile rounded-circle" src="img/logorpl.png">';
-}
-elseif ($id == 499308321) {
-    $jurusan =  'Kimia';
-    $profil = '<img class="img-profile rounded-circle" src="img/logokimia.png">';
-}
-elseif ($id == 257802071) {
-    $jurusan =  'Animasi';
-    $profil = '<img class="img-profile rounded-circle" src="img/logoanimasi.png">';
-}
-elseif ($id == 6083232) {
-    $jurusan =  'DKV';
-    $profil = '<img class="img-profile rounded-circle" src="img/logodkv.png">';
-}
-elseif ($id == 899055276) {
-    $jurusan =  'Pemesinan';
-    $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
-}
-$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +37,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homejurusan.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homewakepsek.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -75,7 +49,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="homejurusan.php?id=<?= $id ?>">
+                <a class="nav-link" href="homewakepsek.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -88,21 +62,18 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                 PENGAJUAN
             </div>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Program Keahlian</span>
+                    <span>Wakil Kep. Sek.</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="kegiatan_jurusan.php?id=<?= $id ?>">Kegiatan</a>
-                        
+                        <h6 class="collapse-header">Jenis Ajuan:</h6>
+                        <a class="collapse-item" href="kegiatan.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="#">Sarana</a>
                     </div>
                 </div>
             </li>
@@ -144,7 +115,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
                         <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
+                        <a class="collapse-item" href="#">Program Keahlian</a>
                         <a class="collapse-item" href="#">TU</a>
                         
                         
@@ -214,7 +185,8 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <?= $profil ?>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -242,7 +214,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                     </ul>
 
                 </nav>
-        <div class="container">
+                <div class="container">
         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Kegiatan</h1>
@@ -402,20 +374,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                             </div>
                         </div>
                         </div>
-                            <!-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
-                            </div> -->
-                        
-                        <!-- </div>
-                    </div>
-
-    </div> -->
     <!-- End of Page Wrapper -->
-
-
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -436,11 +395,12 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="index.php">Logout</a>
+                    <a class="btn btn-primary" href="login.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
