@@ -101,7 +101,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan  WHERE jurusan = '$jurusan
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
                         <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="kegiatan_jurusan.php">Kegiatan</a>
+                        <a class="collapse-item" href="kegiatan_jurusan.php?id=<?= $id ?>">Kegiatan</a>
                         
                     </div>
                 </div>
