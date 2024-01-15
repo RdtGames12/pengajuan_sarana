@@ -99,7 +99,7 @@ elseif ($id == 899055276) {
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
                         <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="kegiatan_jurusan.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
                         
                     </div>
                 </div>
