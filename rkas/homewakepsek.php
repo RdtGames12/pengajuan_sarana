@@ -26,7 +26,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
-
+<style>
+    body {
+        background-image: url(img/bgori.png);
+    }
+</style>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -217,8 +221,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Selamat Datang, Wakil Kepala Sekolah di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
-                                <img src="img/smk.png">
+                                <h1 class="h4 text-gray-100 mb-4">Selamat Datang, Wakil Kepala Sekolah di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
                             </div>  
     </div>
     <!-- End of Page Wrapper -->
@@ -242,7 +245,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="index.php">Logout</a>
                 </div>
             </div>
         </div>

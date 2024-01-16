@@ -50,7 +50,11 @@ elseif ($id == 899055276) {
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
-
+<style>
+    body {
+        background-image: url(img/bgori.png);
+    }
+</style>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -242,8 +246,7 @@ elseif ($id == 899055276) {
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h3 text-gray-900 mb-4">Selamat Datang di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
-                                <img src="img/smk.png">
+                                <h1 class="h3 text-gray-100 mb-4">Selamat Datang di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
                             </div>  
     </div>
     <!-- End of Page Wrapper -->
