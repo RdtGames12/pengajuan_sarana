@@ -256,7 +256,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <select class="animated--fade-in" name="ajuan">
                                 <option value="Ajuan Bahan" name="bahan1">Ajuan Bahan</option>
                                 <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
-                                <option value="Ajuan Kegiatan" name="kegiatan">Ajuan Kegiatan</option>
                             </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
@@ -326,37 +325,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 
                                     <?php endforeach; }  
                                 ?></table> 
-                                <?php 
-                            if ($cari == 'Ajuan Kegiatan') {
-                                ?>
-                                <div class="card-body">
-                    <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <tr>
-                                        <th>No</th>
-                                        <th>Tahun Ajuan</th>
-                                        <th>Sumber Dana</th>
-                                        <th>Nama Kegiatan</th>
-                                        <th>Bulan</th>
-                                        <th>Biaya</th>
-                                        <th>Total</th>
-                                        <th>Status</th>
-                                </tr>
-                                    <?php $no = 0;?>
-                                <?php foreach ($kegiatan as $row) : ?>
-                                <tr>
-                                <th><?php $no += 1; echo $no;?></th>
-                                <th><?= $row["tahun_ajuan"];?></th>
-                                <th><?= $row["sumber_dana"];?></th>
-                                <th><?= $row["nama_kegiatan"];?></th>
-                                <th><?= $row["bulan"];?></th>
-                                <th><?= $row["biaya"];?></th>
-                                <th><?= $row['total'];?></th>
-                                <th><?= $row['status'];?></th>
-                                </tr>
-                            
-                                <?php endforeach; }  
-                            ?></table> <?php } ?>
+                             <?php } ?>
                             </div>
                         </div>
                     </div>
