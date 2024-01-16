@@ -75,7 +75,7 @@ if ($id == 702205615) {
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
                         <a class="collapse-item" href="validatorbahan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="validatoralat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="validatorkegiatan.php?id=<?= $id ?>">Kegiatan</a>
                         
                         <a class="collapse-item" href="#">Sarana</a>
                         <a class="collapse-item" href="#">ATK</a>

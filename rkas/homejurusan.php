@@ -239,7 +239,12 @@ elseif ($id == 899055276) {
                     </ul>
 
                 </nav>
-
+                <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h3 text-gray-900 mb-4">Selamat Datang di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
+                                <img src="img/smk.png">
+                            </div>  
     </div>
     <!-- End of Page Wrapper -->
 

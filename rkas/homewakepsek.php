@@ -214,6 +214,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
                 </nav>
 
+                <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h3 text-gray-900 mb-4">Selamat Datang, Wakil Kepala Sekolah di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
+                                <img src="img/smk.png">
+                            </div>  
     </div>
     <!-- End of Page Wrapper -->
 
