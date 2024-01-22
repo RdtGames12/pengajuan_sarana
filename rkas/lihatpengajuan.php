@@ -337,6 +337,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                              <?php } ?>
                             </div>
                         </div>
+                        <a href="print.php?id=<?= $id ?>">Print</a>
                     </div>
                         </div>
 
