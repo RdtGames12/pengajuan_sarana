@@ -235,9 +235,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <div class="form-group">
                                     <label for="tahun_ajuan">Tahun Ajuan:</label>
                                     <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
-                                        <option value="2023">2023</option>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
                                     </select>
                                     <!-- <input type="text" class="form-control form-control-user" id="sumber"
                                         placeholder="Sumber Dana"> -->
@@ -395,7 +395,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
+                    <a class="btn btn-primary" href="index.php">Logout</a>
                 </div>
             </div>
         </div>
