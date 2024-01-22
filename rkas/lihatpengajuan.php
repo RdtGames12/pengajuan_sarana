@@ -253,10 +253,10 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                            <select class="animated--fade-in" name="ajuan">
-                                <option value="Ajuan Bahan" name="bahan1">Ajuan Bahan</option>
-                                <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
-                            </select>
+                        <select class="animated--fade-in" name="ajuan">
+                            <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
+                            <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
+                        </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
 
                             <input type="radio" id="Diterima" name="filtercari" value="Diterima">
@@ -265,78 +265,97 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                            <label for="Ditolak">Ditolak</label>
                                 </form>
                         </div>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $cari = $_POST['ajuan'];
+                        <?php
+if (isset($_POST['cari'])) {
+    $cari = $_POST['ajuan'];
+    $status = isset($_POST['filtercari']) ? $_POST['filtercari'] : '';
 
-                                if ($cari == 'Ajuan Alat') {
-                                    ?>
-                                    <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Tahun Ajuan</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                            <th>Status</th>
-                                    </tr>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($alat as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"];?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; } ?>
-                                    </table>
-                            </div>
-                            <?php if ($cari == 'Ajuan Bahan') {
-                                    ?>
-                                    <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Tahun Ajuan</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                            <th>Status</th>
-                                    </tr>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($bahan as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"];?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; }  
-                                ?></table> 
-                             <?php } ?>
-                            </div>
-                        </div>
+    if ($cari == 'Ajuan Alat') {
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Item</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Merk</th>
+                        <th>Spesifikasi</th>
+                        <th>Harga</th>
+                        <th>Jumlah Beli</th>
+                        <th>Sub Total</th>
+                        <th>Status</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($alat as $row) :
+                        if (empty($status) || $row['status'] == $status) {
+                    ?>
+                            <tr>
+                                <th><?php $no += 1;
+                                    echo $no; ?></th>
+                                <th><?= $row["item"]; ?></th>
+                                <th><?= $row["tahun_ajuan"]; ?></th>
+                                <th><?= $row["merk"]; ?></th>
+                                <th><?= $row["spesifikasi"]; ?></th>
+                                <th><?= $row["harga"]; ?></th>
+                                <th><?= $row["qty"]; ?></th>
+                                <th><?= $subtotal = $row["harga"] * $row["qty"]; ?></th>
+                                <th><?= $row['status']; ?></th>
+                            </tr>
+                    <?php
+                        }
+                    endforeach;
+                    ?>
+                </table>
+            </div>
+        </div>
+<?php
+    } elseif ($cari == 'Ajuan Bahan') {
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Item</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Merk</th>
+                        <th>Spesifikasi</th>
+                        <th>Harga</th>
+                        <th>Jumlah Beli</th>
+                        <th>Sub Total</th>
+                        <th>Status</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($bahan as $row) :
+                        if (empty($status) || $row['status'] == $status) {
+                    ?>
+                            <tr>
+                                <th><?php $no += 1;
+                                    echo $no; ?></th>
+                                <th><?= $row["item"]; ?></th>
+                                <th><?= $row["tahun_ajuan"]; ?></th>
+                                <th><?= $row["merk"]; ?></th>
+                                <th><?= $row["spesifikasi"]; ?></th>
+                                <th><?= $row["harga"]; ?></th>
+                                <th><?= $row["qty"]; ?></th>
+                                <th><?= $subtotal = $row["harga"] * $row["qty"]; ?></th>
+                                <th><?= $row['status']; ?></th>
+                            </tr>
+                    <?php
+                        }
+                    endforeach;
+                    ?>
+                </table>
+            </div>
+        </div>
+<?php
+    }
+}
+?>
+
                         <a href="print.php?id=<?= $id ?>">Print</a>
                     </div>
                         </div>
