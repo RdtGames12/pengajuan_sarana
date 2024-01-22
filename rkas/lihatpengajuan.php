@@ -258,12 +258,17 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
                             </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+
+                            <input type="radio" id="Diterima" name="filtercari" value="Diterima">
+                           <label for="Diterima">Diterima</label>
+                           <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
+                           <label for="Ditolak">Ditolak</label>
                                 </form>
                         </div>
                                 <?php
                                 if (isset($_POST['cari'])) {
                                     $cari = $_POST['ajuan'];
-                                
+
                                 if ($cari == 'Ajuan Alat') {
                                     ?>
                                     <div class="card-body">
@@ -272,6 +277,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Item</th>
+                                            <th>Tahun Ajuan</th>
                                             <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
@@ -284,6 +290,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
+                                    <th><?= $row["tahun_ajuan"];?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
@@ -303,6 +310,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Item</th>
+                                            <th>Tahun Ajuan</th>
                                             <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
@@ -315,6 +323,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
+                                    <th><?= $row["tahun_ajuan"];?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
@@ -330,7 +339,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         </div>
                     </div>
                         </div>
-                        </form>
+
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
                             </div>
