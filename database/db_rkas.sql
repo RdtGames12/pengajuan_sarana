@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Des 2023 pada 04.19
+-- Waktu pembuatan: 23 Jan 2024 pada 04.25
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -96,17 +96,6 @@ CREATE TABLE `tb_alat` (
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `tb_alat`
---
-
-INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
-(1, 'BOS', 2021, 'Obeng', '--', 'Obeng -', 25000, 3, 'Membuka Baud', 'Mekatronika', 'Belum di Cek'),
-(2, 'BOS', 2021, 'Avo', 'Avo', 'Avo', 100000, 1, 'Cek Ampere', '', 'Belum di Cek'),
-(3, 'BANTUAN', 2023, 'SLR', 'Canon', 'Zoom 100x', 30000000, 1, 'Studio', '', 'Belum di Cek'),
-(4, 'BOS', 2021, 'Nuklir', 'Oppenheimer', 'Anti-Hiroshima', 100000000, 1, 'GENOSIDA PART 2', 'Animasi', 'Belum di Cek'),
-(5, 'BOS', 2021, 'Teleskop', 'NASA', '-100x zoom', 12000000, 12000000, 'Zoom In', 'Kimia', '');
-
 -- --------------------------------------------------------
 
 --
@@ -151,6 +140,7 @@ CREATE TABLE `tb_bahan` (
   `spesifikasi` varchar(50) NOT NULL,
   `harga` int(10) NOT NULL,
   `qty` int(20) NOT NULL,
+  `contoh_gambar` varchar(50) NOT NULL,
   `kebutuhan_untuk` text NOT NULL,
   `jurusan` char(50) NOT NULL,
   `status` varchar(50) NOT NULL
@@ -160,12 +150,8 @@ CREATE TABLE `tb_bahan` (
 -- Dumping data untuk tabel `tb_bahan`
 --
 
-INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
-(1, 'BOS', 2021, 'Processor', 'Intel', 'I3 7100', 1250000, 3, 'Upgrade PC', 'PPLG', 'Belum di Cek'),
-(2, 'BOS', 2021, 'Processor', 'AMD', 'Ryzen 3 3500U', 4000000, 5, 'Upgrade PC', 'PPLG', 'Ditolak'),
-(3, 'BOS', 2021, 'tes', 'tes', 'tes', 125, 125, 'tes', 'Animasi', 'Belum di Cek'),
-(4, 'BOS', 2023, 'Scope', '-', 'Zoom', 250000, 2, 'Zoom In', 'DKV', 'Belum di Cek'),
-(5, 'BOS', 2021, 'Cairan', 'Cairan', 'Cairan', 12, 12, 'Cairan', 'Kimia', 'Ditolak');
+INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `contoh_gambar`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
+(10, 'BOS', 2024, '', '', '', 0, 0, '', '', 'PPLG', 'Belum di Cek');
 
 -- --------------------------------------------------------
 
@@ -461,7 +447,7 @@ ALTER TABLE `tb_bagian`
 -- AUTO_INCREMENT untuk tabel `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
-  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_det_alat`
