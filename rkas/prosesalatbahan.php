@@ -3,7 +3,6 @@ include "koneksi.php";
 $sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
 $id = $_GET['id'];
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-
 if (isset($_POST['simpan'])) {
     $sumber_dana = $_POST['sumber_dana'];
     $tahun_ajuan = $_POST['tahun_ajuan'];

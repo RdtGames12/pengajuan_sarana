@@ -300,13 +300,25 @@ if (isset($_POST['cari'])) {
                                 <th><?= $row["spesifikasi"]; ?></th>
                                 <th><?= $row["harga"]; ?></th>
                                 <th><?= $row["qty"]; ?></th>
-                                <th><?= $subtotal = $row["harga"] * $row["qty"]; ?></th>
+                                <th><?= $row["subtotal"]; ?></th>
                                 <th><?= $row['status']; ?></th>
                             </tr>
                     <?php
                         }
                     endforeach;
+                    $sql = "SELECT SUM(subtotal) FROM tb_alat";
+                    $result = $conn -> query($sql);
+                    $subtotal = $result -> fetch_array(MYSQLI_NUM);
                     ?>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th><?= $subtotal[0] ?></th>
                 </table>
             </div>
         </div>
