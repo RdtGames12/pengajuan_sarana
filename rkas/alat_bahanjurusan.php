@@ -312,7 +312,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                 </div>
                                 </div> -->
                                 
-                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                <a href="prosesalatbahan.php?<?$id?>"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
                                 </a>
                                 <hr>
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -333,6 +333,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                             <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
+                                            <th>contoh gambar</th>
                                             <th>Jumlah Beli</th>
                                             <th>Sub Total</th>
                                     </tr>
@@ -344,6 +345,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
+                                    <th><img src="<?= $row["contoh_gambar"];?>"></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
                                     </tr>
