@@ -207,8 +207,8 @@ if ($id == 702205615) {
                                 <option value="DKV" name="jurusan2"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'DKV' ? 'selected' : ''; ?>>DKV</option>
                                 <option value="PPLG" name="jurusan3"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'PPLG' ? 'selected' : ''; ?>>PPLG</option>
                                 <option value="Animasi" name="jurusan4"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Animasi' ? 'selected' : ''; ?>>Animasi</option>
-                                <option value="Kimia" name="jurusan5"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Kimia Industri' ? 'selected' : ''; ?>>Kimia Industri</option>
-                                <option value="Pemesinan" name="jurusan6"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Teknik Pemesinan' ? 'selected' : ''; ?>>Teknik Pemesinan</option>
+                                <option value="Kimia" name="jurusan5"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Kimia' ? 'selected' : ''; ?>>Kimia Industri</option>
+                                <option value="Pemesinan" name="jurusan6"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Pemesinan' ? 'selected' : ''; ?>>Teknik Pemesinan</option>
                             </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
