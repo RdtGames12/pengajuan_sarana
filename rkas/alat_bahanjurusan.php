@@ -247,7 +247,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Bahan Praktik!</h1>
                             </div>
-                            <form class="user" action="prosesalatbahan.php?id=<?= $id ?>" method="POST">
+                            <form class="user" action="prosesalatbahan.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -289,6 +289,10 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="qty" name="qty"
                                         placeholder="Masukkan Jumlah beli..">
+                                </div>
+                                <h6>Masukkan contoh gambar</h6>
+                                <div class="form-group">
+                                <input type="file" id="contoh_gambar" name="contoh_gambar">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
