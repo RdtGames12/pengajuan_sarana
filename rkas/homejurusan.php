@@ -247,7 +247,23 @@ elseif ($id == 899055276) {
         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h3 text-gray-100 mb-4">Selamat Datang di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
-                            </div>  
+                            </div>
+                                                        <!-- Bar Chart -->
+                                                        <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                    <hr>
+                                    Styling for the bar chart can be found in the
+                                    <code>/js/demo/chart-bar-demo.js</code> file.
+                                </div>
+                            </div>
+
+                        </div>
     </div>
     <!-- End of Page Wrapper -->
 
