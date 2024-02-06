@@ -124,8 +124,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Bahan Praktik</a>
-                        <a class="collapse-item" href="#">Alat Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="#">Kegiatan</a>
                         
                         <a class="collapse-item" href="#">Sarana</a>
@@ -258,17 +258,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
                         </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
-
-                            <input type="radio" id="Diterima" name="filtercari" value="Diterima">
-                           <label for="Diterima">Diterima</label>
-                           <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
-                           <label for="Ditolak">Ditolak</label>
                                 </form>
                         </div>
                         <?php
 if (isset($_POST['cari'])) {
     $cari = $_POST['ajuan'];
-    $status = isset($_POST['filtercari']) ? $_POST['filtercari'] : '';
 
     if ($cari == 'Ajuan Alat') {
 ?>
@@ -278,40 +272,32 @@ if (isset($_POST['cari'])) {
                     <tr>
                         <th>No</th>
                         <th>Nama Item</th>
-                        <th>Tahun Ajuan</th>
                         <th>Merk</th>
                         <th>Spesifikasi</th>
                         <th>Harga</th>
                         <th>Jumlah Beli</th>
                         <th>Sub Total</th>
-                        <th>Status</th>
                     </tr>
                     <?php
                     $no = 0;
                     foreach ($alat as $row) :
-                        if (empty($status) || $row['status'] == $status) {
                     ?>
                             <tr>
                                 <th><?php $no += 1;
                                     echo $no; ?></th>
                                 <th><?= $row["item"]; ?></th>
-                                <th><?= $row["tahun_ajuan"]; ?></th>
                                 <th><?= $row["merk"]; ?></th>
                                 <th><?= $row["spesifikasi"]; ?></th>
                                 <th><?= $row["harga"]; ?></th>
                                 <th><?= $row["qty"]; ?></th>
                                 <th><?= $row["subtotal"]; ?></th>
-                                <th><?= $row['status']; ?></th>
                             </tr>
                     <?php
-                        }
                     endforeach;
                     $sql = "SELECT SUM(subtotal) FROM tb_alat";
                     $result = $conn -> query($sql);
                     $subtotal = $result -> fetch_array(MYSQLI_NUM);
                     ?>
-                    <th></th>
-                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -331,40 +317,32 @@ if (isset($_POST['cari'])) {
                     <tr>
                         <th>No</th>
                         <th>Nama Item</th>
-                        <th>Tahun Ajuan</th>
                         <th>Merk</th>
                         <th>Spesifikasi</th>
                         <th>Harga</th>
                         <th>Jumlah Beli</th>
                         <th>Sub Total</th>
-                        <th>Status</th>
                     </tr>
                     <?php
                     $no = 0;
                     foreach ($bahan as $row) :
-                        if (empty($status) || $row['status'] == $status) {
                     ?>
                             <tr>
                                 <th><?php $no += 1;
                                     echo $no; ?></th>
                                 <th><?= $row["item"]; ?></th>
-                                <th><?= $row["tahun_ajuan"]; ?></th>
                                 <th><?= $row["merk"]; ?></th>
                                 <th><?= $row["spesifikasi"]; ?></th>
                                 <th><?= $row["harga"]; ?></th>
                                 <th><?= $row["qty"]; ?></th>
                                 <th><?= $row["subtotal"]?></th>
-                                <th><?= $row['status']; ?></th>
                             </tr>
                     <?php
-                        }
                     endforeach;
                     $sql = "SELECT SUM(subtotal) FROM tb_bahan";
                     $result = $conn -> query($sql);
                     $subtotal = $result -> fetch_array(MYSQLI_NUM);
                     ?>
-                    <th></th>
-                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
