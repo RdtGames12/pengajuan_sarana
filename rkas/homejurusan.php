@@ -31,6 +31,14 @@ elseif ($id == 899055276) {
 <html lang="en">
 
 <head>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -125,8 +133,8 @@ elseif ($id == 899055276) {
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Bahan Praktik</a>
-                        <a class="collapse-item" href="#">Alat Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="#">Kegiatan</a>
                         
                         <a class="collapse-item" href="#">Sarana</a>
@@ -246,24 +254,48 @@ elseif ($id == 899055276) {
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h3 text-gray-100 mb-4">Selamat Datang di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
+                                <h1 style="border-radius: 100px; font-family:verdana;" class="h3 mb-4 bg-light text-primary">Selamat Datang di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
                             </div>
-                                                        <!-- Bar Chart -->
-                                                        <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-bar">
-                                        <canvas id="myBarChart"></canvas>
-                                    </div>
-                                    <hr>
-                                    Styling for the bar chart can be found in the
-                                    <code>/js/demo/chart-bar-demo.js</code> file.
-                                </div>
-                            </div>
+                   <!-- Content Row -->
+                   <div class="row">
 
-                        </div>
+<div class="col-xl-8 col-lg-7">
+
+    <!-- Area Chart -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Statistik Pengajuan</h6>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="myAreaChart"></canvas>
+            </div>
+            <hr>
+            Styling for the area chart can be found in the
+            <code>/js/demo/chart-area-demo.js</code> file.
+        </div>
+    </div>
+</div>
+<!-- Donut Chart -->
+<div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Statistik Status Pengecekan</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+            <div class="chart-pie pt-4">
+                <canvas id="myPieChart"></canvas>
+            </div>
+            <hr>
+            Styling for the donut chart can be found in the
+            <code>/js/demo/chart-pie-demo.js</code> file.
+        </div>
+    </div>
+</div>
+
+            </div>
     </div>
     <!-- End of Page Wrapper -->
 
