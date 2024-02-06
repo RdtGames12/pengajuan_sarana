@@ -124,8 +124,8 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Bahan Praktik</a>
-                        <a class="collapse-item" href="#">Alat Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="#">Kegiatan</a>
                         
                         <a class="collapse-item" href="#">Sarana</a>
