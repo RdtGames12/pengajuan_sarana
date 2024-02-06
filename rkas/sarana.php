@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan ORDER BY id_kegiatan DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -26,11 +27,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
-<style>
-    body {
-        background-image: url(img/bgori.png);
-    }
-</style>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -211,13 +208,126 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
-
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-100 mb-4">Selamat Datang, Wakil Kepala Sekolah di Website Pengajuan Sarana <br> SMK Negeri 2 Cimahi</h1>
-                            </div>  
-    </div>
+                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Sarana/Kerusakan Barang</h1>
+                            </div>
+                            <form class="user" action="proses_kegiatan.php?id=<?= $id ?>" method="POST">
+                                <div class="form-group">
+                                    <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
+                                    <label for="sumber_dana">Sumber Dana:</label>
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                        <option value="BOS">BOS</option>
+                                        <option value="BOPD">BOPD</option>
+                                        <option value="KOMITE">KOMITE</option>
+                                        <option value="BANTUAN">BANTUAN</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="tahun_ajuan">Tahun Ajuan:</label>
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                <label for="bulan">Waktu (bulan ke )</label>
+                                <select class="form-control" id="bulan" name="bulan">
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="nama_ruang">Nama Ruang</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_ruang" name="nama_ruang"
+                                        placeholder="Masukkan Nama Ruang">
+                                </div>
+                                <div class="form-group">
+                                <label for="jkerusakan">Jenis Kerusakan</label>
+                                    <input type="text" class="form-control form-control-user" id="jkerusakan" name="jkerusakan"
+                                        placeholder="Sebutkan Jenis Kerusakannya">
+                                </div>
+                                <div class="form-group">
+                                <label for="jumlah">Jumlah</label>
+                                    <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah"
+                                        placeholder="Masukkan Jumlah Kerusakan" min=1>
+                                </div>
+                                <div class="form-group">
+                                <label for="foto">Foto</label>
+                                    <input type="file" id="foto" name="foto">
+                                </div>
+                                <div class="form-group">
+                                <label for="keterangan_saran">Keterangan/Saran</label>
+                                    <input type="text" class="form-control form-control-user" id="keterangan_saran" name="keterangan_saran"
+                                        placeholder="Masukkan Keterangan Atau Saran">
+                                </div>
+                                
+                                
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Ulang Password">
+                                    
+                                </div>
+                                </div> -->
+                                
+                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </a>
+                                <hr>
+                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a> -->
+                            <!-- </div> -->
+                                <!-- </div> -->
+                            </form>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th>Bulan</th>
+                                            <th>Biaya</th>
+                                            <th>Total</th>
+                                    </tr>
+                                        <?php $no = 0;?>
+                                    <?php foreach ($sql as $row) : ?>
+                                    <tr>
+                                    <th><?php $no += 1; echo $no;?></th>
+                                    <th><?= $row["nama_kegiatan"];?></th>
+                                    <th><?= $row["bulan"];?></th>
+                                    <th><?= $row["biaya"];?></th>
+                                    <th><?= $row["total"];?></th>
+                                    </tr>
+                                
+                                    <?php endforeach; ?>
+                            </div>
+                                </table>
+                            </div>
+                        </div>
+                        </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
