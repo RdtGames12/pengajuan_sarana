@@ -294,7 +294,7 @@ if (isset($_POST['cari'])) {
                             </tr>
                     <?php
                     endforeach;
-                    $sql = "SELECT SUM(subtotal) FROM tb_alat";
+                    $sql = "SELECT SUM(subtotal) FROM tb_alat WHERE 'jurusan = $jurusan'";
                     $result = $conn -> query($sql);
                     $subtotal = $result -> fetch_array(MYSQLI_NUM);
                     ?>
@@ -339,7 +339,7 @@ if (isset($_POST['cari'])) {
                             </tr>
                     <?php
                     endforeach;
-                    $sql = "SELECT SUM(subtotal) FROM tb_bahan";
+                    $sql = "SELECT SUM(subtotal) FROM tb_bahan WHERE 'jurusan = $jurusan'";
                     $result = $conn -> query($sql);
                     $subtotal = $result -> fetch_array(MYSQLI_NUM);
                     ?>
