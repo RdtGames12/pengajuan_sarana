@@ -253,7 +253,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cek">
                             <input type="radio" id="Diterima" name="filtercari" value="Diterima">
                            <label for="Diterima">Diterima</label>
                            <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
