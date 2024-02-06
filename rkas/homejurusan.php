@@ -59,9 +59,12 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
    <?php
-    $bahan = "SELECT COUNT(status) FROM tb_bahan WHERE 'status = Diterima'";
-    $result = $conn -> query($bahan);
-    $subtotal = $result -> fetch_array(MYSQLI_NUM);
+    $bahan = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Diterima'");
+    $diterima = $bahan -> fetch_array(MYSQLI_NUM);
+    $bahan1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Ditolak'");
+    $ditolak = $bahan1 -> fetch_array(MYSQLI_NUM);
+    $bahan2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Belum di Cek'");
+    $belumdicek = $bahan2 -> fetch_array(MYSQLI_NUM);
    ?>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -70,12 +73,10 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['status', 'Diterima','Ditolak','Belum di Cek'],
-            <?php
-          while ($chart = mysqli_fetch_assoc($bahan)) {
-            echo "['".$chart['status']."',".$chart['status']."],";
-          }
-          ?>
+            ['status', 'jumlah'],
+            ['Diterima',     <?= $diterima[0]?>],
+            ['Ditolak',      <?= $ditolak[0]?>],
+            ['Belum di Cek',  <?= $belumdicek[0]?>]
         ]);
 
         var options = {
