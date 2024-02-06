@@ -26,6 +26,7 @@ elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
 }
+$bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +58,35 @@ elseif ($id == 899055276) {
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
+   <?php
+    $bahan = "SELECT COUNT(status) FROM tb_bahan WHERE 'status = Diterima'";
+    $result = $conn -> query($bahan);
+    $subtotal = $result -> fetch_array(MYSQLI_NUM);
+   ?>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['status', 'Diterima','Ditolak','Belum di Cek'],
+            <?php
+          while ($chart = mysqli_fetch_assoc($bahan)) {
+            echo "['".$chart['status']."',".$chart['status']."],";
+          }
+          ?>
+        ]);
+
+        var options = {
+          title: 'My Daily Activities',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <style>
     body {
@@ -283,8 +313,7 @@ elseif ($id == 899055276) {
         </div>
         <!-- Card Body -->
         <div class="card-body">
-            <div class="chart-pie pt-4">
-                <canvas id="myPieChart"></canvas>
+        <div id="donutchart" style="width: 200px; height: 320px;"></div>
             </div>
         </div>
     </div>
