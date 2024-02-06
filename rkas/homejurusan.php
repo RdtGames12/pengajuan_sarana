@@ -270,9 +270,7 @@ elseif ($id == 899055276) {
             <div class="chart-area">
                 <canvas id="myAreaChart"></canvas>
             </div>
-            <hr>
-            Styling for the area chart can be found in the
-            <code>/js/demo/chart-area-demo.js</code> file.
+
         </div>
     </div>
 </div>
@@ -288,9 +286,6 @@ elseif ($id == 899055276) {
             <div class="chart-pie pt-4">
                 <canvas id="myPieChart"></canvas>
             </div>
-            <hr>
-            Styling for the donut chart can be found in the
-            <code>/js/demo/chart-pie-demo.js</code> file.
         </div>
     </div>
 </div>
@@ -339,8 +334,8 @@ elseif ($id == 899055276) {
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-area-demo-jurusan.js"></script>
+    <script src="js/demo/chart-pie-demo-jurusan.js"></script>
 
 </body>
 
