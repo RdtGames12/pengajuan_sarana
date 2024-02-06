@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan ORDER BY id_kegiatan DESC");
+$sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -213,7 +213,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Sarana/Kerusakan Barang</h1>
                             </div>
-                            <form class="user" action="proses_kegiatan.php?id=<?= $id ?>" method="POST">
+                            <form class="user" action="proses_sarana.php?id=<?= $id ?>" method="POST">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -308,18 +308,20 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Kegiatan</th>
-                                            <th>Bulan</th>
-                                            <th>Biaya</th>
-                                            <th>Total</th>
+                                            <th>Bulan</th>\
+                                            <th>Jkerusakan</th>
+                                            <th>Jumlah</th>
+                                            <th>Keterangan/Saran </th>
                                     </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($sql as $row) : ?>
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["nama_kegiatan"];?></th>
+                                    <th><?= $row["nama_ruang"];?></th>
                                     <th><?= $row["bulan"];?></th>
-                                    <th><?= $row["biaya"];?></th>
-                                    <th><?= $row["total"];?></th>
+                                    <th><?= $row["jkerusakan"] ; ?></th>
+                                    <th><?= $row["jumlah"];?></th>
+                                    <th><?= $row["keterangan_saran"];?></th>
                                     </tr>
                                 
                                     <?php endforeach; ?>
