@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jan 2024 pada 09.19
+-- Waktu pembuatan: 06 Feb 2024 pada 08.56
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -284,6 +284,32 @@ CREATE TABLE `tb_pengeluaran` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tb_sarana`
+--
+
+CREATE TABLE `tb_sarana` (
+  `id_sarana` int(11) NOT NULL,
+  `sumber_dana` varchar(50) NOT NULL,
+  `tahun_ajuan` int(4) NOT NULL,
+  `bulan` varchar(50) NOT NULL,
+  `nama_ruang` varchar(100) NOT NULL,
+  `jkerusakan` varchar(100) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `foto` varchar(50) NOT NULL,
+  `keterangan_saran` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_sarana`
+--
+
+INSERT INTO `tb_sarana` (`id_sarana`, `sumber_dana`, `tahun_ajuan`, `bulan`, `nama_ruang`, `jkerusakan`, `jumlah`, `foto`, `keterangan_saran`, `status`) VALUES
+(5, 'BOS', 2024, 'Januari', 'F-3', 'Kursi Hilang', 3, '', 'Penambahan Kursi', 'Belum di cek');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tb_status_ajuan`
 --
 
@@ -409,6 +435,12 @@ ALTER TABLE `tb_pengeluaran`
   ADD PRIMARY KEY (`id_pemasukan`);
 
 --
+-- Indeks untuk tabel `tb_sarana`
+--
+ALTER TABLE `tb_sarana`
+  ADD PRIMARY KEY (`id_sarana`);
+
+--
 -- Indeks untuk tabel `tb_status_ajuan`
 --
 ALTER TABLE `tb_status_ajuan`
@@ -483,7 +515,7 @@ ALTER TABLE `tb_kas`
 -- AUTO_INCREMENT untuk tabel `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pemasukan`
@@ -496,6 +528,12 @@ ALTER TABLE `tb_pemasukan`
 --
 ALTER TABLE `tb_pengeluaran`
   MODIFY `id_pemasukan` int(4) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_sarana`
+--
+ALTER TABLE `tb_sarana`
+  MODIFY `id_sarana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_status_ajuan`
