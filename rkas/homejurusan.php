@@ -81,10 +81,74 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 
         var options = {
           title: 'My Daily Activities',
-          pieHole: 0.4,
+          pieHole: 0.6,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+   <?php
+    $bahan = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Diterima'");
+    $diterima = $bahan -> fetch_array(MYSQLI_NUM);
+    $bahan1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Ditolak'");
+    $ditolak = $bahan1 -> fetch_array(MYSQLI_NUM);
+    $bahan2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Belum di Cek'");
+    $belumdicek = $bahan2 -> fetch_array(MYSQLI_NUM);
+   ?>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['status', 'jumlah'],
+            ['Diterima',     <?= $diterima[0]?>],
+            ['Ditolak',      <?= $ditolak[0]?>],
+            ['Belum di Cek',  <?= $belumdicek[0]?>]
+        ]);
+
+        var options = {
+          title: 'Status Pengecekan Bahan',
+          pieHole: 0.6,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartbahan'));
+        chart.draw(data, options);
+      }
+    </script>
+
+
+<?php
+    $alat = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Diterima'");
+    $diterima = $alat -> fetch_array(MYSQLI_NUM);
+    $alat1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Ditolak'");
+    $ditolak = $alat1 -> fetch_array(MYSQLI_NUM);
+    $alat2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Belum di Cek'");
+    $belumdicek = $alat2 -> fetch_array(MYSQLI_NUM);
+   ?>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['status', 'jumlah'],
+            ['Diterima',     <?= $diterima[0]?>],
+            ['Ditolak',      <?= $ditolak[0]?>],
+            ['Belum di Cek',  <?= $belumdicek[0]?>]
+        ]);
+
+        var options = {
+          title: 'Status Pengecekan Alat',
+          pieHole: 0.6,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartalat'));
         chart.draw(data, options);
       }
     </script>
@@ -290,36 +354,24 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
                    <!-- Content Row -->
                    <div class="row">
 
-<div class="col-xl-8 col-lg-7">
+<div class="col-xl-11 col-lg-7" style="padding-left: 15%;">
 
-    <!-- Area Chart -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Statistik Pengajuan</h6>
-        </div>
-        <div class="card-body">
-            <div class="chart-area">
-                <canvas id="myAreaChart"></canvas>
-            </div>
 
-        </div>
-    </div>
-</div>
 <!-- Donut Chart -->
-<div class="col-xl-4 col-lg-5">
+<div class="col-xl-11 col-lg-7">
     <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Statistik Status Pengecekan</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Statistik</h6>
         </div>
         <!-- Card Body -->
         <div class="card-body">
-        <div id="donutchart" style="width: 200px; height: 320px;"></div>
+        <div id="donutchartbahan" style="width: 450px; height: 150px;"></div>
+        <div id="donutchartalat" style="width: 450px; height: 150px;"></div>
             </div>
         </div>
     </div>
 </div>
-
             </div>
     </div>
     <!-- End of Page Wrapper -->
