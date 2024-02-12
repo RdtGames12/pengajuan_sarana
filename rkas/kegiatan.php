@@ -95,7 +95,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="statuspengajuankegiatan.php?id=<?= $id ?>">Kegiatan</a>
                         <a class="collapse-item" href="#">Sarana</a>
                     </div>
                 </div>
