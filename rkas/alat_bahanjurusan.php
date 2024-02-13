@@ -338,8 +338,14 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <?php endforeach; 
+                                    <th><?= $subtotal = $row["harga"] * $row["qty"]; ?></th>
+                                    <?php endforeach;
+                                    $number = 1234.56;
+
+                                    // let's print the international format for the en_US locale
+                                    setlocale(LC_MONETARY, 'en_US');
+                                    echo money_format('%i', $number) . "\n";
+                                    // USD 1,234.56
                                     $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     $gtotal = $total -> fetch_array(MYSQLI_NUM);
                                     ?>
