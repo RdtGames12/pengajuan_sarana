@@ -276,21 +276,24 @@ if (isset($_POST['cari'])) {
                     $no = 0;
                     foreach ($alat as $row) :
                     ?>
-                            <tr>
-                                <th><?php $no += 1;
-                                    echo $no; ?></th>
-                                <th><?= $row["item"]; ?></th>
-                                <th><?= $row["tahun_ajuan"]; ?></th>
-                                <th><?= $row["merk"]; ?></th>
-                                <th><?= $row["spesifikasi"]; ?></th>
-                                <th><?= $row["harga"]; ?></th>
-                                <th><?= $row["qty"]; ?></th>
-                                <th><?= $row["subtotal"]; ?></th>
-                            </tr>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["item"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["merk"]; ?></th>
+                            <th><?= $row["spesifikasi"]; ?></th>
+                            <th><?= $row["harga"]; ?></th>
+                            <th><?= $row["qty"]; ?></th>
+                            <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                        </tr>
                     <?php
                     endforeach;
-                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
-                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
+                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
+
+                    $formatted_total = number_format($total, 2, ',', '.');
                     ?>
                     <th></th>
                     <th></th>
@@ -299,7 +302,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th></th>
                     <th>TOTAL</th>
-                    <th><?= $gtotal[0] ?></th>
+                    <th>Rp.<?= $formatted_total ?></th>
                 </table>
             </div>
         </div>
@@ -324,21 +327,24 @@ if (isset($_POST['cari'])) {
                     $no = 0;
                     foreach ($bahan as $row) :
                     ?>
-                            <tr>
-                                <th><?php $no += 1;
-                                    echo $no; ?></th>
-                                <th><?= $row["item"]; ?></th>
-                                <th><?= $row["tahun_ajuan"]; ?></th>
-                                <th><?= $row["merk"]; ?></th>
-                                <th><?= $row["spesifikasi"]; ?></th>
-                                <th><?= $row["harga"]; ?></th>
-                                <th><?= $row["qty"]; ?></th>
-                                <th><?= $row["subtotal"]?></th>
-                            </tr>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["item"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["merk"]; ?></th>
+                            <th><?= $row["spesifikasi"]; ?></th>
+                            <th><?= $row["harga"]; ?></th>
+                            <th><?= $row["qty"]; ?></th>
+                            <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                        </tr>
                     <?php
                     endforeach;
-                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
-                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
+                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
+
+                    $formatted_total = number_format($total, 2, ',', '.');
                     ?>
                     <th></th>
                     <th></th>
@@ -347,7 +353,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th></th>
                     <th>TOTAL</th>
-                    <th><?= $gtotal[0] ?></th>
+                    <th>Rp.<?= $formatted_total ?></th>
                 </table>
             </div>
         </div>

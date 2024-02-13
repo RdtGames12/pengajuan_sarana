@@ -358,8 +358,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["nama_kegiatan"];?></th>
                                     <th><?= $row["bulan"];?></th>
-                                    <th><?= $row["biaya"];?></th>
-                                    <th><?= $row["total"];?></th>
+                                    <th>Rp.<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
+                                    <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
                                     </tr>
                                 
                                     <?php endforeach; ?>
