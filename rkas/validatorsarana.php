@@ -207,9 +207,9 @@ if ($id == 702205615) {
                                         <th><?= $row["jkerusakan"];?></th>
                                         <th><?= $row["jumlah"];?></th>
                                         <th>
-                                            <a href="terimapengajuankegiatan.php?idc=<?=$row['id_kegiatan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
+                                            <a href="terimapengajuansarana.php?idc=<?=$row['id_sarana']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
                                             |
-                                            <a href="tolakpengajuankegiatan.php?idc=<?=$row['id_kegiatan']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
+                                            <a href="tolakpengajuansarana.php?idc=<?=$row['id_sarana']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
                                         </th>
                                         </tr>
                                     
