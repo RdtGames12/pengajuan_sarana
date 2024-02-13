@@ -307,9 +307,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
                                             <th>No</th>
-                                            <th>Nama Kegiatan</th>
+                                            <th>Nama Ruang</th>
                                             <th>Bulan</th>\
-                                            <th>Jkerusakan</th>
+                                            <th>Jenis kerusakan</th>
                                             <th>Jumlah</th>
                                             <th>Keterangan/Saran </th>
                                     </tr>
