@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Feb 2024 pada 08.56
+-- Waktu pembuatan: 13 Feb 2024 pada 05.31
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -240,10 +240,25 @@ CREATE TABLE `tb_kegiatan` (
   `nama_kegiatan` varchar(50) NOT NULL,
   `bulan` varchar(50) NOT NULL,
   `biaya` int(20) NOT NULL,
+  `volume_1` int(11) NOT NULL,
+  `volume_2` int(11) NOT NULL,
+  `volume_3` int(11) NOT NULL,
+  `volume_4` int(11) NOT NULL,
+  `keterangan_volume1` varchar(75) NOT NULL,
+  `keterangan_volume2` varchar(75) NOT NULL,
+  `keterangan_volume3` varchar(75) NOT NULL,
+  `keterangan_volume4` varchar(75) NOT NULL,
   `total` int(20) NOT NULL,
   `jurusan` char(50) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_kegiatan`
+--
+
+INSERT INTO `tb_kegiatan` (`id_kegiatan`, `sumber_dana`, `tahun_ajuan`, `nama_kegiatan`, `bulan`, `biaya`, `volume_1`, `volume_2`, `volume_3`, `volume_4`, `keterangan_volume1`, `keterangan_volume2`, `keterangan_volume3`, `keterangan_volume4`, `total`, `jurusan`, `status`) VALUES
+(2, 'BOS', 2024, 'Kunjungan Industri', 'Januari', 1100000, 1, 1, 1, 1, 'orang', '', '', '', 1100000, '', 'Belum di Cek');
 
 -- --------------------------------------------------------
 
@@ -515,7 +530,7 @@ ALTER TABLE `tb_kas`
 -- AUTO_INCREMENT untuk tabel `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pemasukan`
