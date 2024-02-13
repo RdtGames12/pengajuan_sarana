@@ -291,8 +291,6 @@ if (isset($_POST['cari'])) {
             </div>
         </div>
         <?php } ?>
-
-                        <a href="print.php?id=<?= $id ?>">Print</a>
                     </div>
                         </div>
 
