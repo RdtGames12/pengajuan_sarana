@@ -336,18 +336,15 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <th><?= $row["item"];?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
+                                    <th>Rp.<?= number_format($row["harga"], 2, ',', '.'); ?></th>
                                     <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"]; ?></th>
+                                    <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                                     <?php endforeach;
-                                    $number = 1234.56;
+                                $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
+                                $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                $total = $total_result[0];
 
-                                    // let's print the international format for the en_US locale
-                                    setlocale(LC_MONETARY, 'en_US');
-                                    echo money_format('%i', $number) . "\n";
-                                    // USD 1,234.56
-                                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
-                                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
+                                $formatted_total = number_format($total, 2, ',', '.');
                                     ?>
                                     </tr>
                                     <tr>
@@ -357,7 +354,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <th></th>
                                     <th></th>
                                     <th>TOTAL</th>
-                                    <th><?= $gtotal[0] ?></th>
+                                    <th>Rp.<?= $formatted_total ?></th>
                                     </tr>
                             
                                 </table>

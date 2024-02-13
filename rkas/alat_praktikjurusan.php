@@ -330,14 +330,17 @@ elseif ($id == 899055276) {
                                     <th><?= $row["item"];?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
+                                    <th>Rp.<?= number_format($row["harga"], 2, ',', '.'); ?></th>
                                     <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
+                                    <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                                     </tr>
                                 
                                     <?php endforeach;
-                                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
-                                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
+                                $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
+                                $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                $total = $total_result[0];
+
+                                $formatted_total = number_format($total, 2, ',', '.');
                                     ?>
                                     </tr>
                                     <tr>
@@ -347,7 +350,7 @@ elseif ($id == 899055276) {
                                     <th></th>
                                     <th></th>
                                     <th>TOTAL</th>
-                                    <th><?= $gtotal[0] ?></th>
+                                    <th>Rp.<?= $formatted_total ?></th>
                                     </tr> 
                                 </table>
                         </div>
