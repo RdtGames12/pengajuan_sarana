@@ -99,7 +99,6 @@ elseif ($id == 899055276) {
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
                         <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
                         
                     </div>
                 </div>
@@ -124,10 +123,6 @@ elseif ($id == 899055276) {
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
                         <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
-                        
-                        <a class="collapse-item" href="#">Sarana</a>
-                        <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
             </li>
@@ -141,9 +136,7 @@ elseif ($id == 899055276) {
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
                         <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
-                        <a class="collapse-item" href="#">TU</a>
                         
                         
                     </div>
