@@ -336,9 +336,9 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <th><?= $row["item"];?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
-                                    <th>Rp.<?= number_format($row["harga"], 2, ',', '.'); ?></th>
+                                    <th>Rp<?= number_format($row["harga"], 2, ',', '.'); ?></th>
                                     <th><?= $row["qty"];?></th>
-                                    <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                                    <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                                     <?php endforeach;
                                 $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
                                 $total_result = $total_query->fetch_array(MYSQLI_NUM);

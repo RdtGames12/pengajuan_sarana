@@ -302,7 +302,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th></th>
                     <th>TOTAL</th>
-                    <th>Rp.<?= $formatted_total ?></th>
+                    <th>Rp<?= $formatted_total ?></th>
                 </table>
             </div>
         </div>
@@ -353,7 +353,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th></th>
                     <th>TOTAL</th>
-                    <th>Rp.<?= $formatted_total ?></th>
+                    <th>Rp<?= $formatted_total ?></th>
                 </table>
             </div>
         </div>

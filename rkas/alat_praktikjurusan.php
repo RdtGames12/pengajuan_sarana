@@ -330,9 +330,9 @@ elseif ($id == 899055276) {
                                     <th><?= $row["item"];?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
-                                    <th>Rp.<?= number_format($row["harga"], 2, ',', '.'); ?></th>
+                                    <th>Rp<?= number_format($row["harga"], 2, ',', '.'); ?></th>
                                     <th><?= $row["qty"];?></th>
-                                    <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                                    <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                                     </tr>
                                 
                                     <?php endforeach;
