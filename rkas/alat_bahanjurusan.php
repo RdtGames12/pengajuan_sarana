@@ -326,7 +326,6 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                             <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
-                                            <th>contoh gambar</th>
                                             <th>Jumlah Beli</th>
                                             <th>Sub Total</th>
                                     </tr>
@@ -338,13 +337,23 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
-                                    <th><img src="<?= $row["contoh_gambar"];?>"></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    </tr>
-                                
                                     <?php endforeach; 
-                                ?>
+                                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
+                                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
+                                    ?>
+                                    </tr>
+                                    <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>TOTAL</th>
+                                    <th><?= $gtotal[0] ?></th>
+                                    </tr>
+                            
                                 </table>
                         </div>
                             <!-- <div class="text-center">

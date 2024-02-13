@@ -101,7 +101,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
                         <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Sarana</a>
                         
                     </div>
                 </div>
@@ -126,10 +125,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
                         <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
-                        
-                        <a class="collapse-item" href="#">Sarana</a>
-                        <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
             </li>
@@ -143,9 +138,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
                         <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
-                        <a class="collapse-item" href="#">TU</a>
                         
                         
                     </div>
@@ -272,6 +265,7 @@ if (isset($_POST['cari'])) {
                     <tr>
                         <th>No</th>
                         <th>Nama Item</th>
+                        <th>Tahun Ajuan</th>
                         <th>Merk</th>
                         <th>Spesifikasi</th>
                         <th>Harga</th>
@@ -286,6 +280,7 @@ if (isset($_POST['cari'])) {
                                 <th><?php $no += 1;
                                     echo $no; ?></th>
                                 <th><?= $row["item"]; ?></th>
+                                <th><?= $row["tahun_ajuan"]; ?></th>
                                 <th><?= $row["merk"]; ?></th>
                                 <th><?= $row["spesifikasi"]; ?></th>
                                 <th><?= $row["harga"]; ?></th>
@@ -294,20 +289,21 @@ if (isset($_POST['cari'])) {
                             </tr>
                     <?php
                     endforeach;
-                    $sql = "SELECT SUM(subtotal) FROM tb_alat WHERE 'jurusan = $jurusan'";
-                    $result = $conn -> query($sql);
-                    $subtotal = $result -> fetch_array(MYSQLI_NUM);
+                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
+                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
                     ?>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                     <th>TOTAL</th>
-                    <th><?= $subtotal[0] ?></th>
+                    <th><?= $gtotal[0] ?></th>
                 </table>
             </div>
         </div>
+        <a href="printalat.php?id=<?= $id ?>">Print</a>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
 ?>
@@ -317,6 +313,7 @@ if (isset($_POST['cari'])) {
                     <tr>
                         <th>No</th>
                         <th>Nama Item</th>
+                        <th>Tahun Ajuan</th>
                         <th>Merk</th>
                         <th>Spesifikasi</th>
                         <th>Harga</th>
@@ -331,6 +328,7 @@ if (isset($_POST['cari'])) {
                                 <th><?php $no += 1;
                                     echo $no; ?></th>
                                 <th><?= $row["item"]; ?></th>
+                                <th><?= $row["tahun_ajuan"]; ?></th>
                                 <th><?= $row["merk"]; ?></th>
                                 <th><?= $row["spesifikasi"]; ?></th>
                                 <th><?= $row["harga"]; ?></th>
@@ -339,26 +337,25 @@ if (isset($_POST['cari'])) {
                             </tr>
                     <?php
                     endforeach;
-                    $sql = "SELECT SUM(subtotal) FROM tb_bahan WHERE 'jurusan = $jurusan'";
-                    $result = $conn -> query($sql);
-                    $subtotal = $result -> fetch_array(MYSQLI_NUM);
+                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
+                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
                     ?>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                     <th>TOTAL</th>
-                    <th><?= $subtotal[0] ?></th>
+                    <th><?= $gtotal[0] ?></th>
                 </table>
             </div>
         </div>
+        <a href="printbahan.php?id=<?= $id ?>">Print</a>
 <?php
     }
 }
 ?>
-
-                        <a href="print.php?id=<?= $id ?>">Print</a>
                     </div>
                         </div>
 
