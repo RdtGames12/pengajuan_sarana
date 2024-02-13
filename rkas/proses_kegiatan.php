@@ -11,7 +11,15 @@ if (isset($_POST['simpan'])) {
     $bulan = $_POST['bulan'];
     $biaya = $_POST['biaya'];
     $total = $_POST['biaya'] * $_POST['vol1'] * $_POST['vol2'] * $_POST['vol3'] * $_POST['vol4'];
-    $proses =  mysqli_query($conn, "INSERT INTO tb_kegiatan (sumber_dana, tahun_ajuan, nama_kegiatan, bulan, biaya, total, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_kegiatan','$bulan', '$biaya', '$total', 'Belum di Cek')");
+    $vol1 = $_POST['vol1'];
+    $vol2 = $_POST['vol2'];
+    $vol3 = $_POST['vol3'];
+    $vol4 = $_POST['vol4'];
+    $volket1 = $_POST['volket1'];
+    $volket2 = $_POST['volket2'];
+    $volket3 = $_POST['volket3'];
+    $volket4 = $_POST['volket4'];
+    $proses =  mysqli_query($conn, "INSERT INTO tb_kegiatan (sumber_dana, tahun_ajuan, nama_kegiatan, bulan, biaya, volume_1, volume_2, volume_3, volume_4, keterangan_volume1, keterangan_volume2, keterangan_volume3, keterangan_volume4, total, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_kegiatan','$bulan', '$biaya', '$vol1', '$vol2', '$vol3', '$vol4', '$volket1', '$volket2', '$volket3', '$volket4', '$total', 'Belum di Cek')");
 
     if ($proses) {
         echo "
