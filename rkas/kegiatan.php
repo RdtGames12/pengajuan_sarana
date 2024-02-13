@@ -350,6 +350,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Nama Kegiatan</th>
                                             <th>Bulan</th>
                                             <th>Biaya</th>
+                                            <th>Volume</th>
                                             <th>Total</th>
                                     </tr>
                                         <?php $no = 0;?>
@@ -359,6 +360,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["nama_kegiatan"];?></th>
                                     <th><?= $row["bulan"];?></th>
                                     <th>Rp.<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
+                                    <th><?= $row["volume_1"];?> <?= $row["keterangan_volume1"]?></th>
                                     <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
                                     </tr>
                                 
