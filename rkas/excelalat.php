@@ -25,7 +25,7 @@ elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
 }
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -43,18 +43,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 </nav>
                 <?php 
                 header("Content-type: application/vnd-ms-excel");
-                header("Content-Disposition: attachment; filename=cetak_bahan.xls");
+                header("Content-Disposition: attachment; filename=cetak_alat.xls");
                 ?>
         <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Pengajuan Bahan</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Pengajuan Alat</h1>
                             </div>
                             <hr>
                         </div>
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Bahan</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Alat</h6>
                         </div>
                                     <div class="card-body">
                         <div class="table-responsive">
@@ -71,7 +71,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Status</th>
                                     </tr>
                                         <?php $no = 0;?>
-                                    <?php foreach ($bahan as $row) : ?>
+                                    <?php foreach ($alat as $row) : ?>
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>

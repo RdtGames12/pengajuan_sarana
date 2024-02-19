@@ -307,6 +307,7 @@ if (isset($_POST['cari'])) {
             </div>
         </div>
         <a href="printalat.php?id=<?= $id ?>">PDF</a>
+        <a href="excelalat.php?id=<?= $id ?>">EXCEL</a>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
 ?>
