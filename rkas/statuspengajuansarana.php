@@ -227,6 +227,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                            <label for="Diterima">Diterima</label>
                            <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
                            <label for="Ditolak">Ditolak</label>
+                           <input type="radio" id="	Belum di Cek" name="filtercari" value="	Belum di Cek">
+                           <label for="	Belum di Cek">Belum di Cek</label>
                                 </form>
                         </div>
                         <?php
