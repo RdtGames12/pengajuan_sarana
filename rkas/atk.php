@@ -273,6 +273,8 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     <td style="width: 5%;"><b class="form-control form-control-user"><center>'.$i.'</center></b></td>
                                     <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="nama_barang" name="nama_barang"
                                     placeholder="Masukkan Nama Barang..."></td>
+                                    <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="harga_barang" name="harga_barang"
+                                    placeholder="Masukkan Harga Barang..."></td>
                                     <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="jumlah_barang" name="jumlah_barang"
                                     placeholder="Masukkan Jumlah Barang.."></td>
                                     <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="untuk_ruang" name="untuk_ruang"
