@@ -283,7 +283,7 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="#?id=<?= $id ?>">Print</a>
+        <a href="printkegiatan.php?id=<?= $id ?>">Print</a>
 <?php
     } elseif ($cari == 'Ajuan Sarana') {
 ?>
@@ -319,7 +319,7 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="printbahan.php?id=<?= $id ?>">Print</a>
+        <a href="printsarana.php?id=<?= $id ?>">Print</a>
 <?php
     }
 }
