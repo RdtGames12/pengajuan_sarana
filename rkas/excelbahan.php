@@ -68,7 +68,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Harga</th>
                                             <th>Jumlah Beli</th> 
                                             <th>Sub Total</th>
-                                            <th>Status</th>
                                     </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($bahan as $row) : ?>
@@ -81,14 +80,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
                                     <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['status'];?></th>
                                     </tr>
                                 
                                     <?php endforeach;
                                     $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
                                     $gtotal = $total -> fetch_array(MYSQLI_NUM);
                                     ?>
-                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
