@@ -270,7 +270,7 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["biaya"]; ?></th>
                             <th><?= $row["volume_1"]; ?></th>
                             <th><?= $row["keterangan_volume1"]; ?></th>
-                            <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                            <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
                         </tr>
                     <?php
                     endforeach;
@@ -292,6 +292,7 @@ if (isset($_POST['cari'])) {
             </div>
         </div>
         <a href="printkegiatan.php?id=<?= $id ?>">PDF</a>
+        <a href="excelkegiatan.php?id=<?= $id ?>">EXCEL</a>
 <?php
     } elseif ($cari == 'Ajuan Sarana') {
         $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
@@ -330,6 +331,7 @@ if (isset($_POST['cari'])) {
             </div>
         </div>
         <a href="printsarana.php?id=<?= $id ?>">PDF</a>
+        <a href="excelsarana.php?id=<?= $id ?>">EXCEL</a>
 <?php
     }
 }
