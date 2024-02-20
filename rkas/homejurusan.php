@@ -80,8 +80,8 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
         ]);
 
         var options = {
-          title: 'My Daily Activities',
-          pieHole: 0.6,
+          title: '',
+          pieHole: 0.10,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
@@ -113,7 +113,7 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 
         var options = {
           title: 'Status Pengecekan Bahan',
-          pieHole: 0.6,
+          pieHole: 0.10,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchartbahan'));
@@ -145,7 +145,7 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 
         var options = {
           title: 'Status Pengecekan Alat',
-          pieHole: 0.6,
+          pieHole: 0.15,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchartalat'));
