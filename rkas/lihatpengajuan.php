@@ -362,9 +362,13 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["qty"]; ?></th>
                             <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                            <?php if ($row['status'] == 'Belum di Cek') {
+                                ?>
                             <th>
                                 <a href="editbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">HAPUS</a>
                             </th>
+                            <?php    
+                            }?>
                         </tr>
                     <?php
                     endforeach;
