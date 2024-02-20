@@ -363,7 +363,7 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["qty"]; ?></th>
                             <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                             <th>
-                                <a href="editbahan.php?id=<?= $id ?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>">HAPUS</a>
+                                <a href="editbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">HAPUS</a>
                             </th>
                         </tr>
                     <?php
