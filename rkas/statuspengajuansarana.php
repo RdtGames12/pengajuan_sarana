@@ -113,7 +113,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="lihatpengajuanwakepsek.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
                         
                         
                     </div>

@@ -41,7 +41,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homejurusan.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homewakepsek.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -53,7 +53,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="homejurusan.php?id=<?= $id ?>">
+                <a class="nav-link" href="homewakepsek.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -227,14 +227,22 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <option value="Ajuan Kegiatan" name="kegiatan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Kegiatan' ? 'selected' : ''; ?>>Ajuan Kegiatan</option>
                             <option value="Ajuan Sarana" name="sarana1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Sarana' ? 'selected' : ''; ?>>Ajuan Sarana</option>
                         </select>
+                        <select class="animated--fade-in" name="tahun">
+                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
+                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
+                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
+                        </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
                         </div>
                         <?php
 if (isset($_POST['cari'])) {
     $cari = $_POST['ajuan'];
+    $tahun_terpilih = $_POST['tahun'];
 
     if ($cari == 'Ajuan Kegiatan') {
+        $query = "SELECT * FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $query);
 ?>
         <div class="card-body">
             <div class="table-responsive">
@@ -251,7 +259,7 @@ if (isset($_POST['cari'])) {
                     </tr>
                     <?php
                     $no = 0;
-                    foreach ($kegiatan as $row) :
+                    foreach ($result as $row) :
                     ?>
                         <tr>
                             <th><?php $no += 1;
@@ -266,7 +274,7 @@ if (isset($_POST['cari'])) {
                         </tr>
                     <?php
                     endforeach;
-                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan");
+                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih' ");
                     $total_result = $total_query->fetch_array(MYSQLI_NUM);
                     $total = $total_result[0];
 
@@ -286,6 +294,8 @@ if (isset($_POST['cari'])) {
         <a href="printkegiatan.php?id=<?= $id ?>">PDF</a>
 <?php
     } elseif ($cari == 'Ajuan Sarana') {
+        $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $query);
 ?>
         <div class="card-body">
             <div class="table-responsive">
@@ -301,7 +311,7 @@ if (isset($_POST['cari'])) {
                     </tr>
                     <?php
                     $no = 0;
-                    foreach ($sarana as $row) :
+                    foreach ($result as $row) :
                     ?>
                         <tr>
                             <th><?php $no += 1;
