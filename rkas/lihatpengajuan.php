@@ -318,12 +318,14 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <form action="printalat.php?id=<?= $id ?>" method="POST">
+        <form action="printbahan.php?id=<?= $id ?>" method="POST">
         <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
         <input type="hidden" name="id" value="<?= $id ?>">
-        <button name="simpan"></button>
+        <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
         </form>
-        <a href="excelalat.php?id=<?= $id ?>">EXCEL</a>
+        <form action="excelbahan.php?id=<?= $id ?>" method="POST">
+        <a href="excelbahan.php?id=<?= $id ?>"><button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button></a>
+        </form>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
         $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih' AND jurusan = '$jurusan'";
@@ -382,9 +384,11 @@ if (isset($_POST['cari'])) {
         <form action="printbahan.php?id=<?= $id ?>" method="POST">
         <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
         <input type="hidden" name="id" value="<?= $id ?>">
-        <button name="simpan"></button>
+        <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
         </form>
-        <a href="excelbahan.php?id=<?= $id ?>">EXCEL</a>
+        <form action="excelbahan.php?id=<?= $id ?>" method="POST">
+        <a href="excelbahan.php?id=<?= $id ?>"><button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button></a>
+        </form>
 <?php
     }
 }

@@ -156,12 +156,15 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
                                     <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach;
-                                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE tahun_ajuan='$tahun_terpilih' AND jurusan = '$jurusan'");
-                                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
+                                    <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                                        </tr>
+                                    <?php
+                                    endforeach;
+                                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih' AND jurusan = '$jurusan'");
+                                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                    $total = $total_result[0];
+
+                                    $formatted_total = number_format($total, 2, ',', '.');
                                     ?>
                                     <th></th>
                                     <th></th>
@@ -170,7 +173,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th></th>
                                     <th></th>
                                     <th>TOTAL</th>
-                                    <th><?= $gtotal[0] ?></th>
+                                    <th>Rp<?= $formatted_total ?></th>
                                     </table>
                             </div>
                                     </div>
