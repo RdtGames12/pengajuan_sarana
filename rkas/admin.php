@@ -76,8 +76,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Kegiatan</a>
-                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="kegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="saranaadmin.php?id=<?= $id ?>">Sarana</a>
                     </div>
                 </div>
             </li>
