@@ -302,7 +302,7 @@ if (isset($_POST['cari'])) {
                         </tr>
                     <?php
                     endforeach;
-                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
+                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE tahun_ajuan = '$tahun_terpilih' AND jurusan = '$jurusan'");
                     $total_result = $total_query->fetch_array(MYSQLI_NUM);
                     $total = $total_result[0];
 
