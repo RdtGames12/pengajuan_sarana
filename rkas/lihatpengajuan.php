@@ -323,8 +323,8 @@ if (isset($_POST['cari'])) {
         <input type="hidden" name="id" value="<?= $id ?>">
         <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
         </form>
-        <form action="excelbahan.php?id=<?= $id ?>" method="POST">
-        <a href="excelbahan.php?id=<?= $id ?>"><button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button></a>
+        <form action="excelalat.php?id=<?= $id ?>" method="POST">
+        <a href="excelalat.php?id=<?= $id ?>"><button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button></a>
         </form>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {

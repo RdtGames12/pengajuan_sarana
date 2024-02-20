@@ -68,7 +68,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Harga</th>
                                             <th>Jumlah Beli</th> 
                                             <th>Sub Total</th>
-                                            <th>Status</th>
                                     </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($alat as $row) : ?>
