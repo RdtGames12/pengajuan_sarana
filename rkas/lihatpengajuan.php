@@ -250,14 +250,27 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
                             <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
                         </select>
+                        <select class="animated--fade-in" name="tahun">
+                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
+                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
+                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
+                        </select>
                             <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
                         </div>
                         <?php
+                        
 if (isset($_POST['cari'])) {
     $cari = $_POST['ajuan'];
+    $tahun_terpilih = $_POST['tahun'];
+    $query = "SELECT * FROM tb_alat WHERE jurusan = '$jurusan' AND tahun_ajuan = '$tahun_terpilih'";
 
     if ($cari == 'Ajuan Alat') {
+        $query = "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'";
+        if (($tahun_terpilih)) {
+            $query .= "AND tahun_ajuan = '$tahun_terpilih'";
+        }
+        $result = mysqli_query($conn, $query);
 ?>
         <div class="card-body">
             <div class="table-responsive">
@@ -274,7 +287,7 @@ if (isset($_POST['cari'])) {
                     </tr>
                     <?php
                     $no = 0;
-                    foreach ($alat as $row) :
+                    foreach ($result as $row) :
                     ?>
                         <tr>
                             <th><?php $no += 1;
@@ -310,6 +323,11 @@ if (isset($_POST['cari'])) {
         <a href="excelalat.php?id=<?= $id ?>">EXCEL</a>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
+        $query = "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'";
+        if (($tahun_terpilih)) {
+            $query .= " AND tahun_ajuan = '$tahun_terpilih'";
+        }
+        $result = mysqli_query($conn, $query);
 ?>
         <div class="card-body">
             <div class="table-responsive">
@@ -326,7 +344,7 @@ if (isset($_POST['cari'])) {
                     </tr>
                     <?php
                     $no = 0;
-                    foreach ($bahan as $row) :
+                    foreach ($result as $row) :
                     ?>
                         <tr>
                             <th><?php $no += 1;
