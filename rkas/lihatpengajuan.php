@@ -346,6 +346,7 @@ if (isset($_POST['cari'])) {
                         <th>Harga</th>
                         <th>Jumlah Beli</th>
                         <th>Sub Total</th>
+                        <th>Aksi</th>
                     </tr>
                     <?php
                     $no = 0;
@@ -361,6 +362,9 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["qty"]; ?></th>
                             <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                            <th>
+                                <a href="editbahan.php?id=<?= $id ?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>">HAPUS</a>
+                            </th>
                         </tr>
                     <?php
                     endforeach;
@@ -378,6 +382,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th>TOTAL</th>
                     <th>Rp<?= $formatted_total ?></th>
+                    <th></th>
                 </table>
             </div>
         </div>
