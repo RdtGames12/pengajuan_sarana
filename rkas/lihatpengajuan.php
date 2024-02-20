@@ -249,7 +249,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <select class="animated--fade-in" name="ajuan">
                             <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
                             <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
-                        </select>
+                        </select>                                                                                             
                         <select class="animated--fade-in" name="tahun">
                             <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
                             <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
@@ -323,7 +323,7 @@ if (isset($_POST['cari'])) {
         <a href="excelalat.php?id=<?= $id ?>">EXCEL</a>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
-        $query = "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'";
+        $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih' AND jurusan = '$jurusan'";
         if (($tahun_terpilih)) {
             $query .= " AND tahun_ajuan = '$tahun_terpilih'";
         }
@@ -359,7 +359,7 @@ if (isset($_POST['cari'])) {
                         </tr>
                     <?php
                     endforeach;
-                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
+                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih' AND jurusan = '$jurusan'");
                     $total_result = $total_query->fetch_array(MYSQLI_NUM);
                     $total = $total_result[0];
 
