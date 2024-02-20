@@ -263,7 +263,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if (isset($_POST['cari'])) {
     $cari = $_POST['ajuan'];
     $tahun_terpilih = $_POST['tahun'];
-    $query = "SELECT * FROM tb_alat WHERE jurusan = '$jurusan' AND tahun_ajuan = '$tahun_terpilih'";
 
     if ($cari == 'Ajuan Alat') {
         $query = "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'";
@@ -298,7 +297,7 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["spesifikasi"]; ?></th>
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["qty"]; ?></th>
-                            <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                            <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                         </tr>
                     <?php
                     endforeach;
@@ -319,7 +318,11 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="printalat.php?id=<?= $id ?>">PDF</a>
+        <form action="printalat.php?id=<?= $id ?>" method="POST">
+        <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <button name="simpan"></button>
+        </form>
         <a href="excelalat.php?id=<?= $id ?>">EXCEL</a>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
@@ -355,7 +358,7 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["spesifikasi"]; ?></th>
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["qty"]; ?></th>
-                            <th>Rp.<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                            <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                         </tr>
                     <?php
                     endforeach;
@@ -376,7 +379,11 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="printbahan.php?id=<?= $id ?>">PDF</a>
+        <form action="printbahan.php?id=<?= $id ?>" method="POST">
+        <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <button name="simpan"></button>
+        </form>
         <a href="excelbahan.php?id=<?= $id ?>">EXCEL</a>
 <?php
     }

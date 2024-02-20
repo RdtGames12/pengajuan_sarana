@@ -1,6 +1,9 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
+if (isset($_POST['simpan'])) {
+    $tahun_terpilih = $_POST['tahun'];
+    $id = $_POST['id'];
+}
 if ($id == 356758684) {
     $jurusan =  'Mekatronika';
     $profil = '<img class="img-profile rounded-circle" src="img/logomeka.png">';
@@ -25,7 +28,7 @@ elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
 }
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
+$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE tahun_ajuan='$tahun_terpilih' AND jurusan = '$jurusan'");
 $alat = mysqli_query($conn, "SELECT * FROM tb_alat  WHERE jurusan = '$jurusan'");
 $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE jurusan = '$jurusan'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
@@ -157,7 +160,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </tr>
                                 
                                     <?php endforeach;
-                                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE jurusan = '$jurusan'");
+                                    $total = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan WHERE tahun_ajuan='$tahun_terpilih' AND jurusan = '$jurusan'");
                                     $gtotal = $total -> fetch_array(MYSQLI_NUM);
                                     ?>
                                     <th></th>
