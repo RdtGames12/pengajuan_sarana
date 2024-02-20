@@ -323,8 +323,8 @@ if (isset($_POST['cari'])) {
         <input type="hidden" name="id" value="<?= $id ?>">
         <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
         </form>
-        <form action="excelbahan.php?id=<?= $id ?>" method="POST">
-        <a href="excelbahan.php?id=<?= $id ?>"><button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button></a>
+        <form action="excelalat.php?id=<?= $id ?>" method="POST">
+        <a href="excelalat.php?id=<?= $id ?>"><button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button></a>
         </form>
 <?php
     } elseif ($cari == 'Ajuan Bahan') {
@@ -346,6 +346,7 @@ if (isset($_POST['cari'])) {
                         <th>Harga</th>
                         <th>Jumlah Beli</th>
                         <th>Sub Total</th>
+                        <th>Aksi</th>
                     </tr>
                     <?php
                     $no = 0;
@@ -361,6 +362,9 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["qty"]; ?></th>
                             <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                            <th>
+                                <a href="editbahan.php?id=<?= $id ?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>">HAPUS</a>
+                            </th>
                         </tr>
                     <?php
                     endforeach;
@@ -378,6 +382,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th>TOTAL</th>
                     <th>Rp<?= $formatted_total ?></th>
+                    <th></th>
                 </table>
             </div>
         </div>
