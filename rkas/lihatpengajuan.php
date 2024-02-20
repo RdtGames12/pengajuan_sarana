@@ -368,7 +368,12 @@ if (isset($_POST['cari'])) {
                                 <a href="editbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">HAPUS</a>
                             </th>
                             <?php    
-                            }?>
+                            } else {
+                                ?>
+                                <th>
+                                <?= $row['status']; ?>
+                                </th>
+                            <?php }?>
                         </tr>
                     <?php
                     endforeach;
