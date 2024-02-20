@@ -1,10 +1,12 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$sarana = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -27,19 +29,14 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 </head>
 
-<style>
-    body {
-        background-image: url(img/opback.png);
-    }
-</style>
+<body id="page-top">
 
-<body id="page-top" background-image=url(img/opback.png)>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
-        
+
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -135,11 +132,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statuspengajuanbahanadmin.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="statuspengajuanalatadmin.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="statuspengajuankegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="#">Bahan Praktik</a>
+                        <a class="collapse-item" href="#">Alat Praktik</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
                         
-                        <a class="collapse-item" href="statuspengajuansaranaadmin.php?id=<?= $id ?>">Sarana</a>
+                        <a class="collapse-item" href="#">Sarana</a>
                         <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
@@ -154,7 +151,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
                         <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
                         <a class="collapse-item" href="#">TU</a>
                         
@@ -254,9 +251,96 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
+        <div class="container">
+        <div class="p-5">
+        <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
+                            </div>
+                            <hr>
+                        </div>
+    <form action="statuspengajuansaranaadmin.php?id=<?= $id ?>" method="POST">
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
+                            <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cek">
+                            <input type="radio" id="Diterima" name="filtercari" value="Diterima">
+                           <label for="Diterima">Diterima</label>
+                           <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
+                           <label for="Ditolak">Ditolak</label>
+                           <input type="radio" id="	Belum di Cek" name="filtercari" value="	Belum di Cek">
+                           <label for="	Belum di Cek">Belum di Cek</label>
+                                </form>
+                        </div>
+                        <?php
+if (isset($_POST['cari'])) {
+    $status = isset($_POST['filtercari']) ? $_POST['filtercari'] : '';
+    ?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Item</th>
+                        <th>Status</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($sarana as $row) :
+                        if (empty($status) || $row['status'] == $status) {
+                    ?>
+                            <tr>
+                                <th><?php $no += 1;
+                                    echo $no; ?></th>
+                                <th><?= $row["jkerusakan"]; ?></th>
+                                <th><?= $row['status']; ?></th>
+                            </tr>
+                    <?php
+                        }
+                    endforeach;
+                    ?>
+                </table>
+            </div>
+        </div>
+        <?php } ?>
+                    </div>
+                        </div>
 
-    </div>
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Ulang Password">
+                                    
+                                </div>
+                                </div> -->
+                                
+
+                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a> -->
+                            <!-- </div> -->
+                                <!-- </div> -->
+                        </div>
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
+
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -282,7 +366,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

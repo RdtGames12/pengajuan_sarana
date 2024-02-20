@@ -295,7 +295,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     $tahun_terpilih = $_POST['tahun'];
                                 
                                 if ($cari == 'Ajuan Alat') {
-                                    $query = "SELECT * FROM tb_alat";
+                                    $query = "SELECT * FROM tb_alat  WHERE tahun_ajuan = '$tahun_terpilih'";
                                     if (($tahun_terpilih)) {
                                         $query .= "AND tahun_ajuan = '$tahun_terpilih'";
                                     }
