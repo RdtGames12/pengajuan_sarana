@@ -38,7 +38,6 @@ if (isset($_POST['simpan'])) {
     $qty = $_POST['qty'];
     $subtotal = $harga * $qty;
     $kebutuhan = $_POST['kebutuhan'];
-    foreach ($sql1 as $row) :
     if ($id == 356758684) {
         $proses =  mysqli_query($conn, "UPDATE tb_bahan SET sumber_dana = '$sumber_dana', tahun_ajuan = '$tahun_ajuan', item = '$nama_item', merk = '$merk', spesifikasi = '$spesifikasi', harga = '$harga', qty = '$qty', subtotal = '$subtotal', kebutuhan_untuk = '$kebutuhan' WHERE id_bahan = '$id1'");
     }
@@ -57,7 +56,6 @@ if (isset($_POST['simpan'])) {
     elseif ($id == 899055276) {
         $proses =  mysqli_query($conn, "UPDATE tb_bahan SET sumber_dana = '$sumber_dana', tahun_ajuan = '$tahun_ajuan', item = '$nama_item', merk = '$merk', spesifikasi = '$spesifikasi', harga = '$harga', qty = '$qty', subtotal = '$subtotal', kebutuhan_untuk = '$kebutuhan' WHERE id_bahan = '$id1'");
     }
-    endforeach;
     /*echo"
     $sumber_dana
     $tahun_ajuan
