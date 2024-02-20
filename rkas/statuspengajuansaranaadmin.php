@@ -36,7 +36,7 @@ $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -73,8 +73,8 @@ $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Kegiatan</a>
-                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="kegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="saranaadmin.php?id=<?= $id ?>">Sarana</a>
                     </div>
                 </div>
             </li>
@@ -132,11 +132,11 @@ $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">Bahan Praktik</a>
-                        <a class="collapse-item" href="#">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="statuspengajuanbahanadmin.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanalatadmin.php?id=<?= $id ?>">Alat Praktik</a>
+                        <a class="collapse-item" href="statuspengajuankegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
                         
-                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="statuspengajuansaranaadmin.php?id=<?= $id ?>">Sarana</a>
                         <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
                         <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
                         <a class="collapse-item" href="#">TU</a>
                         
