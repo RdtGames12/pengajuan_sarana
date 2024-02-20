@@ -251,57 +251,51 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 </nav>
         <div class="container">
         <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
-                            </div>
-                            <form class="user" action="prosesalatpraktikadmin.php?id=<?= $id ?>" method="POST">
-                                <div class="form-group">
-                                    <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
-                                    <label for="sumber_dana">Sumber Dana:</label>
-                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
-                                        <option value="BOS">BOS</option>
-                                        <option value="BOPD">BOPD</option>
-                                        <option value="KOMITE">KOMITE</option>
-                                        <option value="BANTUAN">BANTUAN</option>
-                                    </select>
-                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
-                                        placeholder="Sumber Dana"> -->
-                                </div>
-                                <div class="form-group">
-                                    <label for="tahun_ajuan">Tahun Ajuan:</label>
-                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                    </select>
-                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
-                                        placeholder="Sumber Dana"> -->
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="nama_item" name="nama_item"
-                                        placeholder="Masukkan Nama Item..">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="merk" name="merk"
-                                        placeholder="Masukkan merk..">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="spesifikasi" name="spesifikasi"
-                                        placeholder="Masukkan spesifikasi..">
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
-                                        placeholder="Masukkan harga..">
-                                </div>
-                                <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="qty" name="qty"
-                                        placeholder="Masukkan Jumlah beli..">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
-                                        placeholder="untuk kebutuhan..">
-                                </div>
-                                
+        <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Item</th>
+                                            <th>Merk</th>
+                                            <th>Spesifikasi</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah Beli</th>
+                                            <th>Jurusan</th>
+                                            <th>Sub Total</th>
+                                    </tr>
+                                    <?php $no = 0;?>
+                                    <?php foreach ($sql as $row) : ?>
+                                    <tr>
+                                    <th><?php $no += 1; echo $no;?></th>
+                                    <th><?= $row["item"];?></th>
+                                    <th><?= $row["merk"];?></th>
+                                    <th><?= $row["spesifikasi"];?></th>
+                                    <th>Rp<?= number_format($row["harga"], 2, ',', '.'); ?></th>
+                                    <th><?= $row["qty"];?></th>
+                                    <th><?= $row["jurusan"];?></th>
+                                    <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                                    <?php endforeach;
+                                $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat");
+                                $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                $total = $total_result[0];
+
+                                $formatted_total = number_format($total, 2, ',', '.');
+                                    ?>
+                                    </tr>
+                                    <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>TOTAL</th>
+                                    <th>Rp.<?= $formatted_total ?></th>
+                                    </tr>
+                            
+                                </table>
+                        </div>    
                                 
                                 <!-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -315,7 +309,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 </div> -->
                                 
-                                <input type="submit" value="simpan" name="simpan" style="width : 100%;" class="btn btn-primary btn-user btn-block">
+
                                 <hr>
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -325,7 +319,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </a> -->
                             <!-- </div> -->
                                 <!-- </div> -->
-                            </form>
                         </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>

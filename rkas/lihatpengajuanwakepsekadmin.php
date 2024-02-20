@@ -1,11 +1,12 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan ORDER BY id_kegiatan DESC");
+$sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -34,10 +35,10 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homewakepsek.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -49,7 +50,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="homewakepsek.php?id=<?= $id ?>">
+                <a class="nav-link" href="admin.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -72,8 +73,44 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="kegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="sarana.php?id=<?= $id ?>">Sarana</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="#">Sarana</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Program Keahlian</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Ajuan :</h6>
+                        <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
+                        <a class="collapse-item" href="#">Sarana</a>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#TU"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Tata Usaha</span>
+                </a>
+                <div id="TU" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Ajuan :</h6>
+                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="#">ATK</a>
+                        
                     </div>
                 </div>
             </li>
@@ -95,8 +132,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statuspengajuankegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="statuspengajuansarana.php?id=<?= $id ?>">Sarana</a>
+                        <a class="collapse-item" href="#">Bahan Praktik</a>
+                        <a class="collapse-item" href="#">Alat Praktik</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
+                        
+                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
             </li>
@@ -110,7 +151,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuanwakepsek.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="#">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
+                        <a class="collapse-item" href="#">TU</a>
                         
                         
                     </div>
@@ -173,14 +216,14 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            <a class="nav-link dropdown-toggle border-bottom-danger" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql1 as $row) :
+                                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?php foreach ($sql1 as $row) :
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle "
+                                    src="img/opprofil.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -208,117 +251,132 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
-                <div class="container">
+        <div class="container">
         <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Kegiatan</h1>
+        <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
                             </div>
-                            <form class="user" action="proses_kegiatan.php?id=<?= $id ?>" method="POST">
-                                <div class="form-group">
-                                    <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
-                                    <label for="sumber_dana">Sumber Dana:</label>
-                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
-                                        <option value="BOS">BOS</option>
-                                        <option value="BOPD">BOPD</option>
-                                        <option value="KOMITE">KOMITE</option>
-                                        <option value="BANTUAN">BANTUAN</option>
-                                    </select>
-                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
-                                        placeholder="Sumber Dana"> -->
-                                </div>
-                                <div class="form-group">
-                                    <label for="tahun_ajuan">Tahun Ajuan:</label>
-                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
-                                    </select>
-                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
-                                        placeholder="Sumber Dana"> -->
-                                </div>
-                                <div class="form-group">
-                                <label for="nama_kegiatan">Nama Kegiatan</label>
-                                    <input type="text" class="form-control form-control-user" id="nama_kegiatan" name="nama_kegiatan"
-                                        placeholder="Masukkan Nama Kegiatan">
-                                </div>
-                                <div class="form-group">
-                                <label for="bulan">Waktu (bulan ke )</label>
-                                <select class="form-control" id="bulan" name="bulan">
-                                        <option value="Januari">Januari</option>
-                                        <option value="Februari">Februari</option>
-                                        <option value="Maret">Maret</option>
-                                        <option value="April">April</option>
-                                        <option value="Mei">Mei</option>
-                                        <option value="Juni">Juni</option>
-                                        <option value="Juli">Juli</option>
-                                        <option value="Agustus">Agustus</option>
-                                        <option value="September">September</option>
-                                        <option value="Oktober">Oktober</option>
-                                        <option value="November">November</option>
-                                        <option value="Desember">Desember</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                <label for="biaya">(Biaya/Vol.)</label>
-                                    <input type="number" class="form-control form-control-user" id="biaya" name="biaya"
-                                        placeholder="Masukkan harga/vol">
-                                </div>
-                                <table>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol2" name="vol2"  value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol3" name="vol3"  value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                </table>
-                                
-                                
+                            <hr>
+                        </div>
+    <form action="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>" method="POST">
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
+                        <select class="animated--fade-in" name="ajuan">
+                            <option value="Ajuan Kegiatan" name="kegiatan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Kegiatan' ? 'selected' : ''; ?>>Ajuan Kegiatan</option>
+                            <option value="Ajuan Sarana" name="sarana1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Sarana' ? 'selected' : ''; ?>>Ajuan Sarana</option>
+                        </select>
+                        <select class="animated--fade-in" name="tahun">
+                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
+                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
+                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
+                        </select>
+                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                                </form>
+                        </div>
+                        <?php
+if (isset($_POST['cari'])) {
+    $cari = $_POST['ajuan'];
+    $tahun_terpilih = $_POST['tahun'];
+
+    if ($cari == 'Ajuan Kegiatan') {
+        $query = "SELECT * FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $query);
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Biaya</th>
+                        <th>Volume</th>
+                        <th>Keterangan</th>
+                        <th>Total</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($result as $row) :
+                    ?>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_kegiatan"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["biaya"]; ?></th>
+                            <th><?= $row["volume_1"]; ?></th>
+                            <th><?= $row["keterangan_volume1"]; ?></th>
+                            <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                        </tr>
+                    <?php
+                    endforeach;
+                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih' ");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
+
+                    $formatted_total = number_format($total, 2, ',', '.');
+                    ?>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th>Rp<?= $formatted_total ?></th>
+                </table>
+            </div>
+        </div>
+        <a href="printkegiatan.php?id=<?= $id ?>">PDF</a>
+        <a href="excelkegiatan.php?id=<?= $id ?>">EXCEL</a>
+<?php
+    } elseif ($cari == 'Ajuan Sarana') {
+        $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $query);
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Ruang</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Jenis Kerusakan</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan/Saran</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($result as $row) :
+                    ?>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_ruang"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["jkerusakan"]; ?></th>
+                            <th><?= $row["jumlah"]; ?></th>
+                            <th><?= $row["keterangan_saran"]; ?></th>
+                        </tr>
+                    <?php
+                    endforeach;
+                    ?>
+                </table>
+            </div>
+        </div>
+        <a href="printsarana.php?id=<?= $id ?>">PDF</a>
+        <a href="excelsarana.php?id=<?= $id ?>">EXCEL</a>
+<?php
+    }
+}
+?>
+                    </div>
+                        </div>
                                 <!-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
@@ -331,9 +389,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 </div> -->
                                 
-                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
-                                </a>
-                                <hr>
+
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
@@ -342,35 +398,21 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </a> -->
                             <!-- </div> -->
                                 <!-- </div> -->
-                            </form>
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th>Bulan</th>
-                                            <th>Biaya</th>
-                                            <th>Volume</th>
-                                            <th>Total</th>
-                                    </tr>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($sql as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["nama_kegiatan"];?></th>
-                                    <th><?= $row["bulan"];?></th>
-                                    <th>Rp.<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
-                                    <th><?= $row["volume_1"];?> <?= $row["keterangan_volume1"]?></th>
-                                    <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; ?>
-                            </div>
-                                </table>
-                            </div>
                         </div>
-                        </div>
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
+
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -396,7 +438,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

@@ -262,11 +262,16 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                            <select name="ajuan">
-                                <option value="Ajuan Bahan" name="bahan1">Ajuan Bahan</option>
-                                <option value="Ajuan Alat" name="alat1">Ajuan Alat</option>
-                            </select>
-                            <input type="submit" name="cari" value="cari">
+                            <select class="animated--fade-in" name="ajuan">
+                            <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
+                            <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
+                        </select>
+                        <select class="animated--fade-in" name="tahun">
+                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
+                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
+                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
+                        </select>
+                        <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
                         </div>
                         <div class="card-body">
@@ -275,6 +280,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Item</th>
+                                            <th>Tahun Ajuan</th>
                                             <th>Merk</th>
                                             <th>Spesifikasi</th>
                                             <th>Harga</th>
@@ -286,14 +292,21 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <?php
                                 if (isset($_POST['cari'])) {
                                     $cari = $_POST['ajuan'];
+                                    $tahun_terpilih = $_POST['tahun'];
                                 
                                 if ($cari == 'Ajuan Alat') {
-                                    ?>
+                                    $query = "SELECT * FROM tb_alat";
+                                    if (($tahun_terpilih)) {
+                                        $query .= "AND tahun_ajuan = '$tahun_terpilih'";
+                                    }
+                                    $result = mysqli_query($conn, $query);
+                            ?>
                                         <?php $no = 0;?>
-                                    <?php foreach ($alat as $row) : ?>
+                                    <?php foreach ($result as $row) : ?>
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
+                                    <th><?= $row["tahun_ajuan"]; ?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
@@ -306,12 +319,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <?php endforeach; } ?>
                             </div>
                             <?php if ($cari == 'Ajuan Bahan') {
-                                    ?>
+                            $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih'";
+                            if (($tahun_terpilih)) {
+                                $query .= " AND tahun_ajuan = '$tahun_terpilih'";
+                            }
+                            $result = mysqli_query($conn, $query);
+                    ?>
                                         <?php $no = 0;?>
-                                    <?php foreach ($bahan as $row) : ?>
+                                    <?php foreach ($result as $row) : ?>
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
+                                    <th><?= $row["tahun_ajuan"]; ?></th>
                                     <th><?= $row["merk"];?></th>
                                     <th><?= $row["spesifikasi"];?></th>
                                     <th><?= $row["harga"];?></th>
