@@ -156,6 +156,7 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 <style>
     body {
         background-image: url(img/bgori.png);
+        background-size: cover;
     }
     
     .spinner {
