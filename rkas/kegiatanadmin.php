@@ -1,12 +1,9 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
-$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
+$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan ORDER BY id_kegiatan DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -253,101 +250,83 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         </nav>
         <div class="container">
         <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
-                            </div>
-                            <hr>
-                        </div>
-    <form action="lihatpengajuanadmin.php?id=<?= $id ?>" method="POST">
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
-                            <select class="animated--fade-in" name="ajuan">
-                            <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
-                            <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
-                        </select>
-                        <select class="animated--fade-in" name="tahun">
-                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
-                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
-                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
-                        </select>
-                        <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
-                                </form>
-                        </div>
-                        <div class="card-body">
-                        <div class="table-responsive">
+        <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
                                             <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Tahun Ajuan</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                            <th>Jurusan</th>
-                                            <th>Status</th>
+                                            <th>Nama Kegiatan</th>
+                                            <th>Bulan</th>
+                                            <th>Biaya</th>
+                                            <th>Volume</th>
+                                            <th>Total</th>
                                     </tr>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $cari = $_POST['ajuan'];
-                                    $tahun_terpilih = $_POST['tahun'];
-                                
-                                if ($cari == 'Ajuan Alat') {
-                                    $query = "SELECT * FROM tb_alat  WHERE tahun_ajuan = '$tahun_terpilih'";
-                                    if (($tahun_terpilih)) {
-                                        $query .= "AND tahun_ajuan = '$tahun_terpilih'";
-                                    }
-                                    $result = mysqli_query($conn, $query);
-                            ?>
                                         <?php $no = 0;?>
-                                    <?php foreach ($result as $row) : ?>
+                                    <?php foreach ($sql as $row) : ?>
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"]; ?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['jurusan'];?></th>
-                                    <th><?= $row['status'];?></th>
+                                    <th><?= $row["nama_kegiatan"];?></th>
+                                    <th><?= $row["bulan"];?></th>
+                                    <th>Rp.<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
+                                    <th><?= $row["volume_1"];?> <?= $row["keterangan_volume1"]?></th>
+                                    <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_2"];?> <?= $row["keterangan_volume2"]?></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_3"];?> <?= $row["keterangan_volume3"]?></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_4"];?> <?= $row["keterangan_volume4"]?></th>
+                                        <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
                                     </tr>
                                 
-                                    <?php endforeach; } ?>
+                                    <?php endforeach; ?>
                             </div>
-                            <?php if ($cari == 'Ajuan Bahan') {
-                            $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih'";
-                            if (($tahun_terpilih)) {
-                                $query .= " AND tahun_ajuan = '$tahun_terpilih'";
-                            }
-                            $result = mysqli_query($conn, $query);
-                    ?>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($result as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"]; ?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['jurusan'];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; } 
-                                }?>
                                 </table>
                             </div>
                         </div>
-                    </div>
                         </div>
-                        </form>
+                                
+                                
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Ulang Password">
+                                    
+                                </div>
+                                </div> -->
+                                
+
+                                <hr>
+                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a> -->
+                            <!-- </div> -->
+                                <!-- </div> -->
+                            </form>
+                        </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
                             </div>

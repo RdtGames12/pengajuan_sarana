@@ -1,12 +1,12 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
 $alat = mysqli_query($conn, "SELECT * FROM tb_alat");
-$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
@@ -31,8 +31,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 <body id="page-top">
 
-        <!-- Page Wrapper -->
-        <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -253,101 +253,152 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         </nav>
         <div class="container">
         <div class="p-5">
-                            <div class="text-center">
+        <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
                             </div>
                             <hr>
                         </div>
-    <form action="lihatpengajuanadmin.php?id=<?= $id ?>" method="POST">
+    <form action="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>" method="POST">
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
-                            <select class="animated--fade-in" name="ajuan">
-                            <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
-                            <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
+                        <select class="animated--fade-in" name="ajuan">
+                            <option value="Ajuan Kegiatan" name="kegiatan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Kegiatan' ? 'selected' : ''; ?>>Ajuan Kegiatan</option>
+                            <option value="Ajuan Sarana" name="sarana1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Sarana' ? 'selected' : ''; ?>>Ajuan Sarana</option>
                         </select>
                         <select class="animated--fade-in" name="tahun">
                             <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
                             <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
                             <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
                         </select>
-                        <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                            <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
                                 </form>
                         </div>
-                        <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Tahun Ajuan</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                            <th>Jurusan</th>
-                                            <th>Status</th>
-                                    </tr>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $cari = $_POST['ajuan'];
-                                    $tahun_terpilih = $_POST['tahun'];
-                                
-                                if ($cari == 'Ajuan Alat') {
-                                    $query = "SELECT * FROM tb_alat  WHERE tahun_ajuan = '$tahun_terpilih'";
-                                    if (($tahun_terpilih)) {
-                                        $query .= "AND tahun_ajuan = '$tahun_terpilih'";
-                                    }
-                                    $result = mysqli_query($conn, $query);
-                            ?>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($result as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"]; ?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['jurusan'];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; } ?>
-                            </div>
-                            <?php if ($cari == 'Ajuan Bahan') {
-                            $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih'";
-                            if (($tahun_terpilih)) {
-                                $query .= " AND tahun_ajuan = '$tahun_terpilih'";
-                            }
-                            $result = mysqli_query($conn, $query);
+                        <?php
+if (isset($_POST['cari'])) {
+    $cari = $_POST['ajuan'];
+    $tahun_terpilih = $_POST['tahun'];
+
+    if ($cari == 'Ajuan Kegiatan') {
+        $query = "SELECT * FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $query);
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Biaya</th>
+                        <th>Volume</th>
+                        <th>Keterangan</th>
+                        <th>Total</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($result as $row) :
                     ?>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($result as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"]; ?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['jurusan'];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; } 
-                                }?>
-                                </table>
-                            </div>
-                        </div>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_kegiatan"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["biaya"]; ?></th>
+                            <th><?= $row["volume_1"]; ?></th>
+                            <th><?= $row["keterangan_volume1"]; ?></th>
+                            <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                        </tr>
+                    <?php
+                    endforeach;
+                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih' ");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
+
+                    $formatted_total = number_format($total, 2, ',', '.');
+                    ?>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th>Rp<?= $formatted_total ?></th>
+                </table>
+            </div>
+        </div>
+        <a href="printkegiatan.php?id=<?= $id ?>">PDF</a>
+        <a href="excelkegiatan.php?id=<?= $id ?>">EXCEL</a>
+<?php
+    } elseif ($cari == 'Ajuan Sarana') {
+        $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $query);
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Ruang</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Jenis Kerusakan</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan/Saran</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($result as $row) :
+                    ?>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_ruang"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["jkerusakan"]; ?></th>
+                            <th><?= $row["jumlah"]; ?></th>
+                            <th><?= $row["keterangan_saran"]; ?></th>
+                        </tr>
+                    <?php
+                    endforeach;
+                    ?>
+                </table>
+            </div>
+        </div>
+        <a href="printsarana.php?id=<?= $id ?>">PDF</a>
+        <a href="excelsarana.php?id=<?= $id ?>">EXCEL</a>
+<?php
+    }
+}
+?>
                     </div>
                         </div>
-                        </form>
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Ulang Password">
+                                    
+                                </div>
+                                </div> -->
+                                
+
+                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                                    <i class="fab fa-google fa-fw"></i> Register with Google
+                                </a>
+                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                </a> -->
+                            <!-- </div> -->
+                                <!-- </div> -->
+                        </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
                             </div>

@@ -273,7 +273,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" value="Tanpa Keterangan" placeholder="">
                                         </div>
                                     </td>
                                     </tr>
@@ -286,7 +286,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" value="Tanpa Keterangan" placeholder="">
                                         </div>
                                     </td>
                                     </tr>
@@ -299,7 +299,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" value="Tanpa Keterangan" placeholder="">
                                         </div>
                                     </td>
                                     </tr>
@@ -312,7 +312,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" value="Tanpa Keterangan" placeholder="">
                                         </div>
                                     </td>
                                     </tr>
