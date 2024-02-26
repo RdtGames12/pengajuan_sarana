@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Feb 2024 pada 05.31
+-- Waktu pembuatan: 26 Feb 2024 pada 05.43
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -151,6 +151,7 @@ CREATE TABLE `tb_bahan` (
   `qty` int(20) NOT NULL,
   `subtotal` int(50) NOT NULL,
   `contoh_gambar` varchar(50) NOT NULL,
+  `bukti` varchar(50) NOT NULL,
   `kebutuhan_untuk` text NOT NULL,
   `jurusan` char(50) NOT NULL,
   `status` varchar(50) NOT NULL
@@ -160,10 +161,12 @@ CREATE TABLE `tb_bahan` (
 -- Dumping data untuk tabel `tb_bahan`
 --
 
-INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
-(11, 'BOS', 2024, 'Processor', 'intel', 'i3 7100', 700000, 5, 3500000, '', 'upgrade pc', 'PPLG', 'Belum di Cek'),
-(12, 'BOS', 2024, 'Processor', 'AMD', 'Ryzen 3 3500U', 900000, 5, 4500000, '', 'Upgrade PC', 'PPLG', 'Belum di Cek'),
-(13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', 'cadangan pc', 'PPLG', 'Belum di Cek');
+INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
+(11, 'BOS', 2024, 'Processor', 'intel', 'i3 7100', 700000, 0, 0, '', 'logomesin.png', 'upgrade pc', 'PPLG', 'Diterima'),
+(12, 'BOS', 2024, 'Processor', 'AMD', 'Ryzen 3 3500U', 900000, 5, 4500000, '', '', 'Upgrade PC', 'PPLG', 'Diterima'),
+(13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', '', 'cadangan pc', 'PPLG', 'Belum di Cek'),
+(16, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', 'tes', 'PPLG', 'Belum di Cek'),
+(17, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', 'tes', 'PPLG', 'Belum di Cek');
 
 -- --------------------------------------------------------
 
@@ -506,7 +509,7 @@ ALTER TABLE `tb_bagian`
 -- AUTO_INCREMENT untuk tabel `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
-  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_det_alat`
