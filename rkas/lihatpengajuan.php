@@ -304,7 +304,7 @@ if (isset($_POST['cari'])) {
                                 <?php if ($row['status'] == 'Belum di Cek') {
                                     ?>
                                 <th>
-                                    <a href="editbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">HAPUS</a>
+                                    <a href="editalat.php?id=<?= $id ?>&id1=<?= $row['id_alat']?>">EDIT | </a> <a href="hapusalat.php?id=<?= $id ?>&id1=<?= $row['id_alat']?>">HAPUS</a>
                                 </th>
                                 <?php    
                                 } else {
@@ -322,6 +322,7 @@ if (isset($_POST['cari'])) {
 
                     $formatted_total = number_format($total, 2, ',', '.');
                     ?>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>

@@ -1,8 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-$id = $_GET['id'];
+$id1 = $_GET['id1'];
 if ($id == 356758684) {
     $jurusan =  'Mekatronika';
     $profil = '<img class="img-profile rounded-circle" src="img/logomeka.png">';
@@ -26,7 +25,19 @@ elseif ($id == 6083232) {
 elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
-}$sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
+}
+$alat = mysqli_query($conn, "SELECT * FROM tb_alat WHERE id_alat = '$id1' AND jurusan = '$jurusan'");
+foreach ($alat as $row) {
+    $sumber_dana = $row['sumber_dana'];
+    $tahun_ajuan = $row['tahun_ajuan'];
+    $item = $row['item'];
+    $merk = $row['merk'];
+    $spesifikasi = $row['spesifikasi'];
+    $harga = $row['harga'];
+    $qty = $row['qty'];
+    $kebutuhan_untuk = $row['kebutuhan_untuk'];
+}
+$sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,87 +76,13 @@ elseif ($id == 899055276) {
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Beranda RKAS </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="homejurusan.php?id=<?= $id ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                PENGAJUAN
-            </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Program Keahlian</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Lainnya
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Status Pengajuan</span>
-                </a>
-                <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lihat"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Lihat Pengajuan</span>
-                </a>
-                <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
-                        
-                        
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -238,7 +175,7 @@ elseif ($id == 899055276) {
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
                             </div>
-                            <form class="user" action="prosesalatpraktik.php?id=<?= $id ?>" method="POST">
+                            <form class="user" action="proseseditalat.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -263,23 +200,23 @@ elseif ($id == 899055276) {
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nama_item" name="nama_item"
-                                        placeholder="Masukkan nama Item..">
+                                        value="<?= $item ?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="merk" name="merk"
-                                        placeholder="Masukkan merk..">
+                                    value="<?= $merk ?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="spesifikasi" name="spesifikasi"
-                                        placeholder="Masukkan spesifikasi..">
+                                    value="<?= $spesifikasi ?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="harga" name="harga"
-                                        placeholder="Masukkan harga..">
+                                    value="<?= $harga ?>">
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="qty" name="qty"
-                                        placeholder="Masukkan Jumlah beli..">
+                                    value="<?= $qty ?>">
                                 </div>
                                 <h6>Masukkan contoh gambar</h6>
                                 <div class="form-group">
@@ -287,96 +224,14 @@ elseif ($id == 899055276) {
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
-                                        placeholder="untuk kebutuhan..">
+                                    value="<?= $kebutuhan_untuk ?>">
                                 </div>
-                                
-                                
-                                <!-- <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Ulang Password">
-                                    
-                                </div>
-                                </div> -->
-                                
-                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                <a class="scroll-to-top rounded" href="#page-top">
+                                    <i class="fas fa-angle-up"></i>
                                 </a>
+                                <input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </form>
                                 <hr>
-                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a> -->
-                            <!-- </div> -->
-                                <!-- </div> -->
-                            </form>
-                            <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                    </tr>
-                                    <?php $no = 0;?>
-                                    <?php foreach ($sql as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th>Rp<?= number_format($row["harga"], 2, ',', '.'); ?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
-                                    </tr>
-                                
-                                    <?php endforeach;
-                                $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE jurusan = '$jurusan'");
-                                $total_result = $total_query->fetch_array(MYSQLI_NUM);
-                                $total = $total_result[0];
-
-                                $formatted_total = number_format($total, 2, ',', '.');
-                                    ?>
-                                    </tr>
-                                    <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>TOTAL</th>
-                                    <th>Rp.<?= $formatted_total ?></th>
-                                    </tr> 
-                                </table>
-                        </div>
-                            <!-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
-                            </div> -->
-                        
-                        <!-- </div>
-                    </div>
-
-    </div> -->
-    <!-- End of Page Wrapper -->
-
-
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -415,6 +270,5 @@ elseif ($id == 899055276) {
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 
-</body>
-
-</html>
+                                </body>
+                                </html>
