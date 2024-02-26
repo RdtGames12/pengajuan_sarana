@@ -7,6 +7,21 @@ if ($id == 641487792) {
 $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 $sarana = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+foreach ($kegiatan as $row) {
+    $sumber_dana = $row['sumber_dana'];
+    $tahun_ajuan = $row['tahun_ajuan'];
+    $namakegiatan = $row['nama_kegiatan'];
+    $bulan = $row['bulan'];
+    $biaya = $row['biaya'];
+    $vol1 = $row['volume_1'];
+    $vol2 = $row['volume_2'];
+    $vol3 = $row['volume_3'];
+    $vol4 = $row['volume_4'];
+    $keterangan_vol1 = $row['volume_1'];
+    $keterangan_vol2 = $row['volume_2'];
+    $keterangan_vol3 = $row['volume_3'];
+    $keterangan_vol4 = $row['volume_4'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -212,158 +227,120 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
-        <div class="container">
+                <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
                             </div>
-                            <hr>
-                        </div>
-    <form action="lihatpengajuanwakepsek.php?id=<?= $id ?>" method="POST">
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                        <select class="animated--fade-in" name="ajuan">
-                            <option value="Ajuan Kegiatan" name="kegiatan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Kegiatan' ? 'selected' : ''; ?>>Ajuan Kegiatan</option>
-                            <option value="Ajuan Sarana" name="sarana1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Sarana' ? 'selected' : ''; ?>>Ajuan Sarana</option>
-                        </select>
-                        <select class="animated--fade-in" name="tahun">
-                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
-                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
-                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
-                        </select>
-                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                            <form class="user" action="proseseditkegiatan.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
+                                    <label for="sumber_dana">Sumber Dana:</label>
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                        <option value="BOS">BOS</option>
+                                        <option value="BOPD">BOPD</option>
+                                        <option value="KOMITE">KOMITE</option>
+                                        <option value="BANTUAN">BANTUAN</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="tahun_ajuan">Tahun Ajuan:</label>
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                <label for="nama_kegiatan">Nama Kegiatan</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_kegiatan" name="nama_kegiatan"
+                                        value="<?= $namakegiatan ?>">
+                                </div>
+                                <div class="form-group">
+                                <select class="form-control" id="bulan" name="bulan" value="<?= $bulan ?>">
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="biaya">(Biaya/Vol.)</label>
+                                <input type="text" class="form-control form-control-user" id="biaya" name="biaya"
+                                    value="<?= $biaya ?>">
+                                </div>
+                                <table>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" value="<?= $vol1 ?>" min=1>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" value="<?= $keterangan_vol1 ?>" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol2" name="vol2"  value="<?= $vol2 ?>" min=1>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" value="<?= $keterangan_vol2 ?>" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol3" name="vol3"  value="<?= $vol3 ?>" min=1>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" value="<?= $keterangan_vol3 ?>" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Volume :</td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" value="<?= $vol4 ?>" min=1>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" value="<?= $keterangan_vol4 ?>" placeholder="">
+                                        </div>
+                                    </td>
+                                    </tr>
+                                </table>
+                                <a class="scroll-to-top rounded" href="#page-top">
+                                    <i class="fas fa-angle-up"></i>
+                                </a>
+                                <input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
                                 </form>
-                        </div>
-                        <?php
-if (isset($_POST['cari'])) {
-    $cari = $_POST['ajuan'];
-    $tahun_terpilih = $_POST['tahun'];
-
-    if ($cari == 'Ajuan Kegiatan') {
-        $query = "SELECT * FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih'";
-        $result = mysqli_query($conn, $query);
-?>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Kegiatan</th>
-                        <th>Tahun Ajuan</th>
-                        <th>Bulan</th>
-                        <th>Biaya</th>
-                        <th>Volume</th>
-                        <th>Keterangan</th>
-                        <th>Total</th>
-                        <th>Aksi</th>
-                    </tr>
-                    <?php
-                    $no = 0;
-                    foreach ($result as $row) :
-                    ?>
-                        <tr>
-                            <th><?php $no += 1;
-                                echo $no; ?></th>
-                            <th><?= $row["nama_kegiatan"]; ?></th>
-                            <th><?= $row["tahun_ajuan"]; ?></th>
-                            <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["biaya"]; ?></th>
-                            <th><?= $row["volume_1"]; ?></th>
-                            <th><?= $row["keterangan_volume1"]; ?></th>
-                            <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
-                            <?php if ($row['status'] == 'Belum di Cek') {
-                                    ?>
-                                <th>
-                                    <a href="editkegiatan.php?id=<?= $id ?>&id1=<?= $row['id_kegiatan']?>">EDIT | </a> <a href="hapuskegiatan.php?id=<?= $id ?>&id1=<?= $row['id_kegiatan']?>">HAPUS</a>
-                                </th>
-                                <?php    
-                                } else {
-                                    ?>
-                                    <th>
-                                    <?= $row['status']; ?>
-                                    </th>
-                                <?php }?>
-                            </tr>
-                        <?php
-                    endforeach;
-                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih' ");
-                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
-                    $total = $total_result[0];
-
-                    $formatted_total = number_format($total, 2, ',', '.');
-                    ?>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>TOTAL</th>
-                    <th>Rp<?= $formatted_total ?></th>
-                </table>
-            </div>
-        </div>
-        <a href="printkegiatan.php?id=<?= $id ?>">PDF</a>
-        <a href="excelkegiatan.php?id=<?= $id ?>">EXCEL</a>
-<?php
-    } elseif ($cari == 'Ajuan Sarana') {
-        $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
-        $result = mysqli_query($conn, $query);
-?>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Ruang</th>
-                        <th>Tahun Ajuan</th>
-                        <th>Bulan</th>
-                        <th>Jenis Kerusakan</th>
-                        <th>Jumlah</th>
-                        <th>Keterangan/Saran</th>
-                        <th>Aksi</th>
-                    </tr>
-                    <?php
-                    $no = 0;
-                    foreach ($result as $row) :
-                    ?>
-                        <tr>
-                            <th><?php $no += 1;
-                                echo $no; ?></th>
-                            <th><?= $row["nama_ruang"]; ?></th>
-                            <th><?= $row["tahun_ajuan"]; ?></th>
-                            <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["jkerusakan"]; ?></th>
-                            <th><?= $row["jumlah"]; ?></th>
-                            <th><?= $row["keterangan_saran"]; ?></th>
-                            <?php if ($row['status'] == 'Belum di Cek') {
-                                    ?>
-                                <th>
-                                    <a href="editalat.php?id=<?= $id ?>&id1=<?= $row['id_alat']?>">EDIT | </a> <a href="hapusalat.php?id=<?= $id ?>&id1=<?= $row['id_alat']?>">HAPUS</a>
-                                </th>
-                                <?php    
-                                } else {
-                                    ?>
-                                    <th>
-                                    <?= $row['status']; ?>
-                                    </th>
-                                <?php }?>
-                            </tr>
-                        <?php
-                    endforeach;
-                    ?>
-                </table>
-            </div>
-        </div>
-        <a href="printsarana.php?id=<?= $id ?>">PDF</a>
-        <a href="excelsarana.php?id=<?= $id ?>">EXCEL</a>
-<?php
-    }
-}
-?>
-                    </div>
-                        </div>
+                                <hr>
 
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
