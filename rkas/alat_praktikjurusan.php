@@ -281,6 +281,10 @@ elseif ($id == 899055276) {
                                     <input type="number" class="form-control form-control-user" id="qty" name="qty"
                                         placeholder="Masukkan Jumlah beli..">
                                 </div>
+                                <h6>Masukkan contoh gambar</h6>
+                                <div class="form-group">
+                                <input type="file" id="contoh_gambar" name="contoh_gambar">
+                                </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
                                         placeholder="untuk kebutuhan..">
