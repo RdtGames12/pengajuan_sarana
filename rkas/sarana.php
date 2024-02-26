@@ -116,7 +116,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </div>
                 </div>
             </li>
-            
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
