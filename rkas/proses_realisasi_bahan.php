@@ -1,6 +1,8 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$id1 = $_GET['id1'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE id_bahan = '$id1'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -41,145 +43,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
         
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Beranda RKAS </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="admin.php?id=<?= $id ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                PENGAJUAN
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Wakil Kep. Sek.</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="kegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="saranaadmin.php?id=<?= $id ?>">Sarana</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Program Keahlian</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
-                        
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#TU"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Tata Usaha</span>
-                </a>
-                <div id="TU" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="#">ATK</a>
-                        
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Lainnya
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Status Pengajuan</span>
-                </a>
-                <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statuspengajuanbahanadmin.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="statuspengajuanalatadmin.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="statuspengajuankegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
-                        
-                        <a class="collapse-item" href="statuspengajuansaranaadmin.php?id=<?= $id ?>">Sarana</a>
-                        <a class="collapse-item" href="#">ATK</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lihat"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Lihat Pengajuan</span>
-                </a>
-                <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
-                        <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
-                        <a class="collapse-item" href="#">TU</a>
-                        
-                        
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#realisasi"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Realisasi</span>
-                </a>
-                <div id="realisasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Pilih:</h6>
-                        <a class="collapse-item" href="realisasi_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="#">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
-                        <a class="collapse-item" href="#">Sarana</a>
-                        <a class="collapse-item" href="#">ATK</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -270,7 +145,62 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
                 </nav>
 
+                <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-100 mb-4">Realisasi Bahan</h1>
+                            </div>
+                            <form class="user" action="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="jumlah_beli">Jumlah yang sudah dibeli:</label>
+                                    <?php $max_query = mysqli_query($conn, "SELECT SUM(qty) FROM tb_bahan WHERE id_bahan='$id1'");
+                                    $max_result = $max_query->fetch_array(MYSQLI_NUM);
+                                    $max = $max_result[0];?>
+                                    <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<? $max ?>">
+                                </div>
+                                <h6>Masukkan Bukti(Gambar):</h6>
+                                <div class="form-group">
+                                <input type="file" id="bukti" name="bukti">
+                                </div>
+                                <input type="submit" name="realisasi" value="Realisasikan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </form>
+                                <hr>
     </div>
+                                <?php 
+                                if (isset($_POST['realisasi'])) {
+                                    $jumlah = $_POST['jumlah_beli'];
+                                    $jumlahsekarang = $max - $jumlah;
+                                    $harga_query = mysqli_query($conn, "SELECT harga FROM tb_bahan WHERE id_bahan='$id1'");
+                                    $harga_result = $harga_query->fetch_array(MYSQLI_NUM);
+                                    $harga = $harga_result[0];
+                                    $subtotal = $harga * $jumlahsekarang;
+                                    $ekstensi_gambar = array('png', 'jpg');
+                                    $gambar = $_FILES['bukti']['name'];
+                                    $x = explode('.', $gambar);
+                                    $ekstensi = strtolower(end($x));
+                                    $ukuran = $_FILES['bukti']['size'];
+                                    $file_tmp = $_FILES['bukti']['tmp_name'];
+
+                                    move_uploaded_file($file_tmp, 'foto_bukti/'.$gambar);
+
+                                    $proses = mysqli_query($conn, "UPDATE tb_bahan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar' WHERE id_bahan = '$id1'");
+                                    if ($proses) {
+                                        echo "
+                                        <script>
+                                            alert('Data Berhasil Masuk!');
+                                            window.location.href='realisasi_bahan.php?id=$id';
+                                        </script>
+                                        ";
+                                    } else {
+                                        echo "
+                                    <script>
+                                        alert('Data Gagal Masuk');  
+                                        window.location.href='realisasi_bahan.php?id=$id';
+                                    </script>
+                                    ";
+                                    }
+                                }
+                                ?>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->

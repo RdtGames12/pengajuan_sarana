@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -269,6 +270,69 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
+                <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-100 mb-4">Lihat Pengajuan</h1>
+                            </div>
+                            <hr>
+                        </div>
+    <form action="realisasi_bahan.php?id=<?= $id ?>" method="POST">
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
+                            <select name="jurusan">
+                                <option value="Mekatronika" name="jurusan1"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Mekatronika' ? 'selected' : ''; ?>>Mekatronika</option>
+                                <option value="DKV" name="jurusan2"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'DKV' ? 'selected' : ''; ?>>DKV</option>
+                                <option value="PPLG" name="jurusan3"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'PPLG' ? 'selected' : ''; ?>>PPLG</option>
+                                <option value="Animasi" name="jurusan4"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Animasi' ? 'selected' : ''; ?>>Animasi</option>
+                                <option value="Kimia" name="jurusan5"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Kimia' ? 'selected' : ''; ?>>Kimia Industri</option>
+                                <option value="Pemesinan" name="jurusan6"<?php echo isset($_POST['jurusan']) && $_POST['jurusan'] == 'Pemesinan' ? 'selected' : ''; ?>>Teknik Pemesinan</option>
+                            </select>
+                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                                </form>
+                        </div>
+                        <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Item</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Subtotal</th>
+                                            <th>Bukti Gambar</th>
+                                            <th>Aksi</th>
+                                    </tr>
+                                <?php
+                                if (isset($_POST['cari'])) {
+                                    $jurusan = $_POST['jurusan'];
+                                    $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE status = 'Diterima' AND jurusan = '$jurusan'");
+                                
+                                ?>
+                                        <?php $no = 0;?>
+                                        <?php foreach ($bahan as $row) : ?>
+                                        <tr>
+                                        <th><?php $no += 1; echo $no;?></th>
+                                        <th><?= $row["item"]; ?> <?= $row["merk"]; ?> <?= $row["spesifikasi"]; ?></th>
+                                        <th><?= $row["harga"];?></th>
+                                        <th><?= $row["qty"];?></th>
+                                        <th><?= $row["subtotal"];?></th>
+                                        <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                        <th>
+                                            <a href="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>"><b style="color: royalblue;">Realisasikan</b></a>
+                                        </th>
+                                        </tr>
+                                    
+                                        <?php endforeach;
+                                    }?>
+                            </div>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        </form>
 
     </div>
     <!-- End of Page Wrapper -->
