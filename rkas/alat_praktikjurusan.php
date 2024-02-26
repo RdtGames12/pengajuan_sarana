@@ -303,7 +303,7 @@ elseif ($id == 899055276) {
                                 </div>
                                 </div> -->
                                 
-                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                <a href="prosesalatpraktik.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
                                 </a>
                                 <hr>
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
