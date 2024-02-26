@@ -283,6 +283,7 @@ if (isset($_POST['cari'])) {
                         <th>Harga</th>
                         <th>Jumlah Beli</th>
                         <th>Contoh Gambar</th>
+                        <th>Bukti Gambar</th>
                         <th>Sub Total</th>
                         <th>Aksi</th>
                     </tr>
@@ -300,6 +301,7 @@ if (isset($_POST['cari'])) {
                                 <th><?= $row["harga"]; ?></th>
                                 <th><?= $row["qty"]; ?></th>
                                 <th><img src="foto_contoh/<?= $row['contoh_gambar']; ?>" width="100px" height="100px"></th>
+                                <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
                                 <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                                 <?php if ($row['status'] == 'Belum di Cek') {
                                     ?>
@@ -322,6 +324,7 @@ if (isset($_POST['cari'])) {
 
                     $formatted_total = number_format($total, 2, ',', '.');
                     ?>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -403,6 +406,7 @@ if (isset($_POST['cari'])) {
 
                     $formatted_total = number_format($total, 2, ',', '.');
                     ?>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
