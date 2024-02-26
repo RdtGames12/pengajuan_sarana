@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$id1= $_GET['id1'];
 if ($id == 641487792) {
     $jurusan =  'Wakil Kepala Sekolah';
 }
