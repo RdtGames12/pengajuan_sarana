@@ -91,7 +91,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <h6 class="collapse-header">Jenis Ajuan :</h6>
                 <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
                 <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
-                <a class="collapse-item" href="#">Sarana</a>
                 
             </div>
         </div>
@@ -106,8 +105,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Jenis Ajuan :</h6>
-                <a class="collapse-item" href="#">Kegiatan</a>
-                <a class="collapse-item" href="#">Sarana</a>
                 <a class="collapse-item" href="#">ATK</a>
                 
             </div>
