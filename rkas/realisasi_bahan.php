@@ -29,9 +29,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 </head>
 
 <style>
-    body {
-        background-image: url(img/opback.png);
-    }
+
 </style>
 
 <body id="page-top" background-image=url(img/opback.png)>
