@@ -284,24 +284,38 @@ if (isset($_POST['cari'])) {
                         <th>Jumlah Beli</th>
                         <th>Contoh Gambar</th>
                         <th>Sub Total</th>
+                        <th>Aksi</th>
                     </tr>
                     <?php
                     $no = 0;
                     foreach ($result as $row) :
-                    ?>
-                        <tr>
-                            <th><?php $no += 1;
-                                echo $no; ?></th>
-                            <th><?= $row["item"]; ?></th>
-                            <th><?= $row["tahun_ajuan"]; ?></th>
-                            <th><?= $row["merk"]; ?></th>
-                            <th><?= $row["spesifikasi"]; ?></th>
-                            <th><?= $row["harga"]; ?></th>
-                            <th><?= $row["qty"]; ?></th>
-                            <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
-                        </tr>
-                    <?php
-                    endforeach;
+                        ?>
+                            <tr>
+                                <th><?php $no += 1;
+                                    echo $no; ?></th>
+                                <th><?= $row["item"]; ?></th>
+                                <th><?= $row["tahun_ajuan"]; ?></th>
+                                <th><?= $row["merk"]; ?></th>
+                                <th><?= $row["spesifikasi"]; ?></th>
+                                <th><?= $row["harga"]; ?></th>
+                                <th><?= $row["qty"]; ?></th>
+                                <th><img src="foto_contoh/<?= $row['contoh_gambar']; ?>" width="100px" height="100px"></th>
+                                <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
+                                <?php if ($row['status'] == 'Belum di Cek') {
+                                    ?>
+                                <th>
+                                    <a href="editbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">EDIT | </a> <a href="hapusbahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>">HAPUS</a>
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                    <th>
+                                    <?= $row['status']; ?>
+                                    </th>
+                                <?php }?>
+                            </tr>
+                        <?php
+                        endforeach;
                     $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_alat WHERE tahun_ajuan = '$tahun_terpilih' AND jurusan = '$jurusan'");
                     $total_result = $total_query->fetch_array(MYSQLI_NUM);
                     $total = $total_result[0];
