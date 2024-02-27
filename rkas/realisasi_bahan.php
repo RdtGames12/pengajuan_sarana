@@ -316,7 +316,16 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         <th><?= $row["harga"];?></th>
                                         <th><?= $row["qty"];?></th>
                                         <th><?= $row["subtotal"];?></th>
-                                        <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                        <?php if ($row['bukti'] == '') {
+                                    ?>
+                                <th>
+                                    Belum Direalisasikan/Tidak Memberikan Foto
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
                                         <th>
                                             <a href="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>"><b style="color: royalblue;">Realisasikan</b></a>
                                         </th>

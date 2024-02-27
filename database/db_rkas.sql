@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Feb 2024 pada 05.43
+-- Waktu pembuatan: 27 Feb 2024 pada 07.19
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -93,6 +93,7 @@ CREATE TABLE `tb_alat` (
   `qty` int(20) NOT NULL,
   `subtotal` int(50) NOT NULL,
   `contoh_gambar` varchar(50) NOT NULL,
+  `bukti` varchar(50) NOT NULL,
   `kebutuhan_untuk` text NOT NULL,
   `jurusan` char(50) NOT NULL,
   `status` varchar(50) NOT NULL
@@ -102,8 +103,8 @@ CREATE TABLE `tb_alat` (
 -- Dumping data untuk tabel `tb_alat`
 --
 
-INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
-(9, 'BOS', 2024, 'HDMI', '-', 'Mini HDMI', 50000, 3, 150000, '', 'Presentasi', 'PPLG', 'Belum di Cek');
+INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
+(9, 'BOS', 2024, 'HDMI', '-', 'Mini HDMI', 50000, 3, 150000, '', '', 'Presentasi', 'PPLG', 'Belum di Cek');
 
 -- --------------------------------------------------------
 
@@ -163,7 +164,7 @@ CREATE TABLE `tb_bahan` (
 
 INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
 (11, 'BOS', 2024, 'Processor', 'intel', 'i3 7100', 700000, 0, 0, '', 'logomesin.png', 'upgrade pc', 'PPLG', 'Diterima'),
-(12, 'BOS', 2024, 'Processor', 'AMD', 'Ryzen 3 3500U', 900000, 5, 4500000, '', '', 'Upgrade PC', 'PPLG', 'Diterima'),
+(12, 'BOS', 2024, 'Processor', 'AMD', 'Ryzen 3 3500U', 900000, 2, 1800000, '', 'logorpl.png', 'Upgrade PC', 'PPLG', 'Diterima'),
 (13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', '', 'cadangan pc', 'PPLG', 'Belum di Cek'),
 (16, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', 'tes', 'PPLG', 'Belum di Cek'),
 (17, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', 'tes', 'PPLG', 'Belum di Cek');
@@ -252,7 +253,6 @@ CREATE TABLE `tb_kegiatan` (
   `keterangan_volume3` varchar(75) NOT NULL,
   `keterangan_volume4` varchar(75) NOT NULL,
   `total` int(20) NOT NULL,
-  `jurusan` char(50) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -260,8 +260,9 @@ CREATE TABLE `tb_kegiatan` (
 -- Dumping data untuk tabel `tb_kegiatan`
 --
 
-INSERT INTO `tb_kegiatan` (`id_kegiatan`, `sumber_dana`, `tahun_ajuan`, `nama_kegiatan`, `bulan`, `biaya`, `volume_1`, `volume_2`, `volume_3`, `volume_4`, `keterangan_volume1`, `keterangan_volume2`, `keterangan_volume3`, `keterangan_volume4`, `total`, `jurusan`, `status`) VALUES
-(2, 'BOS', 2024, 'Kunjungan Industri', 'Januari', 1100000, 1, 1, 1, 1, 'orang', '', '', '', 1100000, '', 'Belum di Cek');
+INSERT INTO `tb_kegiatan` (`id_kegiatan`, `sumber_dana`, `tahun_ajuan`, `nama_kegiatan`, `bulan`, `biaya`, `volume_1`, `volume_2`, `volume_3`, `volume_4`, `keterangan_volume1`, `keterangan_volume2`, `keterangan_volume3`, `keterangan_volume4`, `total`, `status`) VALUES
+(2, 'BOPD', 2024, 'Kunjungan Industri', 'Januari', 1100000, 1, 1, 1, 1, '1', '1', '1', '1', 1100000, 'Belum di Cek'),
+(3, 'BOS', 2024, 'Kunjungan Sekolah', 'Januari', 250000, 1, 1, 1, 1, 'Tanpa Keterangan', 'Tanpa Keterangan', 'Tanpa Keterangan', 'Tanpa Keterangan', 250000, 'Belum di Cek');
 
 -- --------------------------------------------------------
 
@@ -533,7 +534,7 @@ ALTER TABLE `tb_kas`
 -- AUTO_INCREMENT untuk tabel `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pemasukan`
