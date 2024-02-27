@@ -326,9 +326,19 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     ?>
                                    <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
                                 <?php }?>
-                                        <th>
+
+                                <?php if ($row['qty'] == 0) {
+                                    ?>
+                                <th>
+                                    Sudah Direalisasikan
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th>
                                             <a href="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>"><b style="color: royalblue;">Realisasikan</b></a>
                                         </th>
+                                <?php }?>
                                         </tr>
                                     
                                         <?php endforeach;
