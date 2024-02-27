@@ -8,26 +8,24 @@ if ($id == 641487792) {
 $sql = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if (isset($_POST['simpan'])) {
-    $sumber_dana = $row['sumber_dana'];
-    $tahun_ajuan = $row['tahun_ajuan'];
-    $bulan = $row['bulan'];
-    $nama_ruang = $row['nama_ruang'];
-    $jkerusakan = $row['jkerusakan'];
-    $jumlah = $row['jumlah'];
-    $foto = $row['foto'];
-    $keterangan_saran = $row['keterangan_saran'];
-    if ($id == 641487792) {
-        $proses =  mysqli_query($conn, "UPDATE tb_sarana SET 
+    $sumber_dana = $_POST['sumber_dana'];
+    $tahun_ajuan = $_POST['tahun_ajuan'];
+    $bulan = $_POST['bulan'];
+    $nama_ruang = $_POST['nama_ruang'];
+    $jkerusakan = $_POST['jkerusakan'];
+    $jumlah = $_POST['jumlah'];
+    $keterangan_saran = $_POST['keterangan_saran'];
+    
+        $proses =  mysqli_query($conn, "UPDATE tb_sarana SET
         sumber_dana = '$sumber_dana', 
         tahun_ajuan = '$tahun_ajuan',
         bulan = '$bulan',
         nama_ruang = '$nama_ruang',
         jkerusakan = '$jkerusakan',
         jumlah = '$jumlah',
-        foto = '$foto',
-        keterangan_saran = '$keterangan_saran',
+        keterangan_saran = '$keterangan_saran'
         WHERE id_sarana = '$id1'");
-    }
+
     if ($proses) {
         echo "
         <script>
