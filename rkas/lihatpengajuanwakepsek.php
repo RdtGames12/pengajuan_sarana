@@ -271,12 +271,45 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["biaya"]; ?></th>
                             <th><?= $row["volume_1"]; ?></th>
                             <th><?= $row["keterangan_volume1"]; ?></th>
-                            <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                            <th></th>
+                            <th></th>
+                            <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_2"];?></th>
+                                        <th><?= $row["keterangan_volume2"]?></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_3"];?></th>
+                                        <th><?= $row["keterangan_volume3"]?></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_4"];?></th>
+                                        <th><?= $row["keterangan_volume4"]?></th>
+                                        <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
                             <?php if ($row['status'] == 'Belum di Cek') {
                                     ?>
                                 <th>
                                     <a href="editkegiatan.php?id=<?= $id ?>&id1=<?= $row['id_kegiatan']?>">EDIT | </a> <a href="hapuskegiatan.php?id=<?= $id ?>&id1=<?= $row['id_kegiatan']?>">HAPUS</a>
                                 </th>
+                                    </tr>
                                 <?php    
                                 } else {
                                     ?>
@@ -338,10 +371,10 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["jkerusakan"]; ?></th>
                             <th><?= $row["jumlah"]; ?></th>
                             <th><?= $row["keterangan_saran"]; ?></th>
-                            <?php if ($row['status'] == 'Belum di Cek') {
+                            <?php if ($row['status'] == 'Belum di cek') {
                                     ?>
                                 <th>
-                                    <a href="editalat.php?id=<?= $id ?>&id1=<?= $row['id_alat']?>">EDIT | </a> <a href="hapusalat.php?id=<?= $id ?>&id1=<?= $row['id_alat']?>">HAPUS</a>
+                                    <a href="editsarana.php?id=<?= $id ?>&id1=<?= $row['id_sarana']?>">EDIT | </a> <a href="hapussarana.php?id=<?= $id ?>&id1=<?= $row['id_sarana']?>">HAPUS</a>
                                 </th>
                                 <?php    
                                 } else {

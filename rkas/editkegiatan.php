@@ -18,10 +18,10 @@ foreach ($kegiatan as $row) {
     $vol2 = $row['volume_2'];
     $vol3 = $row['volume_3'];
     $vol4 = $row['volume_4'];
-    $keterangan_vol1 = $row['volume_1'];
-    $keterangan_vol2 = $row['volume_2'];
-    $keterangan_vol3 = $row['volume_3'];
-    $keterangan_vol4 = $row['volume_4'];
+    $keterangan_vol1 = $row['keterangan_volume1'];
+    $keterangan_vol2 = $row['keterangan_volume2'];
+    $keterangan_vol3 = $row['keterangan_volume3'];
+    $keterangan_vol4 = $row['keterangan_volume4'];
 }
 ?>
 <!DOCTYPE html>
