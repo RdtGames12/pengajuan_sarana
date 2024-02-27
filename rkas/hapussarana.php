@@ -5,9 +5,9 @@ $id1 = $_GET['id1'];
 if ($id == 641487792) {
     $jurusan =  'Wakil Kepala Sekolah';
 }
-$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE id_kegiatan = '$id1'");
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_sarana WHERE id_sarana = '$id1'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-$proses =  mysqli_query($conn, "DELETE FROM tb_kegiatan WHERE id_kegiatan = '$id1'");
+$proses =  mysqli_query($conn, "DELETE FROM tb_sarana WHERE id_sarana = '$id1'");
 
 if ($proses) {
     echo "

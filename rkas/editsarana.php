@@ -1,8 +1,23 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_kegiatan ORDER BY id_kegiatan DESC");
+$id1 = $_GET['id1'];
+if ($id == 641487792) {
+    $jurusan =  'Wakil Kepala Sekolah';
+}
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
+$sarana = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+foreach ($sarana as $row) {
+    $sumber_dana = $row['sumber_dana'];
+    $tahun_ajuan = $row['tahun_ajuan'];
+    $bulan = $row['bulan'];
+    $nama_ruang = $row['nama_ruang'];
+    $jkerusakan = $row['jkerusakan'];
+    $jumlah = $row['jumlah'];
+    $foto = $row['foto'];
+    $keterangan_saran = $row['keterangan_saran'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +77,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 PENGAJUAN
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -110,7 +125,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuanwakepsek.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="lihatpengajuanwakepsek.php">Wakil Kep.Sek.</a>
                         
                         
                     </div>
@@ -211,9 +226,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Kegiatan</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
                             </div>
-                            <form class="user" action="proses_kegiatan.php?id=<?= $id ?>" method="POST">
+                            <form class="user" action="proseseditsarana.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -237,11 +252,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
-                                <label for="nama_kegiatan">Nama Kegiatan</label>
-                                    <input type="text" class="form-control form-control-user" id="nama_kegiatan" name="nama_kegiatan"
-                                        placeholder="Masukkan Nama Kegiatan">
-                                </div>
-                                <div class="form-group">
                                 <label for="bulan">Waktu (bulan ke )</label>
                                 <select class="form-control" id="bulan" name="bulan">
                                         <option value="Januari">Januari</option>
@@ -259,118 +269,50 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="biaya">(Biaya/Vol.)</label>
-                                    <input type="number" class="form-control form-control-user" id="biaya" name="biaya"
-                                        placeholder="Masukkan harga/vol">
+                                <label for="nama_ruang">Nama Ruang</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_ruang" name="nama_ruang"
+                                        placeholder="Masukkan Nama Ruang" value="<?= $nama_ruang ?>">
                                 </div>
-                                <table>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol2" name="vol2"  value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol3" name="vol3"  value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Volume :</td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" value=1 min=1>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" value="Tanpa Keterangan" placeholder="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                                </table>
-                                
-                                
-                                <!-- <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Ulang Password">
-                                    
+                                <div class="form-group">
+                                <label for="jkerusakan">Jenis Kerusakan</label>
+                                    <input type="text" class="form-control form-control-user" id="jkerusakan" name="jkerusakan"
+                                        placeholder="Sebutkan Jenis Kerusakannya" value="<?= $jkerusakan ?>">
                                 </div>
-                                </div> -->
-                                
-                                <a href="alat_bahan.php"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                <div class="form-group">
+                                <label for="jumlah">Jumlah</label>
+                                    <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah"
+                                        placeholder="Masukkan Jumlah Kerusakan" min=1 value="<?= $jumlah ?>">
+                                </div>
+                                <div class="form-group">
+                                <label for="foto">Foto</label>
+                                    <input type="file" id="foto" name="foto" value="<?= $foto ?>">
+                                </div>
+                                <div class="form-group">
+                                <label for="keterangan_saran">Keterangan/Saran</label>
+                                    <input type="text" class="form-control form-control-user" id="keterangan_saran" name="keterangan_saran"
+                                        placeholder="Masukkan Keterangan Atau Saran" value="<?= $keterangan_saran ?>">
+                                </div>
+                                <a class="scroll-to-top rounded" href="#page-top">
+                                    <i class="fas fa-angle-up"></i>
                                 </a>
+                                <input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </form>
                                 <hr>
-                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a> -->
-                            <!-- </div> -->
-                                <!-- </div> -->
-                            </form>
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th>Bulan</th>
-                                            <th>Biaya</th>
-                                            <th>Volume</th>
-                                            <th>Total</th>
-                                    </tr>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($sql as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["nama_kegiatan"];?></th>
-                                    <th><?= $row["bulan"];?></th>
-                                    <th>Rp.<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
-                                    <th><?= $row["volume_1"];?> <?= $row["keterangan_volume1"]?></th>
-                                    <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; ?>
+
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
                             </div>
-                                </table>
-                            </div>
-                        </div>
-                        </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
+
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -396,7 +338,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
