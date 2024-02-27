@@ -22,9 +22,24 @@ if (isset($_POST['simpan'])) {
     $keterangan_volume3 = $_POST['volket3'];
     $keterangan_volume4 = $_POST['volket4'];
     $total = $_POST['biaya'] * $_POST['vol1'] * $_POST['vol2'] * $_POST['vol3'] * $_POST['vol4'];
-    /*if ($id == 641487792) {
-        $proses =  mysqli_query($conn, "UPDATE tb_kegiatan SET sumber_dana = '$sumber_dana' WHERE tb_kegiatan = '$id1'");
-    }*/
+    if ($id == 641487792) {
+        $proses =  mysqli_query($conn, "UPDATE tb_kegiatan SET 
+        sumber_dana = '$sumber_dana', 
+        tahun_ajuan = '$tahun_ajuan',
+        nama_kegiatan = '$nama_kegiatan',
+        bulan = '$bulan',
+        biaya = '$biaya',
+        volume_1 = '$volume_1',
+        volume_2 = '$volume_2',
+        volume_3 = '$volume_3',
+        volume_4 = '$volume_4',
+        keterangan_volume1 = '$keterangan_volume1',
+        keterangan_volume2 = '$keterangan_volume2',
+        keterangan_volume3 = '$keterangan_volume3',
+        keterangan_volume4 = '$keterangan_volume4',
+        total = '$total'
+        WHERE id_kegiatan = '$id1'");
+    }
     if ($proses) {
         echo "
         <script>

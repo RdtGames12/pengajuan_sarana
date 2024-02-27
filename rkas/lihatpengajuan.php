@@ -300,8 +300,26 @@ if (isset($_POST['cari'])) {
                                 <th><?= $row["spesifikasi"]; ?></th>
                                 <th><?= $row["harga"]; ?></th>
                                 <th><?= $row["qty"]; ?></th>
-                                <th><img src="foto_contoh/<?= $row['contoh_gambar']; ?>" width="100px" height="100px"></th>
-                                <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                <?php if ($row['contoh_gambar'] == '') {
+                                    ?>
+                                <th>
+                                    Tidak Memberikan Contoh
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                    <th><img src="foto_contoh/<?= $row['contoh_gambar']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
+                                <?php if ($row['bukti'] == '') {
+                                    ?>
+                                <th>
+                                    Belum Direalisasikan/Tidak Memberikan Foto
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
                                 <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                                 <?php if ($row['status'] == 'Belum di Cek') {
                                     ?>
@@ -334,6 +352,7 @@ if (isset($_POST['cari'])) {
                     <th></th>
                     <th>TOTAL</th>
                     <th>Rp<?= $formatted_total ?></th>
+                    <th></th>
                 </table>
             </div>
         </div>
@@ -382,8 +401,26 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["spesifikasi"]; ?></th>
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["qty"]; ?></th>
-                            <th><img src="foto_contoh/<?= $row['contoh_gambar']; ?>" width="100px" height="100px"></th>
-                            <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                            <?php if ($row['contoh_gambar'] == '') {
+                                    ?>
+                                <th>
+                                    Tidak Memberikan Contoh
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                    <th><img src="foto_contoh/<?= $row['contoh_gambar']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
+                                <?php if ($row['bukti'] == '') {
+                                    ?>
+                                <th>
+                                    Belum Direalisasikan/Tidak Memberikan Foto
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
                             <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
                             <?php if ($row['status'] == 'Belum di Cek') {
                                 ?>
