@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Feb 2024 pada 07.46
+-- Waktu pembuatan: 27 Feb 2024 pada 08.30
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -105,6 +105,20 @@ CREATE TABLE `tb_alat` (
 
 INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
 (9, 'BOS', 2024, 'HDMI', '-', 'Mini HDMI', 50000, 3, 150000, '', '', 'Presentasi', 'PPLG', 'Belum di Cek');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_atk`
+--
+
+CREATE TABLE `tb_atk` (
+  `id_atk` int(11) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
+  `harga_barang` int(10) NOT NULL,
+  `satuan` enum('pcs','pack','lusin','kodi','box') NOT NULL,
+  `total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -404,6 +418,12 @@ ALTER TABLE `tb_alat`
   ADD PRIMARY KEY (`id_alat`);
 
 --
+-- Indeks untuk tabel `tb_atk`
+--
+ALTER TABLE `tb_atk`
+  ADD PRIMARY KEY (`id_atk`);
+
+--
 -- Indeks untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
@@ -499,6 +519,12 @@ ALTER TABLE `tb_akses`
 --
 ALTER TABLE `tb_alat`
   MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_atk`
+--
+ALTER TABLE `tb_atk`
+  MODIFY `id_atk` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bagian`
