@@ -2,33 +2,6 @@
 include "koneksi.php";
 $id = $_GET['id'];
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-
-$id = $_GET['id'];
-if ($id == 356758684) {
-    $jurusan =  'Mekatronika';
-    $profil = '<img class="img-profile rounded-circle" src="img/logomeka.png">';
-}
-elseif ($id == 287839666) {
-    $jurusan =  'PPLG';
-    $profil = '<img class="img-profile rounded-circle" src="img/logorpl.png">';
-}
-elseif ($id == 499308321) {
-    $jurusan =  'Kimia';
-    $profil = '<img class="img-profile rounded-circle" src="img/logokimia.png">';
-}
-elseif ($id == 257802071) {
-    $jurusan =  'Animasi';
-    $profil = '<img class="img-profile rounded-circle" src="img/logoanimasi.png">';
-}
-elseif ($id == 6083232) {
-    $jurusan =  'DKV';
-    $profil = '<img class="img-profile rounded-circle" src="img/logodkv.png">';
-}
-elseif ($id == 899055276) {
-    $jurusan =  'Pemesinan';
-    $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
-}
-$sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +36,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homejurusan.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hometu.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -75,7 +48,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="homejurusan.php?id=<?= $id ?>">
+                <a class="nav-link" href="hometu.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -93,15 +66,13 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Program Keahlian</span>
+                    <span>Tata Usaha</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="alat_bahanjurusan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="alat_praktikjurusan.php?id=<?= $id ?>">Alat Praktik</a>
-                        
+                        <a class="collapse-item" href="atk.php?id=<?= $id ?>">ATK</a>   
                     </div>
                 </div>
             </li>
@@ -123,8 +94,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statuspengajuanbahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="statuspengajuanalat.php?id=<?= $id ?>">Alat Praktik</a>
+                        <a class="collapse-item" href="#">ATK</a>
                     </div>
                 </div>
             </li>
@@ -138,7 +108,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuan.php?id=<?= $id ?>">Program Keahlian</a>
+                        <a class="collapse-item" href="#">TU</a>
                         
                         
                     </div>
@@ -207,7 +177,8 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <?= $profil ?>
+                                   <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
