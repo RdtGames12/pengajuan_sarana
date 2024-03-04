@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
+$sql = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -319,8 +319,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>No</th>
                                             <th>Nama Ruang</th>
                                             <th>Bulan</th>
-                                            <th>Jenis kerusakan</th>
+                                            <th>Jenis Sarana</th>
+                                            <th>Ajuan Sarana</th>
                                             <th>Jumlah</th>
+                                            <th>Harga</th>
+                                            <th>Subtotal</th>
                                             <th>Keterangan/Saran </th>
                                     </tr>
                                         <?php $no = 0;?>
@@ -330,11 +333,31 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["nama_ruang"];?></th>
                                     <th><?= $row["bulan"];?></th>
                                     <th><?= $row["jenis_sarana"] ; ?></th>
+                                    <th><?= $row["ajuan_sarana"] ; ?></th>
                                     <th><?= $row["jumlah"];?></th>
+                                    <th><?= $row["harga"];?></th>
+                                    <th><?= $row["subtotal"];?></th>
                                     <th><?= $row["keterangan_saran"];?></th>
                                     </tr>
                                 
-                                    <?php endforeach; ?>
+                                    <?php endforeach; 
+                                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_sarana");
+                                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                    $total = $total_result[0];
+    
+                                    $formatted_total = number_format($total, 2, ',', '.');
+                                    ?>
+                                    <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>TOTAL</th>
+                                    <th>Rp.<?= $formatted_total ?></th>
+                                    <th></th>
+                                </tr>
                             </div>
                                 </table>
                             </div>

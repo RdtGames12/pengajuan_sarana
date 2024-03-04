@@ -353,8 +353,10 @@ if (isset($_POST['cari'])) {
                         <th>Nama Ruang</th>
                         <th>Tahun Ajuan</th>
                         <th>Bulan</th>
+                        <th>Jenis Sarana</th>
                         <th>Jenis Kerusakan</th>
                         <th>Jumlah</th>
+                        <th>Total</th>
                         <th>Keterangan/Saran</th>
                         <th>Aksi</th>
                     </tr>
@@ -368,8 +370,10 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["nama_ruang"]; ?></th>
                             <th><?= $row["tahun_ajuan"]; ?></th>
                             <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["jkerusakan"]; ?></th>
+                            <th><?= $row["jenis_sarana"]; ?></th>
+                            <th><?= $row["ajuan_sarana"]; ?></th>
                             <th><?= $row["jumlah"]; ?></th>
+                            <th><?= $row["subtotal"]; ?></th>
                             <th><?= $row["keterangan_saran"]; ?></th>
                             <?php if ($row['status'] == 'Belum di cek') {
                                     ?>
@@ -386,7 +390,23 @@ if (isset($_POST['cari'])) {
                             </tr>
                         <?php
                     endforeach;
+                    $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_sarana");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
+
+                    $formatted_total = number_format($total, 2, ',', '.');
                     ?>
+                    <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th>Rp.<?= $formatted_total ?></th>
+                    <th></th>
+                    <th></th>
                 </table>
             </div>
         </div>

@@ -13,7 +13,7 @@ if (isset($_POST['simpan'])) {
     $ajuan_sarana = $_POST['ajuan_sarana'];
     $jumlah = $_POST['jumlah'];
     $harga = $_POST['harga'];
-    $total = $harga * $jumlah;
+    $subtotal = $harga * $jumlah;
     $ekstensi_gambar = array('png', 'jpg');
     $gambar = $_FILES['contoh_gambar']['name'];
     $x = explode('.', $gambar);
@@ -22,7 +22,7 @@ if (isset($_POST['simpan'])) {
     $file_tmp = $_FILES['contoh_gambar']['tmp_name'];
     move_uploaded_file($file_tmp, 'foto_contoh/'.$gambar);
     $keterangan = $_POST['keterangan_saran'];
-    $proses =  mysqli_query($conn, "INSERT INTO tb_sarana (sumber_dana, tahun_ajuan, bulan, nama_ruang, jenis_sarana, ajuan_sarana, jumlah, harga, total, foto, keterangan_saran, status) VALUES ('$sumber_dana', '$tahun_ajuan', '$bulan', '$nama_ruang', '$jsarana', '$ajuan_sarana', '$jumlah', '$harga', '$total', '$gambar', '$keterangan', 'Belum di cek')");
+    $proses =  mysqli_query($conn, "INSERT INTO tb_sarana (sumber_dana, tahun_ajuan, bulan, nama_ruang, jenis_sarana, ajuan_sarana, jumlah, harga, subtotal, foto, keterangan_saran, status) VALUES ('$sumber_dana', '$tahun_ajuan', '$bulan', '$nama_ruang', '$jsarana', '$ajuan_sarana', '$jumlah', '$harga', '$subtotal', '$gambar', '$keterangan', 'Belum di cek')");
 
     if ($proses) {
         echo "
