@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 27 Feb 2024 pada 08.30
+-- Waktu pembuatan: 04 Mar 2024 pada 09.10
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -326,8 +326,11 @@ CREATE TABLE `tb_sarana` (
   `tahun_ajuan` int(4) NOT NULL,
   `bulan` varchar(50) NOT NULL,
   `nama_ruang` varchar(100) NOT NULL,
-  `jkerusakan` varchar(100) NOT NULL,
+  `jenis_sarana` varchar(100) NOT NULL,
+  `ajuan_sarana` varchar(100) NOT NULL,
   `jumlah` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `subtotal` int(11) NOT NULL,
   `foto` varchar(50) NOT NULL,
   `keterangan_saran` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL
@@ -337,8 +340,9 @@ CREATE TABLE `tb_sarana` (
 -- Dumping data untuk tabel `tb_sarana`
 --
 
-INSERT INTO `tb_sarana` (`id_sarana`, `sumber_dana`, `tahun_ajuan`, `bulan`, `nama_ruang`, `jkerusakan`, `jumlah`, `foto`, `keterangan_saran`, `status`) VALUES
-(5, 'BOS', 2024, 'Januari', 'F-3', 'Kursi Hilang', 3, '', 'Penambahan Kursi', 'Belum di cek');
+INSERT INTO `tb_sarana` (`id_sarana`, `sumber_dana`, `tahun_ajuan`, `bulan`, `nama_ruang`, `jenis_sarana`, `ajuan_sarana`, `jumlah`, `harga`, `subtotal`, `foto`, `keterangan_saran`, `status`) VALUES
+(18, 'BOS', 2024, 'Januari', 'F-3', 'Pengajuan', 'Papan Mading', 1, 25000, 25000, 'ceklis.png', 'Ukuran 1M', 'Belum di cek'),
+(19, 'BOS', 2024, 'Januari', '', 'Pengajuan', 'tes', 1, 1, 1, '', '1', 'Belum di cek');
 
 -- --------------------------------------------------------
 
@@ -578,7 +582,7 @@ ALTER TABLE `tb_pengeluaran`
 -- AUTO_INCREMENT untuk tabel `tb_sarana`
 --
 ALTER TABLE `tb_sarana`
-  MODIFY `id_sarana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sarana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_status_ajuan`
