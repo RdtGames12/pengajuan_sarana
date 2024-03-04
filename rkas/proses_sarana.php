@@ -9,10 +9,20 @@ if (isset($_POST['simpan'])) {
     $tahun_ajuan = $_POST['tahun_ajuan'];
     $bulan = $_POST['bulan'];
     $nama_ruang = $_POST['nama_ruang'];
-    $jkerusakan = $_POST['jkerusakan'];
+    $jsarana = $_POST['jenis_sarana'];
+    $ajuan_sarana = $_POST['ajuan_sarana'];
     $jumlah = $_POST['jumlah'];
+    $harga = $_POST['harga'];
+    $total = $harga * $jumlah;
+    $ekstensi_gambar = array('png', 'jpg');
+    $gambar = $_FILES['contoh_gambar']['name'];
+    $x = explode('.', $gambar);
+    $ekstensi = strtolower(end($x));
+    $ukuran = $_FILES['contoh_gambar']['size'];
+    $file_tmp = $_FILES['contoh_gambar']['tmp_name'];
+    move_uploaded_file($file_tmp, 'foto_contoh/'.$gambar);
     $keterangan = $_POST['keterangan_saran'];
-    $proses =  mysqli_query($conn, "INSERT INTO tb_sarana (sumber_dana, tahun_ajuan, bulan, nama_ruang, jkerusakan, jumlah, keterangan_saran, status) VALUES ('$sumber_dana', '$tahun_ajuan', '$bulan', '$nama_ruang', '$jkerusakan', '$jumlah', '$keterangan', 'Belum di cek')");
+    $proses =  mysqli_query($conn, "INSERT INTO tb_sarana (sumber_dana, tahun_ajuan, bulan, nama_ruang, jenis_sarana, ajuan_sarana, jumlah, harga, total, foto, keterangan_saran, status) VALUES ('$sumber_dana', '$tahun_ajuan', '$bulan', '$nama_ruang', '$jsarana', '$ajuan_sarana', '$jumlah', '$harga', '$total', '$gambar', '$keterangan', 'Belum di cek')");
 
     if ($proses) {
         echo "

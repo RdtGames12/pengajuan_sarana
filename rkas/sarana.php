@@ -211,9 +211,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Sarana/Kerusakan Barang</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Sarana/Kerusakan Sarana</h1>
                             </div>
-                            <form class="user" action="proses_sarana.php?id=<?= $id ?>" method="POST">
+                            <form class="user" action="proses_sarana.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
@@ -233,8 +233,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
                                     </select>
-                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
-                                        placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
                                 <label for="bulan">Waktu (bulan ke )</label>
@@ -254,26 +252,38 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="nama_ruang">Nama Ruang</label>
+                                <label for="nama_ruang">Nama Ruang:</label>
                                     <input type="text" class="form-control form-control-user" id="nama_ruang" name="nama_ruang"
                                         placeholder="Masukkan Nama Ruang">
                                 </div>
                                 <div class="form-group">
-                                <label for="jkerusakan">Jenis Kerusakan</label>
-                                    <input type="text" class="form-control form-control-user" id="jkerusakan" name="jkerusakan"
-                                        placeholder="Sebutkan Jenis Kerusakannya">
+                                    <label for="jenis_sarana">Jenis Sarana:</label>
+                                    <select class="form-control" id="jenis_sarana" name="jenis_sarana">
+                                        <option value="Pengajuan">Pengajuan Sarana</option>
+                                        <option value="Kerusakan">Kerusakan Sarana</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="jumlah">Jumlah</label>
+                                <label for="ajuan_sarana">Ajuan Sarana:</label>
+                                    <input type="text" class="form-control form-control-user" id="ajuan_sarana" name="ajuan_sarana"
+                                        placeholder="Masukkan Ajuan Sarana">
+                                </div>
+                                <div class="form-group">
+                                <label for="jumlah">Jumlah:</label>
                                     <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah"
-                                        placeholder="Masukkan Jumlah Kerusakan" min=1>
+                                        placeholder="Masukkan Jumlah" min=1>
                                 </div>
                                 <div class="form-group">
-                                <label for="foto">Foto</label>
-                                    <input type="file" id="foto" name="foto">
+                                <label for="harga">Harga:</label>
+                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
+                                        placeholder="Masukkan Harga" min=1>
+                                </div>
+                                <h6>Masukkan contoh gambar</h6>
+                                <div class="form-group">
+                                <input type="file" id="contoh_gambar" name="contoh_gambar">
                                 </div>
                                 <div class="form-group">
-                                <label for="keterangan_saran">Keterangan/Saran</label>
+                                <label for="keterangan_saran">Keterangan/Saran:</label>
                                     <input type="text" class="form-control form-control-user" id="keterangan_saran" name="keterangan_saran"
                                         placeholder="Masukkan Keterangan Atau Saran">
                                 </div>
@@ -308,7 +318,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <tr>
                                             <th>No</th>
                                             <th>Nama Ruang</th>
-                                            <th>Bulan</th>\
+                                            <th>Bulan</th>
                                             <th>Jenis kerusakan</th>
                                             <th>Jumlah</th>
                                             <th>Keterangan/Saran </th>
@@ -319,7 +329,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["nama_ruang"];?></th>
                                     <th><?= $row["bulan"];?></th>
-                                    <th><?= $row["jkerusakan"] ; ?></th>
+                                    <th><?= $row["jenis_sarana"] ; ?></th>
                                     <th><?= $row["jumlah"];?></th>
                                     <th><?= $row["keterangan_saran"];?></th>
                                     </tr>
