@@ -92,7 +92,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <h6 class="collapse-header">Jenis Ajuan :</h6>
                 <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
                 <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
-                <a class="collapse-item" href="#">Sarana</a>
                 
             </div>
         </div>
@@ -107,8 +106,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Jenis Ajuan :</h6>
-                <a class="collapse-item" href="#">Kegiatan</a>
-                <a class="collapse-item" href="#">Sarana</a>
                 <a class="collapse-item" href="#">ATK</a>
                 
             </div>
@@ -159,6 +156,24 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </div>
         </div>
     </li>
+
+    <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#realisasi"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Realisasi</span>
+                </a>
+                <div id="realisasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Pilih:</h6>
+                        <a class="collapse-item" href="realisasi_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="realisasi_alat.php?id=<?= $id ?>">Alat Praktik</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="#">ATK</a>
+                    </div>
+                </div>
+            </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

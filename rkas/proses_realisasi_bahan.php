@@ -29,12 +29,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 </head>
 
-<style>
-    body {
-        background-image: url(img/opback.png);
-    }
-</style>
-
 <body id="page-top" background-image=url(img/opback.png)>
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -148,7 +142,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-100 mb-4">Realisasi Bahan</h1>
+                                <h1 class="h4 text-gray-50 mb-4">Realisasi Bahan</h1>
                             </div>
                             <form class="user" action="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
