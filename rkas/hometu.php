@@ -8,6 +8,36 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 <head>
 
+<?php
+    $atk = mysqli_query($conn, "SELECT COUNT(status) FROM tb_atk WHERE status = 'Diterima'");
+    $diterima = $atk -> fetch_array(MYSQLI_NUM);
+    $atk1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_atk WHERE status = 'Ditolak'");
+    $ditolak = $atk1 -> fetch_array(MYSQLI_NUM);
+    $atk2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_atk WHERE status = 'Belum di Cek'");
+    $belumdicek = $atk2 -> fetch_array(MYSQLI_NUM);
+   ?>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['status', 'jumlah'],
+            ['Diterima',     <?= $diterima[0]?>],
+            ['Ditolak',      <?= $ditolak[0]?>],
+            ['Belum di Cek',  <?= $belumdicek[0]?>]
+        ]);
+
+        var options = {
+          title: 'Status Pengecekan Atk',
+          pieHole: 0.6,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchartkegiatan'));
+        chart.draw(data, options);
+      }
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,7 +56,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
 </head>
-
+<style>
+    body {
+        background-image: url(img/bgori.png);
+        background-size: cover;
+    }
+</style>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -206,7 +241,34 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
+                <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 style="border-radius: 100px; font-family:verdana;" class="h3 mb-4 bg-light text-primary">Selamat Datang, Wakil Kepala Sekolah di Website Pengajuan Sarana SMK Negeri 2 Cimahi</h1>
+                            </div>  
+<!-- Content Row -->
+    <div class="row">
 
+<div class="col-xl-11 col-lg-7" style="padding-left: 15%;">
+
+
+<!-- Donut Chart -->
+<div class="col-xl-11 col-lg-7">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Statistik</h6>
+        </div>
+        <!-- Card Body -->
+        <div class="card-body">
+        <div id="donutchartkegiatan" style="width: 450px; height: 150px;"></div>
+        <div id="donutchartsarana" style="width: 450px; height: 150px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            </div>
+    </div>
     </div>
     <!-- End of Page Wrapper -->
 

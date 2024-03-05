@@ -92,6 +92,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 <style>
     body {
         background-image: url(img/bgori.png);
+        background-size: cover;
     }
 </style>
 <body id="page-top">
