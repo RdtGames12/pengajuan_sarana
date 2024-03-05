@@ -242,6 +242,9 @@ if (isset($_POST['cari'])) {
 
     if ($cari == 'Ajuan Kegiatan') {
         $query = "SELECT * FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih'";
+        if (($tahun_terpilih)) {
+            $query .= "AND tahun_ajuan = '$tahun_terpilih'";
+        }
         $result = mysqli_query($conn, $query);
 ?>
         <div class="card-body">
@@ -338,7 +341,11 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="printkegiatan.php?id=<?= $id ?>">PDF</a>
+        <form action="printkegiatan.php?id=<?= $id ?>" method="POST">
+        <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
+        </form>
         <a href="excelkegiatan.php?id=<?= $id ?>">EXCEL</a>
 <?php
     } elseif ($cari == 'Ajuan Sarana') {

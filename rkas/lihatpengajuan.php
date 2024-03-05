@@ -356,7 +356,7 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <form action="printbahan.php?id=<?= $id ?>" method="POST">
+        <form action="printalat.php?id=<?= $id ?>" method="POST">
         <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
         <input type="hidden" name="id" value="<?= $id ?>">
         <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>

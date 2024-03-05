@@ -1,10 +1,13 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
+if (isset($_POST['simpan'])) {
+    $tahun_terpilih = $_POST['tahun'];
+    $id = $_POST['id'];
+}
 if ($id == 641487792) {
     $jurusan =  'Wakil Kepala Sekolah';
 }
-$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
+$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE tahun_ajuan='$tahun_terpilih'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -91,7 +94,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <?= $profil ?>
                                 </div>
                             <!-- Dropdown - User Information -->
 
@@ -118,8 +120,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Biaya</th>
                                             <th>Volume</th>
                                             <th>Keterangan</th> 
-                                            <th>Total</th>
-                                            <th>Status</th>
+                                            <th>Subtotal</th>
                                     </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($kegiatan as $row) : ?>
@@ -132,14 +133,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["volume_1"];?></th>
                                     <th><?= $row["keterangan_volume1"];?></th>
                                     <th><?= $row["total"]; ?></th>
-                                    <th><?= $row['status'];?></th>
                                     </tr>
                                 
                                     <?php endforeach;
                                     $total = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan");
                                     $gtotal = $total -> fetch_array(MYSQLI_NUM);
                                     ?>
-                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th></th>

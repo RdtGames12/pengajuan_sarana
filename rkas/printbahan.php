@@ -29,8 +29,6 @@ elseif ($id == 899055276) {
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
 }
 $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE tahun_ajuan='$tahun_terpilih' AND jurusan = '$jurusan'");
-$alat = mysqli_query($conn, "SELECT * FROM tb_alat  WHERE jurusan = '$jurusan'");
-$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE jurusan = '$jurusan'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
