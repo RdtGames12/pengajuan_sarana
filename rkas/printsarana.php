@@ -91,7 +91,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <?= $profil ?>
                                 </div>
                             <!-- Dropdown - User Information -->
 
@@ -115,10 +114,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Nama Ruang</th>
                                             <th>Tahun Ajuan</th>
                                             <th>Bulan</th>
-                                            <th>Jenis Kerusakan</th>
+                                            <th>Jenis Sarana</th>
+                                            <th>Ajuan Sarana</th>
                                             <th>Jumlah</th>
+                                            <th>Harga</th>
+                                            <th>Subtotal</th>
                                             <th>Keterangan/Saran</th> 
-                                            <th>Status</th>
                                     </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($sarana as $row) : ?>
@@ -127,10 +128,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?= $row["nama_ruang"];?></th>
                                     <th><?= $row["tahun_ajuan"];?></th>
                                     <th><?= $row["bulan"];?></th>
-                                    <th><?= $row["jkerusakan"];?></th>
+                                    <th><?= $row["jenis_sarana"];?></th>
+                                    <th><?= $row["ajuan_sarana"];?></th>
                                     <th><?= $row["jumlah"];?></th>
+                                    <th><?= $row["harga"]; ?></th>
+                                    <th><?= $row["subtotal"];?></th>
                                     <th><?= $row["keterangan_saran"];?></th>
-                                    <th><?= $row['status'];?></th>
                                     </tr>
                                 
                                     <?php endforeach;

@@ -5,16 +5,17 @@ $id1 = $_GET['id1'];
 if ($id == 641487792) {
     $jurusan =  'Wakil Kepala Sekolah';
 }
-$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
-$sarana = mysqli_query($conn, "SELECT * FROM tb_sarana");
+$sarana = mysqli_query($conn, "SELECT * FROM tb_sarana WHERE id_sarana = '$id1'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 foreach ($sarana as $row) {
     $sumber_dana = $row['sumber_dana'];
     $tahun_ajuan = $row['tahun_ajuan'];
     $bulan = $row['bulan'];
     $nama_ruang = $row['nama_ruang'];
-    $jkerusakan = $row['jkerusakan'];
+    $jenis_sarana = $row['jenis_sarana'];
+    $ajuan_sarana = $row['ajuan_sarana'];
     $jumlah = $row['jumlah'];
+    $harga = $row['harga'];
     $foto = $row['foto'];
     $keterangan_saran = $row['keterangan_saran'];
 }
@@ -52,89 +53,17 @@ foreach ($sarana as $row) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homewakepsek.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Beranda RKAS </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="homewakepsek.php?id=<?= $id ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                PENGAJUAN
-            </div>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Wakil Kep. Sek.</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="kegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="sarana.php?id=<?= $id ?>">Sarana</a>
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Lainnya
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Status Pengajuan</span>
-                </a>
-                <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statuspengajuankegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="statuspengajuansarana.php?id=<?= $id ?>">Sarana</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lihat"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Lihat Pengajuan</span>
-                </a>
-                <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuanwakepsek.php">Wakil Kep.Sek.</a>
-                        
-                        
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -194,30 +123,8 @@ foreach ($sarana as $row) {
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
                         </li>
 
                     </ul>
@@ -274,17 +181,29 @@ foreach ($sarana as $row) {
                                         placeholder="Masukkan Nama Ruang" value="<?= $nama_ruang ?>">
                                 </div>
                                 <div class="form-group">
-                                <label for="jkerusakan">Jenis Kerusakan</label>
-                                    <input type="text" class="form-control form-control-user" id="jkerusakan" name="jkerusakan"
-                                        placeholder="Sebutkan Jenis Kerusakannya" value="<?= $jkerusakan ?>">
+                                    <label for="jenis_sarana">Jenis Sarana:</label>
+                                    <select class="form-control" id="jenis_sarana" name="jenis_sarana">
+                                        <option value="Pengajuan">Pengajuan Sarana</option>
+                                        <option value="Kerusakan">Kerusakan Sarana</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="ajuan_sarana">Ajuan Sarana:</label>
+                                    <input type="text" class="form-control form-control-user" id="ajuan_sarana" name="ajuan_sarana"
+                                    value="<?= $ajuan_sarana ?>">
                                 </div>
                                 <div class="form-group">
                                 <label for="jumlah">Jumlah</label>
                                     <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah"
-                                        placeholder="Masukkan Jumlah Kerusakan" min=1 value="<?= $jumlah ?>">
+                                        placeholder="Masukkan Jumlah" min=1 value="<?= $jumlah ?>">
                                 </div>
                                 <div class="form-group">
-                                <label for="foto">Foto</label>
+                                <label for="jumlah">Harga</label>
+                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
+                                        placeholder="Masukkan harga" min=1 value="<?= $harga ?>">
+                                </div>
+                                <h6>Foto</h6>
+                                <div class="form-group">
                                     <input type="file" id="foto" name="foto" value="<?= $foto ?>">
                                 </div>
                                 <div class="form-group">

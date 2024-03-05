@@ -278,7 +278,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <input type="number" class="form-control form-control-user" id="harga" name="harga"
                                         placeholder="Masukkan Harga" min=1>
                                 </div>
-                                <h6>Masukkan contoh gambar</h6>
+                                <h6>Masukkan Foto</h6>
                                 <div class="form-group">
                                 <input type="file" id="contoh_gambar" name="contoh_gambar">
                                 </div>

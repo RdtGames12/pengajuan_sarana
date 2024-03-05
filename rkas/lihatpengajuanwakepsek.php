@@ -354,9 +354,11 @@ if (isset($_POST['cari'])) {
                         <th>Tahun Ajuan</th>
                         <th>Bulan</th>
                         <th>Jenis Sarana</th>
-                        <th>Jenis Kerusakan</th>
+                        <th>Ajuan Sarana</th>
+                        <th>Foto</th>
                         <th>Jumlah</th>
-                        <th>Total</th>
+                        <th>Harga</th>
+                        <th>Subtotal</th>
                         <th>Keterangan/Saran</th>
                         <th>Aksi</th>
                     </tr>
@@ -372,7 +374,18 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["bulan"]; ?></th>
                             <th><?= $row["jenis_sarana"]; ?></th>
                             <th><?= $row["ajuan_sarana"]; ?></th>
+                            <?php if ($row['foto'] == '') {
+                                    ?>
+                                <th>
+                                    Tidak Memberikan Contoh
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                    <th><img src="foto_contoh/<?= $row['foto']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
                             <th><?= $row["jumlah"]; ?></th>
+                            <th><?= $row["harga"]; ?></th>
                             <th><?= $row["subtotal"]; ?></th>
                             <th><?= $row["keterangan_saran"]; ?></th>
                             <?php if ($row['status'] == 'Belum di cek') {
@@ -397,6 +410,8 @@ if (isset($_POST['cari'])) {
                     $formatted_total = number_format($total, 2, ',', '.');
                     ?>
                     <tr>
+                    <th></th>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
