@@ -3,9 +3,6 @@ include "koneksi.php";
 $id = $_GET['id'];
 $atk = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-if ($id == 702205615) {
-    $profil = '<img class="img-profile rounded-circle" src="img/undraw_profile.svg">';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,16 +28,19 @@ if ($id == 702205615) {
 
 </head>
 
-<body id="page-top">
+<style>
 
+</style>
+
+<body id="page-top" background-image=url(img/opback.png)>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+        
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homevalidator.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php?id=<?= $id ?>">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -52,7 +52,7 @@ if ($id == 702205615) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="homevalidator.php?id=<?= $id ?>">
+                <a class="nav-link" href="admin.php?id=<?= $id ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -64,20 +64,115 @@ if ($id == 702205615) {
             <div class="sidebar-heading">
                 PENGAJUAN
             </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Wakil Kep. Sek.</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Ajuan:</h6>
+                        <a class="collapse-item" href="kegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="saranaadmin.php?id=<?= $id ?>">Sarana</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Program Keahlian</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Ajuan :</h6>
+                        <a class="collapse-item" href="alat_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="alat_praktik.php?id=<?= $id ?>">Alat Praktik</a>
+                        
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#TU"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Tata Usaha</span>
+                </a>
+                <div id="TU" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Jenis Ajuan :</h6>
+                        <a class="collapse-item" href="#">ATK</a>
+                        
+                    </div>
+                </div>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Lainnya
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Lihat Pengajuan</span>
+                    <span>Status Pengajuan</span>
                 </a>
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="validatorbahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="validatoralat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="validatorkegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="validatorsarana.php?id=<?= $id ?>">Sarana</a>
-                        <a class="collapse-item" href="validatoratk.php?id=<?= $id ?>">Atk</a>
+                        <a class="collapse-item" href="statuspengajuanbahanadmin.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="statuspengajuanalatadmin.php?id=<?= $id ?>">Alat Praktik</a>
+                        <a class="collapse-item" href="statuspengajuankegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
+                        
+                        <a class="collapse-item" href="statuspengajuansaranaadmin.php?id=<?= $id ?>">Sarana</a>
+                        <a class="collapse-item" href="#">ATK</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lihat"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Lihat Pengajuan</span>
+                </a>
+                <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Bidang/Bagian:</h6>
+                        <a class="collapse-item" href="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
+                        <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
+                        <a class="collapse-item" href="#">TU</a>
+                        
+                        
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#realisasi"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Realisasi</span>
+                </a>
+                <div id="realisasi" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Pilih:</h6>
+                        <a class="collapse-item" href="realisasi_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
+                        <a class="collapse-item" href="realisasi_alat.php?id=<?= $id ?>">Alat Praktik</a>
+                        <a class="collapse-item" href="#">Kegiatan</a>
+                        <a class="collapse-item" href="#">Sarana</a>
+                        <a class="collapse-item" href="realisasi_atk.php?id=<?= $id ?>">ATK</a>
                     </div>
                 </div>
             </li>
@@ -138,13 +233,14 @@ if ($id == 702205615) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            <a class="nav-link dropdown-toggle border-bottom-danger" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql1 as $row) :
+                                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?php foreach ($sql1 as $row) :
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <?= $profil ?>
+                                <img class="img-profile rounded-circle "
+                                    src="img/opprofil.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -172,54 +268,54 @@ if ($id == 702205615) {
                     </ul>
 
                 </nav>
-        <div class="container">
+                <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
+                                <h1 class="h4 text-gray-100 mb-4">Lihat Pengajuan</h1>
                             </div>
                             <hr>
                         </div>
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan ATK</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
                                             <th>No</th>
-                                            <th>Sumber Dana</th>
                                             <th>Nama Barang</th>
                                             <th>Harga Barang</th>
                                             <th>Jumlah Beli</th>
                                             <th>Satuan</th>
+                                            <th>Subtotal</th>
                                             <th>Aksi</th>
                                     </tr>
-                                        <?php
-                                        $no = 0;
-                                    foreach ($atk as $row) :
+                                        <?php $no = 0;?>
+                                        <?php foreach ($atk as $row) : ?>
+                                        <tr>
+                                        <th><?php $no += 1; echo $no;?></th>
+                                        <th><?= $row["nama_barang"]; ?></th>
+                                        <th><?= $row["harga_barang"];?></th>
+                                        <th><?= $row["jumlah"];?></th>
+                                        <th><?= $row["satuan"];?></th>
+                                        <th><?= $row["total"];?></th>
+                                        <?php if ($row['jumlah'] == 0) {
                                     ?>
-                            <tr>
-                            <th><?php
-                            $no += 1;
-                            echo $no; ?></th>
-                            <th><?= $row["sumber_dana"]; ?></th>
-                            <th><?= $row["nama_barang"]; ?></th>
-                            <th>Rp<?= number_format($row["harga_barang"], 2, ',', '.'); ?></th>
-                            <th><?= $row['jumlah'];?></th>
-                            <th><?= $row["satuan"]; ?></th>
-                            <th>
-                                            <a href="terimapengajuanatk.php?idc=<?=$row['id_atk']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
-                                            |
-                                            <a href="tolakpengajuanatk.php?idc=<?=$row['id_atk']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
+                                <th>
+                                    Sudah Direalisasikan
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th>
+                                            <a href="proses_realisasi_atk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>"><b style="color: royalblue;">Realisasikan</b></a>
                                         </th>
-                                    </tr>
-                                <?php
-                                ?>
-                            </tr>
-                        <?php
-                    endforeach;
-                    ?>
+                                <?php }?>
+                                        </tr>
+                                    
+                                        <?php endforeach;
+                                    ?>
                             </div>
                                 </table>
                             </div>
@@ -227,20 +323,9 @@ if ($id == 702205615) {
                     </div>
                         </div>
                         </form>
-                            <!-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
-                            </div> -->
-                        
-                        <!-- </div>
-                    </div>
 
-    </div> -->
+    </div>
     <!-- End of Page Wrapper -->
-
-
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -266,6 +351,7 @@ if ($id == 702205615) {
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

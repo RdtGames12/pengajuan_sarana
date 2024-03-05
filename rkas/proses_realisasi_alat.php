@@ -150,7 +150,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <?php $max_query = mysqli_query($conn, "SELECT SUM(qty) FROM tb_alat WHERE id_alat='$id1'");
                                     $max_result = $max_query->fetch_array(MYSQLI_NUM);
                                     $max = $max_result[0];?>
-                                    <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<? $max ?>">
+                                    <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<?= $max ?>">
                                 </div>
                                 <h6>Masukkan Bukti(Gambar):</h6>
                                 <div class="form-group">

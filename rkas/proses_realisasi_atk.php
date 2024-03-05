@@ -1,11 +1,9 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$atk = mysqli_query($conn, "SELECT * FROM tb_atk");
+$id1 = $_GET['id1'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_atk WHERE id_atk = '$id1'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-if ($id == 702205615) {
-    $profil = '<img class="img-profile rounded-circle" src="img/undraw_profile.svg">';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,59 +29,26 @@ if ($id == 702205615) {
 
 </head>
 
-<body id="page-top">
-
+<body id="page-top" background-image=url(img/opback.png)>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+        <ul class="navbar-nav bg-gray-900 sidebar sidebar-dark accordion" id="accordionSidebar">
+        
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="homevalidator.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Beranda RKAS </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="homevalidator.php?id=<?= $id ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                PENGAJUAN
-            </div>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Lihat Pengajuan</span>
-                </a>
-                <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="validatorbahan.php?id=<?= $id ?>">Bahan Praktik</a>
-                        <a class="collapse-item" href="validatoralat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="validatorkegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        <a class="collapse-item" href="validatorsarana.php?id=<?= $id ?>">Sarana</a>
-                        <a class="collapse-item" href="validatoratk.php?id=<?= $id ?>">Atk</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
 
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -138,13 +103,14 @@ if ($id == 702205615) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            <a class="nav-link dropdown-toggle border-bottom-danger" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php foreach ($sql1 as $row) :
+                                <span class="mr-2 d-none d-lg-inline text-gray-900 small"><?php foreach ($sql1 as $row) :
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <?= $profil ?>
+                                <img class="img-profile rounded-circle "
+                                    src="img/opprofil.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -172,75 +138,52 @@ if ($id == 702205615) {
                     </ul>
 
                 </nav>
-        <div class="container">
+
+                <div class="container">
         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
+                                <h1 class="h4 text-gray-50 mb-4">Realisasi alat</h1>
                             </div>
-                            <hr>
-                        </div>
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan ATK</h6>
-                        </div>
-                        <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Sumber Dana</th>
-                                            <th>Nama Barang</th>
-                                            <th>Harga Barang</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Satuan</th>
-                                            <th>Aksi</th>
-                                    </tr>
-                                        <?php
-                                        $no = 0;
-                                    foreach ($atk as $row) :
-                                    ?>
-                            <tr>
-                            <th><?php
-                            $no += 1;
-                            echo $no; ?></th>
-                            <th><?= $row["sumber_dana"]; ?></th>
-                            <th><?= $row["nama_barang"]; ?></th>
-                            <th>Rp<?= number_format($row["harga_barang"], 2, ',', '.'); ?></th>
-                            <th><?= $row['jumlah'];?></th>
-                            <th><?= $row["satuan"]; ?></th>
-                            <th>
-                                            <a href="terimapengajuanatk.php?idc=<?=$row['id_atk']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
-                                            |
-                                            <a href="tolakpengajuanatk.php?idc=<?=$row['id_atk']; ?>"onclick ="return confirm('Yakin?');"><b style="color: tomato;">Tolak</b></a>
-                                        </th>
-                                    </tr>
-                                <?php
+                            <form class="user" action="proses_realisasi_atk.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="jumlah_beli">Jumlah yang sudah dibeli:</label>
+                                    <?php $max_query = mysqli_query($conn, "SELECT SUM(jumlah) FROM tb_atk WHERE id_atk='$id1'");
+                                    $max_result = $max_query->fetch_array(MYSQLI_NUM);
+                                    $max = $max_result[0];?>
+                                    <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<?= $max ?>">
+                                </div>
+                                <input type="submit" name="realisasi" value="Realisasikan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </form>
+                                <hr>
+    </div>
+                                <?php 
+                                if (isset($_POST['realisasi'])) {
+                                    $jumlah = $_POST['jumlah_beli'];
+                                    $jumlahsekarang = $max - $jumlah;
+                                    $harga_query = mysqli_query($conn, "SELECT harga_barang FROM tb_atk WHERE id_atk='$id1'");
+                                    $harga_result = $harga_query->fetch_array(MYSQLI_NUM);
+                                    $harga = $harga_result[0];
+                                    $total = $harga * $jumlahsekarang;
+
+                                    $proses = mysqli_query($conn, "UPDATE tb_atk SET jumlah = '$jumlahsekarang', total = '$subtotal' WHERE id_atk = '$id1'");
+                                    if ($proses) {
+                                        echo "
+                                        <script>
+                                            alert('Data Berhasil Masuk!');
+                                            window.location.href='realisasi_atk.php?id=$id';
+                                        </script>
+                                        ";
+                                    } else {
+                                        echo "
+                                    <script>
+                                        alert('Data Gagal Masuk');  
+                                        window.location.href='realisasi_atk.php?id=$id';
+                                    </script>
+                                    ";
+                                    }
+                                }
                                 ?>
-                            </tr>
-                        <?php
-                    endforeach;
-                    ?>
-                            </div>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                        </div>
-                        </form>
-                            <!-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
-                            </div> -->
-                        
-                        <!-- </div>
-                    </div>
-
-    </div> -->
     <!-- End of Page Wrapper -->
-
-
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -266,6 +209,7 @@ if ($id == 702205615) {
             </div>
         </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
