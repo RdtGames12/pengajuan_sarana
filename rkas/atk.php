@@ -234,6 +234,10 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         placeholder="Masukkan harga barang..">
                                 </div>
                                 <div class="form-group">
+                                    <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah" for="jumlah"
+                                        placeholder="Masukkan Jumlah Beli">
+                                </div>
+                                <div class="form-group">
                                 <label>Satuan :</label><select class="form-control" id="satuan" name="satuan" for="satuan">
                                         <option value="pcs">Pcs</option>
                                         <option value="pack">Pack</option>
@@ -272,6 +276,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>No</th>
                                             <th>Nama Barang</th>
                                             <th>Harga Barang</th>
+                                            <th>Jumlah Beli</th>
                                             <th>Satuan</th>
                                     </tr>
                                     <?php $no = 0;?>
@@ -280,6 +285,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["nama_barang"];?></th>
                                     <th>Rp<?= number_format($row["harga_barang"], 2, ',', '.'); ?></th>
+                                    <th><?= $row['jumlah']; ?></th>
                                     <th><?= $row["satuan"];?></th>
                                     <?php endforeach;
                                 $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_atk");
@@ -290,6 +296,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     ?>
                                     </tr>
                                     <tr>
+                                    <th></th>
                                     <th></th>
                                     <th></th>
                                     <th>TOTAL</th>

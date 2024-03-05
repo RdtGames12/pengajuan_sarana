@@ -192,8 +192,10 @@ if ($id == 702205615) {
                                             <th>Tahun Ajuan</th>
                                             <th>Nama Ruang</th>
                                             <th>Bulan</th>
-                                            <th>Jenis Kerusakan</th>
+                                            <th>Jenis Sarana</th>
+                                            <th>Ajuan Sarana</th>
                                             <th>Jumlah</th>
+                                            <th>Harga</th>
                                             <th>Aksi</th>
                                     </tr>
                                         <?php $no = 0;?>
@@ -204,8 +206,10 @@ if ($id == 702205615) {
                                         <th><?= $row["tahun_ajuan"];?></th>
                                         <th><?= $row["nama_ruang"];?></th>
                                         <th><?= $row["bulan"];?></th>
-                                        <th><?= $row["jkerusakan"];?></th>
+                                        <th><?= $row["jenis_sarana"];?></th>
+                                        <th><?= $row["ajuan_sarana"];?></th>
                                         <th><?= $row["jumlah"];?></th>
+                                        <th><?= $row["harga"];?></th>
                                         <th>
                                             <a href="terimapengajuansarana.php?idc=<?=$row['id_sarana']; ?>"onclick ="return confirm('Yakin?');"><b style="color: royalblue;">Terima</b></a>
                                             |

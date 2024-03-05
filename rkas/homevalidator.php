@@ -73,7 +73,7 @@ if ($id == 702205615) {
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Lainnya
+                Pengajuan
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -89,9 +89,8 @@ if ($id == 702205615) {
                         <a class="collapse-item" href="validatorbahan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="validatoralat.php?id=<?= $id ?>">Alat Praktik</a>
                         <a class="collapse-item" href="validatorkegiatan.php?id=<?= $id ?>">Kegiatan</a>
-                        
-                        <a class="collapse-item" href="#">Sarana</a>
-                        <a class="collapse-item" href="#">ATK</a>
+                        <a class="collapse-item" href="validatorsarana.php?id=<?= $id ?>">Sarana</a>
+                        <a class="collapse-item" href="validatoratk.php?id=<?= $id ?>">ATK</a>
                     </div>
                 </div>
             </li>

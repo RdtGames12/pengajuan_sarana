@@ -1,12 +1,14 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$id1 = $_GET['id1'];
 $atk = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 foreach ($atk as $row) {
     $sumber_dana = $row['sumber_dana'];
     $nama_barang = $row['nama_barang'];
     $harga_barang = $row['harga_barang'];
+    $jumlah = $row['jumlah'];
     $satuan = $row['satuan'];
 }
 ?>
@@ -149,6 +151,11 @@ foreach ($atk as $row) {
                                 <label for="harga_barang">Harga Barang</label>
                                     <input type="number" class="form-control form-control-user" id="harga_barang" name="harga_barang"
                                         placeholder="Sebutkan Harga_Barangnya" value="<?= $harga_barang ?>">
+                                </div>
+                                <div class="form-group">
+                                <label for="jumlah">Jumlah Beli:</label>
+                                    <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah"
+                                        placeholder="Sebutkan Jumlah Belinya" value="<?= $jumlah ?>">
                                 </div>
                                 <div class="form-group">
                                 <label>Satuan :</label><select class="form-control" id="satuan" name="satuan" for="satuan">

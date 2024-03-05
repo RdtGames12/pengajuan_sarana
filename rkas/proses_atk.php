@@ -8,8 +8,10 @@ if (isset($_POST['simpan'])) {
     $sumber_dana = $_POST['sumber_dana'];
     $nama_barang = $_POST['nama_barang'];
     $harga_barang = $_POST['harga_barang'];
+    $jumlah = $_POST ['jumlah'];
     $satuan = $_POST['satuan'];
-    $proses =  mysqli_query($conn, "INSERT INTO tb_atk (sumber_dana, nama_barang, harga_barang, satuan, status ) VALUES ('$sumber_dana','$nama_barang','$harga_barang','$satuan','Belum di Cek')");
+    $total = $jumlah * $harga_barang;
+    $proses =  mysqli_query($conn, "INSERT INTO tb_atk (sumber_dana, nama_barang, harga_barang, jumlah, satuan, status, total ) VALUES ('$sumber_dana','$nama_barang','$harga_barang', '$jumlah', '$satuan','Belum di Cek', '$total')");
     if ($proses) {
         echo "
         <script>

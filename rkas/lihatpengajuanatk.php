@@ -221,6 +221,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         <th>Sumber Dana</th>
                         <th>Nama Barang</th>
                         <th>Harga Barang</th>
+                        <th>Jumlah Beli</th>
                         <th>Satuan</th>
                         <th>Aksi</th>
                     </tr>
@@ -234,10 +235,20 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <th><?= $row["sumber_dana"]; ?></th>
                             <th><?= $row["nama_barang"]; ?></th>
                             <th>Rp<?= number_format($row["harga_barang"], 2, ',', '.'); ?></th>
+                            <th><?= $row['jumlah'];?></th>
                             <th><?= $row["satuan"]; ?></th>
+                            <?php if ($row['status'] == 'Belum di Cek') {
+                                ?>
+                            <th>
+                                <a href="editatk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>">EDIT | </a> <a href="hapusatk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>">HAPUS</a>
+                            </th>
+                            <?php    
+                            } else {
+                                ?>
                                 <th>
-                                    <a href="editatk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>">EDIT | </a> <a href="hapusatk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>">HAPUS</a>
+                                <?= $row['status']; ?>
                                 </th>
+                            <?php }?>
                                     </tr>
                                 <?php
                                 ?>
@@ -250,6 +261,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
                     $formatted_total = number_format($total, 2, ',', '.');
                     ?>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
