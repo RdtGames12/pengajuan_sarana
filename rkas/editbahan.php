@@ -179,22 +179,27 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
+                                <label for="nama_item">Nama Item:</label>
                                     <input type="text" class="form-control form-control-user" id="nama_item" name="nama_item"
                                         value="<?= $item ?>">
                                 </div>
                                 <div class="form-group">
+                                <label for="merk">Merk:</label>
                                     <input type="text" class="form-control form-control-user" id="merk" name="merk"
                                     value="<?= $merk ?>">
                                 </div>
                                 <div class="form-group">
+                                <label for="spesifikasi">Spesifikasi:</label>
                                     <input type="text" class="form-control form-control-user" id="spesifikasi" name="spesifikasi"
                                     value="<?= $spesifikasi ?>">
                                 </div>
                                 <div class="form-group">
+                                <label for="harga">Harga</label>
                                     <input type="number" class="form-control form-control-user" id="harga" name="harga"
                                     value="<?= $harga ?>">
                                 </div>
                                 <div class="form-group">
+                                <label for="qty">Jumlah:</label>
                                     <input type="number" class="form-control form-control-user" id="qty" name="qty"
                                     value="<?= $qty ?>">
                                 </div>
@@ -203,6 +208,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <input type="file" id="contoh_gambar" name="contoh_gambar">
                                 </div>
                                 <div class="form-group">
+                                <label for="kebutuhan">Kebutuhan Untuk:</label>
                                     <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
                                     value="<?= $kebutuhan_untuk ?>">
                                 </div>
