@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Mar 2024 pada 09.10
+-- Waktu pembuatan: 05 Mar 2024 pada 05.08
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -114,11 +114,20 @@ INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, 
 
 CREATE TABLE `tb_atk` (
   `id_atk` int(11) NOT NULL,
+  `sumber_dana` varchar(10) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
   `harga_barang` int(10) NOT NULL,
   `satuan` enum('pcs','pack','lusin','kodi','box') NOT NULL,
+  `status` varchar(50) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tb_atk`
+--
+
+INSERT INTO `tb_atk` (`id_atk`, `sumber_dana`, `nama_barang`, `harga_barang`, `satuan`, `status`, `total`) VALUES
+(2, 'BOS', 'rawr', 1000, 'pcs', 'Belum di Cek', 0);
 
 -- --------------------------------------------------------
 
@@ -528,7 +537,7 @@ ALTER TABLE `tb_alat`
 -- AUTO_INCREMENT untuk tabel `tb_atk`
 --
 ALTER TABLE `tb_atk`
-  MODIFY `id_atk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_atk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bagian`
