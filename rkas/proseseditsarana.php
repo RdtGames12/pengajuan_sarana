@@ -12,8 +12,11 @@ if (isset($_POST['simpan'])) {
     $tahun_ajuan = $_POST['tahun_ajuan'];
     $bulan = $_POST['bulan'];
     $nama_ruang = $_POST['nama_ruang'];
-    $jkerusakan = $_POST['jkerusakan'];
+    $jenis_sarana = $_POST['jenis_sarana'];
+    $ajuan_sarana = $_POST['ajuan_sarana'];
     $jumlah = $_POST['jumlah'];
+    $harga = $_POST['harga'];
+    $subtotal = $harga * $jumlah;
     $keterangan_saran = $_POST['keterangan_saran'];
     
         $proses =  mysqli_query($conn, "UPDATE tb_sarana SET
@@ -21,8 +24,11 @@ if (isset($_POST['simpan'])) {
         tahun_ajuan = '$tahun_ajuan',
         bulan = '$bulan',
         nama_ruang = '$nama_ruang',
-        jkerusakan = '$jkerusakan',
+        jenis_sarana = '$jenis_sarana',
+        ajuan_sarana = '$ajuan_sarana',
         jumlah = '$jumlah',
+        harga = '$harga',
+        subtotal = '$subtotal',
         keterangan_saran = '$keterangan_saran'
         WHERE id_sarana = '$id1'");
 
