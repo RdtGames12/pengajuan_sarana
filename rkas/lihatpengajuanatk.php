@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -61,18 +62,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 PENGAJUAN
             </div>
 
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#TU"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Tata Usaha</span>
                 </a>
-                <div id="TU" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="atk.php?id=<?= $id ?>">ATK</a>
-                        
+                        <a class="collapse-item" href="atk.php?id=<?= $id ?>">ATK</a>   
                     </div>
                 </div>
             </li>
@@ -177,7 +178,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <img class="img-profile rounded-circle"
+                                   <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -206,9 +207,76 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                     </ul>
 
                 </nav>
+                <div class="container">
+        <div class="p-5">
+ <?php
+        $query = "SELECT * FROM tb_atk";
+        $result = mysqli_query($conn, $query);
+?>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Sumber Dana</th>
+                        <th>Nama Barang</th>
+                        <th>Harga Barang</th>
+                        <th>Satuan</th>
+                        <th>Aksi</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($result as $row) :
+                    ?>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["sumber_dana"]; ?></th>
+                            <th><?= $row["nama_barang"]; ?></th>
+                            <th>Rp<?= number_format($row["harga_barang"], 2, ',', '.'); ?></th>
+                            <th><?= $row["satuan"]; ?></th>
+                                <th>
+                                    <a href="editatk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>">EDIT | </a> <a href="hapusatk.php?id=<?= $id ?>&id1=<?= $row['id_atk']?>">HAPUS</a>
+                                </th>
+                                    </tr>
+                                <?php
+                                ?>
+                            </tr>
+                        <?php
+                    endforeach;
+                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_atk");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
 
-    </div>
+                    $formatted_total = number_format($total, 2, ',', '.');
+                    ?>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th>Rp<?= $formatted_total ?></th>
+                </table>
+            </div>
+        </div>
+        <a href="printatk.php?id=<?= $id ?>">PDF</a><br>
+        <a href="excelatk.php?id=<?= $id ?>">EXCEL</a>
+                    </div>
+                        </div>
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
+
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -234,7 +302,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

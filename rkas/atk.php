@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$sql = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -94,7 +95,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="#">ATK</a>
+                        <a class="collapse-item" href="statusatk.php?id=<?= $id ?>">ATK</a>
                     </div>
                 </div>
             </li>
@@ -108,7 +109,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="#">TU</a>
+                        <a class="collapse-item" href="lihatpengajuanatk.php?id=<?= $id ?>">TU</a>
                         
                         
                     </div>
@@ -211,11 +212,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Tulis Kantor!</h1>
                             </div>
-                            <form class="user" action="atk.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
+                            <form class="user" action="proses_atk.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
-                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana" for="sumber_dana">
                                         <option value="BOS">BOS</option>
                                         <option value="BOPD">BOPD</option>
                                         <option value="KOMITE">KOMITE</option>
@@ -225,41 +226,22 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
-                                <input type="text" class="form-control from-user" id="jumlahbarang" name="jumlahbarang" placeholder="Masukan Jumlah Barang"></input>
-                            </div>
-                            <div class="form-group">
-                            <input type="submit" name="jumlah" value="jumlah" style="width:100%;" class="btn btn-primary btn-user btn-block">
-                                </a>
-                            </div>
-
-                    <?php
-                        if(isset($_POST['jumlah'])) {
-                            $jumlah_barang = isset($_POST['jumlahbarang']) ? intval($_POST['jumlahbarang']) : 0;
-                            if($jumlah_barang > 0) {
-                                for($i = 1; $i <= $jumlah_barang; $i++) {
-                                    echo '
-                                    <div class="form-group">
-                                    <table>
-                                    <tr>
-                                    <td style="width: 5%;"><b class="form-control form-control-user"><center>'.$i.'</center></b></td>
-                                    <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="nama_barang" name="nama_barang"
-                                    placeholder="Masukkan Nama Barang..."></td>
-                                    <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="harga_barang" name="harga_barang"
-                                    placeholder="Masukkan Harga Barang..."></td>
-                                    <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="jumlah_barang" name="jumlah_barang"
-                                    placeholder="Masukkan Jumlah Barang.."></td>
-                                    <td style="width: 20%;"><input type="text" class="form-control form-control-user" id="untuk_ruang" name="untuk_ruang"
-                                    placeholder="Masukkan Untuk Ruang.."></td>
-                                    </tr>
-                                    </table>
-                                </div>';
-                                }
-                            } else {
-                                echo '<div class="alert alert-danger">Jumlah barang harus lebih dari 0 untuk menampilkan form.</div>';
-                            }
-                        }
-                    ?>
-</form>
+                                    <input type="text" class="form-control form-control-user" id="nama_barang" name="nama_barang" for="nama_barang"
+                                        placeholder="Masukkan nama barang..">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control form-control-user" id="harga_barang" name="harga_barang" for="harga_barang"
+                                        placeholder="Masukkan harga barang..">
+                                </div>
+                                <div class="form-group">
+                                <label>Satuan :</label><select class="form-control" id="satuan" name="satuan" for="satuan">
+                                        <option value="pcs">Pcs</option>
+                                        <option value="pack">Pack</option>
+                                        <option value="lusin">Lusin</option>
+                                        <option value="kodi">Kodi</option>
+                                        <option value="box">Box</option>
+                                    </select>
+                                </div>
                                 <!-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
@@ -271,9 +253,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     
                                 </div>
                                 </div> -->
-<form class="user" action="prosesalatbahan.php?<?= $id ?>" method="POST" enctype="multipart/form-data">
-                                <a href="prosesalatbahan.php?<?$id?>"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                <a href="proses_atk.php?id=<?= $id ?>"><input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
                                 </a>
+                                </form>
                                 <hr>
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
@@ -283,7 +265,39 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </a> -->
                             <!-- </div> -->
                                 <!-- </div> -->
-                            </form>
+                                <div class="card-body">
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Barang</th>
+                                            <th>Harga Barang</th>
+                                            <th>Satuan</th>
+                                    </tr>
+                                    <?php $no = 0;?>
+                                    <?php foreach ($sql as $row) : ?>
+                                    <tr>
+                                    <th><?php $no += 1; echo $no;?></th>
+                                    <th><?= $row["nama_barang"];?></th>
+                                    <th>Rp<?= number_format($row["harga_barang"], 2, ',', '.'); ?></th>
+                                    <th><?= $row["satuan"];?></th>
+                                    <?php endforeach;
+                                $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_atk");
+                                $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                $total = $total_result[0];
+
+                                $formatted_total = number_format($total, 2, ',', '.');
+                                    ?>
+                                    </tr>
+                                    <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>TOTAL</th>
+                                    <th>Rp.<?= $formatted_total ?></th>
+                                    </tr>
+                            
+                                </table>
+                        </div>
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
                             </div>

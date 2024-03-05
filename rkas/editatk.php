@@ -1,7 +1,14 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
+$atk = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
+foreach ($atk as $row) {
+    $sumber_dana = $row['sumber_dana'];
+    $nama_barang = $row['nama_barang'];
+    $harga_barang = $row['harga_barang'];
+    $satuan = $row['satuan'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,88 +43,17 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="hometu.php?id=<?= $id ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Beranda RKAS </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="hometu.php?id=<?= $id ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                PENGAJUAN
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#TU"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Tata Usaha</span>
-                </a>
-                <div id="TU" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan :</h6>
-                        <a class="collapse-item" href="atk.php?id=<?= $id ?>">ATK</a>
-                        
-                    </div>
-                </div>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Lainnya
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#status"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Status Pengajuan</span>
-                </a>
-                <div id="status" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Jenis Ajuan:</h6>
-                        <a class="collapse-item" href="statusatk.php?id=<?= $id ?>">ATK</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lihat"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Lihat Pengajuan</span>
-                </a>
-                <div id="lihat" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Bidang/Bagian:</h6>
-                        <a class="collapse-item" href="lihatpengajuanatk.php?id=<?= $id ?>">TU</a>
-                        
-                        
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -177,38 +113,70 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 echo $row['nama']; 
                                     endforeach;
                                     ?></span>
-                                <img class="img-profile rounded-circle"
+                                    <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
                         </li>
 
                     </ul>
 
                 </nav>
+                <div class="container">
+        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Input Pengajuan Alat Praktik!</h1>
+                            </div>
+                            <form class="user" action="proseseditatk.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
+                                    <label for="sumber_dana">Sumber Dana:</label>
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                        <option value="BOS">BOS</option>
+                                        <option value="BOPD">BOPD</option>
+                                        <option value="KOMITE">KOMITE</option>
+                                        <option value="BANTUAN">BANTUAN</option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
+                                        placeholder="Sumber Dana"> -->
+                                </div>
+                                <div class="form-group">
+                                <label for="nama_barang">Nama Barang</label>
+                                    <input type="text" class="form-control form-control-user" id="nama_barang" name="nama_barang"
+                                        placeholder="Masukkan Nama Barang" value="<?= $nama_barang ?>">
+                                </div>
+                                <div class="form-group">
+                                <label for="harga_barang">Harga Barang</label>
+                                    <input type="number" class="form-control form-control-user" id="harga_barang" name="harga_barang"
+                                        placeholder="Sebutkan Harga_Barangnya" value="<?= $harga_barang ?>">
+                                </div>
+                                <div class="form-group">
+                                <label>Satuan :</label><select class="form-control" id="satuan" name="satuan" for="satuan">
+                                        <option value="pcs">Pcs</option>
+                                        <option value="pack">Pack</option>
+                                        <option value="lusin">Lusin</option>
+                                        <option value="kodi">Kodi</option>
+                                        <option value="box">Box</option>
+                                    </select>
+                                </div>
+                                <input type="submit" name="simpan" value="Simpan" style="width:100%;" class="btn btn-primary btn-user btn-block">
+                                </form>
+                                <hr>
 
-    </div>
+                            <!-- <div class="text-center">
+                                <a class="small" href="forgot-password.html">Lupa Password?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
+                            </div> -->
+                        
+                        <!-- </div>
+                    </div>
+
+    </div> -->
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -234,7 +202,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
