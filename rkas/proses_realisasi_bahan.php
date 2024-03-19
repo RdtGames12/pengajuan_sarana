@@ -145,12 +145,30 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <h1 class="h4 text-gray-50 mb-4">Realisasi Bahan</h1>
                             </div>
                             <form class="user" action="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Status Order:</label><p class="form-control form-control-user">Sudah</p>
+                                </div>
                                 <div class="form-group">
-                                    <label for="jumlah_beli">Jumlah yang sudah dibeli:</label>
+                                    <label for="jumlah_beli">Jumlah Yang Sudah DiBayar:</label>
                                     <?php $max_query = mysqli_query($conn, "SELECT SUM(qty) FROM tb_bahan WHERE id_bahan='$id1'");
                                     $max_result = $max_query->fetch_array(MYSQLI_NUM);
                                     $max = $max_result[0];?>
                                     <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<?= $max ?>">
+                                </div>
+                                <div class="form-group">
+                                <label>Tanggal Order:</label>
+                                <input type="date" class="form-control form-control-user">
+                                </div>
+                                <div class="form-group">
+                                <label>Status Bayar:</label><br>
+                                <select>
+                                    <option>Belum</option>
+                                    <option>Sudah</option>
+                                </select>
+                                </div>
+                                <div class="form-group">
+                                <label>Link:</label>
+                                <input type="text" class="form-control form-control-user">
                                 </div>
                                 <h6>Masukkan Bukti(Gambar):</h6>
                                 <div class="form-group">
