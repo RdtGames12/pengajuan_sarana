@@ -199,7 +199,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='171128105'");
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     
-    <meta http-equiv="refresh" content="1; URL=http:lihatpengajuan.php?id=<?= $id ?>" />
+    <meta http-equiv="refresh" content="1; URL=http:lihatpengajuanatk.php?id=<?= $id ?>" />
 </body>
 
 </html>

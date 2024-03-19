@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$atk = mysqli_query($conn, "SELECT * FROM tb_atk");
+$atk = mysqli_query($conn, "SELECT * FROM tb_atk WHERE status = 'Diterima'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
