@@ -59,11 +59,11 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
     <link href="css/sb-admin-2.css" rel="stylesheet">
 
    <?php
-    $bahan = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Diterima'");
+    $bahan = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Diterima' AND jurusan ='$jurusan'");
     $diterima = $bahan -> fetch_array(MYSQLI_NUM);
-    $bahan1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Ditolak'");
+    $bahan1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Ditolak' AND jurusan ='$jurusan'");
     $ditolak = $bahan1 -> fetch_array(MYSQLI_NUM);
-    $bahan2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Belum di Cek'");
+    $bahan2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Belum di Cek' AND jurusan ='$jurusan'");
     $belumdicek = $bahan2 -> fetch_array(MYSQLI_NUM);
    ?>
 
@@ -91,11 +91,11 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 
 
    <?php
-    $bahan = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Diterima'");
+    $bahan = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Diterima' AND jurusan ='$jurusan'");
     $diterima = $bahan -> fetch_array(MYSQLI_NUM);
-    $bahan1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Ditolak'");
+    $bahan1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Ditolak' AND jurusan ='$jurusan'");
     $ditolak = $bahan1 -> fetch_array(MYSQLI_NUM);
-    $bahan2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Belum di Cek'");
+    $bahan2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_bahan WHERE status = 'Belum di Cek' AND jurusan ='$jurusan'");
     $belumdicek = $bahan2 -> fetch_array(MYSQLI_NUM);
    ?>
 
@@ -123,11 +123,11 @@ $bahan=mysqli_query($conn, "SELECT * FROM tb_bahan");
 
 
 <?php
-    $alat = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Diterima'");
+    $alat = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Diterima' AND jurusan ='$jurusan'");
     $diterima = $alat -> fetch_array(MYSQLI_NUM);
-    $alat1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Ditolak'");
+    $alat1 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Ditolak' AND jurusan ='$jurusan'");
     $ditolak = $alat1 -> fetch_array(MYSQLI_NUM);
-    $alat2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Belum di Cek'");
+    $alat2 = mysqli_query($conn, "SELECT COUNT(status) FROM tb_alat WHERE status = 'Belum di Cek' AND jurusan ='$jurusan'");
     $belumdicek = $alat2 -> fetch_array(MYSQLI_NUM);
    ?>
 

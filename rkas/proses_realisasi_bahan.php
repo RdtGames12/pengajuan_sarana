@@ -167,7 +167,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </select>
                                 </div>
                                 <div class="form-group">
-                                <label>Link:</label>
+                                <label>Link:</label
                                 <input type="text" class="form-control form-control-user">
                                 </div>
                                 <h6>Masukkan Bukti(Gambar):</h6>
