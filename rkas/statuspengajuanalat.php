@@ -27,7 +27,6 @@ elseif ($id == 899055276) {
 }
 $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
 $alat = mysqli_query($conn, "SELECT * FROM tb_alat  WHERE jurusan = '$jurusan'");
-$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE jurusan = '$jurusan'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>

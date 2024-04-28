@@ -146,7 +146,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             </div>
                             <form class="user" action="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $id1 ?>" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label>Status Order:</label><p class="form-control form-control-user">Sudah</p>
+                                <label>Status Order:</label><p class="form-control form-control-user"><?php foreach ($sql as $key) : echo $key["status_order"]; endforeach;?></p>
                                 </div>
                                 <div class="form-group">
                                     <label for="jumlah_beli">Jumlah Yang Sudah DiBayar:</label>
@@ -157,7 +157,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <div class="form-group">
                                 <label>Tanggal Order:</label>
-                                <input type="date" class="form-control form-control-user">
+                                <input type="date" name="tanggal_order" class="form-control form-control-user">
                                 </div>
                                 <div class="form-group">
                                 <label>Status Bayar:</label><br>
@@ -167,8 +167,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </select>
                                 </div>
                                 <div class="form-group">
-                                <label>Link:</label
-                                <input type="text" class="form-control form-control-user">
+                                <label>Link:</label>
+                                <input type="text" name="link" class="form-control form-control-user">
                                 </div>
                                 <h6>Masukkan Bukti(Gambar):</h6>
                                 <div class="form-group">
@@ -186,6 +186,8 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     $harga_result = $harga_query->fetch_array(MYSQLI_NUM);
                                     $harga = $harga_result[0];
                                     $subtotal = $harga * $jumlahsekarang;
+                                    $tanggal_order = $_POST["tanggal_order"];
+                                    $link = $_POST['link'];
                                     $ekstensi_gambar = array('png', 'jpg');
                                     $gambar = $_FILES['bukti']['name'];
                                     $x = explode('.', $gambar);
@@ -195,7 +197,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
                                     move_uploaded_file($file_tmp, 'foto_bukti/'.$gambar);
 
-                                    $proses = mysqli_query($conn, "UPDATE tb_bahan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar' WHERE id_bahan = '$id1'");
+                                    $proses = mysqli_query($conn, "UPDATE tb_bahan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar', tanggal_order = '$tanggal_order', link = '$link' WHERE id_bahan = '$id1'");
                                     if ($proses) {
                                         echo "
                                         <script>

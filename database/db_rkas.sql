@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Mar 2024 pada 05.08
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 7.4.29
+-- Waktu pembuatan: 28 Apr 2024 pada 14.41
+-- Versi server: 10.4.28-MariaDB
+-- Versi PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `tb_ajuan_alat` (
   `total` varchar(10) NOT NULL,
   `status` varchar(30) NOT NULL,
   `sumber_dana` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,7 @@ CREATE TABLE `tb_ajuan_keg` (
   `total` int(10) NOT NULL,
   `status` varchar(30) NOT NULL,
   `sumber_dana` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,7 @@ CREATE TABLE `tb_ajuan_keg` (
 CREATE TABLE `tb_akses` (
   `id_akses` int(4) NOT NULL,
   `jenis` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_akses`
@@ -94,17 +94,20 @@ CREATE TABLE `tb_alat` (
   `subtotal` int(50) NOT NULL,
   `contoh_gambar` varchar(50) NOT NULL,
   `bukti` varchar(50) NOT NULL,
+  `tanggal_order` date NOT NULL,
+  `link` varchar(255) NOT NULL,
   `kebutuhan_untuk` text NOT NULL,
   `jurusan` char(50) NOT NULL,
-  `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` varchar(50) NOT NULL,
+  `status_order` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_alat`
 --
 
-INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
-(9, 'BOS', 2024, 'HDMI', '-', 'Mini HDMI', 50000, 3, 150000, '', '', 'Presentasi', 'PPLG', 'Belum di Cek');
+INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `tanggal_order`, `link`, `kebutuhan_untuk`, `jurusan`, `status`, `status_order`) VALUES
+(9, 'BOS', 2024, 'HDMI', '-', 'Mini HDMI', 50000, 3, 150000, '', '', '0000-00-00', '', 'Presentasi', 'PPLG', 'Diterima', '');
 
 -- --------------------------------------------------------
 
@@ -120,7 +123,7 @@ CREATE TABLE `tb_atk` (
   `satuan` enum('pcs','pack','lusin','kodi','box') NOT NULL,
   `status` varchar(50) NOT NULL,
   `total` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_atk`
@@ -139,7 +142,7 @@ CREATE TABLE `tb_bagian` (
   `id_bagian` int(4) NOT NULL,
   `nama_bagian` varchar(60) NOT NULL,
   `id_akses` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_bagian`
@@ -176,21 +179,25 @@ CREATE TABLE `tb_bahan` (
   `subtotal` int(50) NOT NULL,
   `contoh_gambar` varchar(50) NOT NULL,
   `bukti` varchar(255) NOT NULL,
+  `tanggal_order` date NOT NULL,
+  `link` varchar(255) NOT NULL,
   `kebutuhan_untuk` text NOT NULL,
   `jurusan` char(50) NOT NULL,
-  `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` varchar(50) NOT NULL,
+  `status_order` char(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_bahan`
 --
 
-INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `kebutuhan_untuk`, `jurusan`, `status`) VALUES
-(11, 'BOS', 2024, 'Processor', 'intel', 'i3 7100', 700000, 0, 0, '', '9126088_74d2cbfb-37f6-49a8-a319-d22e3536f5f0_640_480.jpg', 'upgrade pc', 'PPLG', 'Diterima'),
-(12, 'BOS', 2024, 'Processor', 'AMD', 'Ryzen 3 3500U', 900000, 2, 1800000, '', 'logorpl.png', 'Upgrade PC', 'PPLG', 'Diterima'),
-(13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', '', 'cadangan pc', 'PPLG', 'Belum di Cek'),
-(16, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', 'tes', 'PPLG', 'Belum di Cek'),
-(17, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', 'tes', 'PPLG', 'Belum di Cek');
+INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, `spesifikasi`, `harga`, `qty`, `subtotal`, `contoh_gambar`, `bukti`, `tanggal_order`, `link`, `kebutuhan_untuk`, `jurusan`, `status`, `status_order`) VALUES
+(11, 'BOS', 2024, 'Processor', 'intel', 'i3 7100', 700000, 0, 0, '', '9126088_74d2cbfb-37f6-49a8-a319-d22e3536f5f0_640_480.jpg', '0000-00-00', '', 'upgrade pc', 'PPLG', 'Diterima', 'sudah'),
+(12, 'BOS', 2024, 'Processor', 'AMD', 'Ryzen 3 3500U', 900000, 2, 1800000, '', 'logorpl.png', '0000-00-00', '', 'Upgrade PC', 'PPLG', 'Diterima', 'sudah'),
+(13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', '', '0000-00-00', '', 'cadangan pc', 'PPLG', 'Belum di Cek', 'sudah'),
+(16, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', '0000-00-00', '', 'tes', 'PPLG', 'Belum di Cek', 'sudah'),
+(17, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', '0000-00-00', '', 'tes', 'PPLG', 'Belum di Cek', 'sudah'),
+(18, 'BOS', 2024, 'Obeng', 'Obeng +', 'Panjang', 25000, 1, 25000, '', '', '2024-04-28', 'http://localhost/', 'Bongkar PC', 'Mekatronika', 'Diterima', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -213,7 +220,7 @@ CREATE TABLE `tb_det_alat` (
   `kebutuhan_untuk` text NOT NULL,
   `link_siplah` varchar(100) NOT NULL,
   `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -233,7 +240,7 @@ CREATE TABLE `tb_det_keg` (
   `pajak` int(11) NOT NULL,
   `sub_total` int(11) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -252,7 +259,7 @@ CREATE TABLE `tb_kas` (
   `kredit` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -277,7 +284,7 @@ CREATE TABLE `tb_kegiatan` (
   `keterangan_volume4` varchar(75) NOT NULL,
   `total` int(20) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_kegiatan`
@@ -303,7 +310,7 @@ CREATE TABLE `tb_pemasukan` (
   `jumlah` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -321,7 +328,7 @@ CREATE TABLE `tb_pengeluaran` (
   `jumlah` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -343,7 +350,7 @@ CREATE TABLE `tb_sarana` (
   `foto` varchar(50) NOT NULL,
   `keterangan_saran` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_sarana`
@@ -366,7 +373,7 @@ CREATE TABLE `tb_status_ajuan` (
   `id_user` int(11) NOT NULL,
   `periode_cair` int(11) NOT NULL,
   `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -381,7 +388,7 @@ CREATE TABLE `tb_user` (
   `password` varchar(100) NOT NULL,
   `id_bagian` int(4) NOT NULL,
   `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_user`
@@ -549,7 +556,7 @@ ALTER TABLE `tb_bagian`
 -- AUTO_INCREMENT untuk tabel `tb_bahan`
 --
 ALTER TABLE `tb_bahan`
-  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_det_alat`

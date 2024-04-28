@@ -23,22 +23,22 @@ if (isset($_POST['simpan'])) {
     $kebutuhan = $_POST['kebutuhan'];
     foreach ($sql1 as $row) :
     if ($id == 356758684) {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Mekatronika', 'Belum di Cek')");
+        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status, status_order ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Mekatronika', 'Belum di Cek', 'Belum')");
     }
     elseif ($id == 287839666) {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'PPLG', 'Belum di Cek')");
+        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status, status_order ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'PPLG', 'Belum di Cek', 'Belum')");
     }
     elseif ($id == 499308321) {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Kimia', 'Belum di Cek')");
+        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status, status_order ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Kimia', 'Belum di Cek', 'Belum')");
     }
     elseif ($id == 257802071) {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Animasi', 'Belum di Cek')");
+        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status, status_order ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Animasi', 'Belum di Cek', 'Belum')");
     }
     elseif ($id == 6083232) {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'DKV', 'Belum di Cek')");
+        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status, status_order ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'DKV', 'Belum di Cek', 'Belum')");
     }
     elseif ($id == 899055276) {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Pemesinan', 'Belum di Cek')");
+        $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status, status_order ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Pemesinan', 'Belum di Cek', 'Belum')");
     } else {
         $proses =  mysqli_query($conn, "INSERT INTO tb_bahan (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan')");
     }
