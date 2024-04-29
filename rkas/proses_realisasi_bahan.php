@@ -161,9 +161,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <div class="form-group">
                                 <label>Status Bayar:</label><br>
-                                <select>
-                                    <option>Belum</option>
-                                    <option>Sudah</option>
+                                <select class="form-control" id="status_bayar" name="status_bayar">
+                                    <option value="Belum">Belum</option>
+                                    <option value="Sudah">Sudah</option>
                                 </select>
                                 </div>
                                 <div class="form-group">
@@ -188,6 +188,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     $subtotal = $harga * $jumlahsekarang;
                                     $tanggal_order = $_POST["tanggal_order"];
                                     $link = $_POST['link'];
+                                    $status_bayar = $_POST['status_bayar'];
                                     $ekstensi_gambar = array('png', 'jpg');
                                     $gambar = $_FILES['bukti']['name'];
                                     $x = explode('.', $gambar);
@@ -197,7 +198,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
                                     move_uploaded_file($file_tmp, 'foto_bukti/'.$gambar);
 
-                                    $proses = mysqli_query($conn, "UPDATE tb_bahan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar', tanggal_order = '$tanggal_order', link = '$link' WHERE id_bahan = '$id1'");
+                                    $proses = mysqli_query($conn, "UPDATE tb_bahan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar', tanggal_order = '$tanggal_order', link = '$link', status_order = 'Sudah', status_bayar = '$status_bayar' WHERE id_bahan = '$id1'");
                                     if ($proses) {
                                         echo "
                                         <script>
