@@ -346,22 +346,56 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
-                                            <th>No</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th>Bulan</th>
-                                            <th>Biaya</th>
-                                            <th>Volume</th>
-                                            <th>Total</th>
+                                <th>No</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Biaya</th>
+                        <th>Volume</th>
+                        <th>Keterangan</th>
+                        <th>Subtotal</th>
                                     </tr>
                                         <?php $no = 0;?>
                                     <?php foreach ($sql as $row) : ?>
                                     <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["nama_kegiatan"];?></th>
-                                    <th><?= $row["bulan"];?></th>
-                                    <th>Rp.<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
-                                    <th><?= $row["volume_1"];?> <?= $row["keterangan_volume1"]?></th>
-                                    <th>Rp.<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                                    <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_kegiatan"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["biaya"]; ?></th>
+                            <th><?= $row["volume_1"]; ?></th>
+                            <th><?= $row["keterangan_volume1"]; ?></th>
+                            <th></th>
+                            <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_2"];?></th>
+                                        <th><?= $row["keterangan_volume2"]?></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_3"];?></th>
+                                        <th><?= $row["keterangan_volume3"]?></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_4"];?></th>
+                                        <th><?= $row["keterangan_volume4"]?></th>
+                                        <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
                                     </tr>
                                 
                                     <?php endforeach; ?>
