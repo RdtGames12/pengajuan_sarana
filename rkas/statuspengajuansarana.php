@@ -240,7 +240,7 @@ if (isset($_POST['cari'])) {
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <tr>
                         <th>No</th>
-                        <th>Nama Item</th>
+                        <th>Nama Ajuan Sarana</th>
                         <th>Status</th>
                     </tr>
                     <?php
@@ -251,7 +251,7 @@ if (isset($_POST['cari'])) {
                             <tr>
                                 <th><?php $no += 1;
                                     echo $no; ?></th>
-                                <th><?= $row["jkerusakan"]; ?></th>
+                                <th><?= $row["ajuan_sarana"]; ?></th>
                                 <th><?= $row['status']; ?></th>
                             </tr>
                     <?php

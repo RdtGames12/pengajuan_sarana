@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
+$sql = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 
@@ -263,36 +263,40 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             </ul>
 
         </nav>
-        <div class="container">
-        <div class="p-5">
-        <div class="table-responsive">
-        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Ruang</th>
-                                            <th>Bulan</th>\
-                                            <th>Jenis kerusakan</th>
-                                            <th>Jumlah</th>
-                                            <th>Keterangan/Saran </th>
-                                    </tr>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($sql as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["nama_ruang"];?></th>
-                                    <th><?= $row["bulan"];?></th>
-                                    <th><?= $row["jkerusakan"] ; ?></th>
-                                    <th><?= $row["jumlah"];?></th>
-                                    <th><?= $row["keterangan_saran"];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; ?>
-                            </div>
-                                </table>
-                            </div>
-                        </div>
-                        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Ruang</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Jenis Pengajuan</th>
+                        <th>Ajuan Sarana</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan/Saran</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($sql as $row) :
+                    ?>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_ruang"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["jenis_sarana"]; ?></th>
+                            <th><?= $row["ajuan_sarana"]; ?></th>
+                            <th><?= $row["jumlah"]; ?></th>
+                            <th><?= $row["keterangan_saran"]; ?></th>
+                        </tr>
+                    <?php
+                    endforeach;
+                    ?>
+                </table>
+            </div>
+        </div>
                                 <!-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"

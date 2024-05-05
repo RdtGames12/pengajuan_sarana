@@ -360,7 +360,8 @@ if (isset($_POST['cari'])) {
                         <th>Nama Ruang</th>
                         <th>Tahun Ajuan</th>
                         <th>Bulan</th>
-                        <th>Jenis Kerusakan</th>
+                        <th>Jenis Pengajuan</th>
+                        <th>Ajuan Sarana</th>
                         <th>Jumlah</th>
                         <th>Keterangan/Saran</th>
                     </tr>
@@ -374,7 +375,8 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["nama_ruang"]; ?></th>
                             <th><?= $row["tahun_ajuan"]; ?></th>
                             <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["jkerusakan"]; ?></th>
+                            <th><?= $row["jenis_sarana"]; ?></th>
+                            <th><?= $row["ajuan_sarana"]; ?></th>
                             <th><?= $row["jumlah"]; ?></th>
                             <th><?= $row["keterangan_saran"]; ?></th>
                         </tr>
@@ -384,8 +386,6 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="printsarana.php?id=<?= $id ?>">PDF</a>
-        <a href="excelsarana.php?id=<?= $id ?>">EXCEL</a>
 <?php
     }
 }
