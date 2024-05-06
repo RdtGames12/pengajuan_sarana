@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Apr 2024 pada 10.19
+-- Waktu pembuatan: 06 Bulan Mei 2024 pada 05.35
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -199,7 +199,7 @@ INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`
 (13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', '', '0000-00-00', '', 'cadangan pc', 'PPLG', 'Belum di Cek', 'sudah', ''),
 (16, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', '0000-00-00', '', 'tes', 'PPLG', 'Belum di Cek', 'sudah', ''),
 (17, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', '0000-00-00', '', 'tes', 'PPLG', 'Belum di Cek', 'sudah', ''),
-(18, 'BOS', 2024, 'Obeng', 'Obeng +', 'Panjang', 25000, 1, 25000, '', '', '2024-04-28', 'http://localhost/', 'Bongkar PC', 'Mekatronika', 'Diterima', 'Belum', '');
+(18, 'BOS', 2024, 'Obeng', 'Obeng +', 'Panjang', 25000, 0, 0, '', '', '2024-05-06', 'https://www.youtube.com/watch?v=7VBI2wcKxGU', 'Bongkar PC', 'Mekatronika', 'Diterima', 'Sudah', 'Sudah');
 
 -- --------------------------------------------------------
 
@@ -285,16 +285,12 @@ CREATE TABLE `tb_kegiatan` (
   `keterangan_volume3` varchar(75) NOT NULL,
   `keterangan_volume4` varchar(75) NOT NULL,
   `total` int(20) NOT NULL,
-  `status` varchar(50) NOT NULL
+  `status` varchar(50) NOT NULL,
+  `tanggal_order` date NOT NULL,
+  `link` text NOT NULL,
+  `status_order` char(10) NOT NULL,
+  `status_bayar` char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_kegiatan`
---
-
-INSERT INTO `tb_kegiatan` (`id_kegiatan`, `sumber_dana`, `tahun_ajuan`, `nama_kegiatan`, `bulan`, `biaya`, `volume_1`, `volume_2`, `volume_3`, `volume_4`, `keterangan_volume1`, `keterangan_volume2`, `keterangan_volume3`, `keterangan_volume4`, `total`, `status`) VALUES
-(2, 'BOPD', 2024, 'Kunjungan Industri', 'Januari', 1100000, 1, 1, 1, 1, '1', '1', '1', '1', 1100000, 'Belum di Cek'),
-(3, 'BOS', 2024, 'Kunjungan Sekolah', 'Januari', 250000, 1, 1, 1, 1, 'Tanpa Keterangan', 'Tanpa Keterangan', 'Tanpa Keterangan', 'Tanpa Keterangan', 250000, 'Belum di Cek');
 
 -- --------------------------------------------------------
 
@@ -359,7 +355,7 @@ CREATE TABLE `tb_sarana` (
 --
 
 INSERT INTO `tb_sarana` (`id_sarana`, `sumber_dana`, `tahun_ajuan`, `bulan`, `nama_ruang`, `jenis_sarana`, `ajuan_sarana`, `jumlah`, `harga`, `subtotal`, `foto`, `keterangan_saran`, `status`) VALUES
-(18, 'BOS', 2024, 'Januari', 'F-3', 'Pengajuan', 'Papan Mading', 1, 25000, 25000, 'ceklis.png', 'Ukuran 1M', 'Belum di cek'),
+(18, 'BOS', 2024, 'Januari', 'F-3', 'Pengajuan', 'Papan Mading', 1, 25000, 25000, 'ceklis.png', 'Ukuran 1M', 'Diterima'),
 (19, 'BOS', 2024, 'Januari', '', 'Pengajuan', 'tes', 1, 1, 1, '', '1', 'Belum di cek');
 
 -- --------------------------------------------------------
