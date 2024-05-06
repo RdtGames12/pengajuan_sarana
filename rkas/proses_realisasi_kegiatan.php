@@ -149,10 +149,10 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <label>Status Order:</label><p class="form-control form-control-user"><?php foreach ($sql as $key) : echo $key["status_order"]; endforeach;?></p>
                                 </div>    
                             <div class="form-group">
-                                    <label for="jumlah_beli">Jumlah yang sudah dibeli:</label>
-                                    <?php $max_query = mysqli_query($conn, "SELECT SUM(qty) FROM tb_kegiatan WHERE id_kegiatan='$id1'");
-                                    $max_result = $max_query->fetch_array(MYSQLI_NUM);
-                                    $max = $max_result[0];?>
+                                    <label for="jumlah_volume">Jumlah volume yang sudah dibayar:</label>
+                                    <select class="form-control" id="jumlah_volume" name="jumlah_volume">
+                                        <option value="1"></option>
+                                    </select>
                                     <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<?= $max ?>">
                                 </div>
                                 <div class="form-group">
@@ -176,7 +176,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <input type="submit" name="realisasi" value="Realisasikan" style="width:100%;" class="btn btn-primary btn-user btn-block">
                                 </form>
-                                <hr>
+                                <hr> 
     </div>
                                 <?php 
                                 if (isset($_POST['realisasi'])) {
