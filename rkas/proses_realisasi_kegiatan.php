@@ -149,11 +149,13 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <label>Status Order:</label><p class="form-control form-control-user"><?php foreach ($sql as $key) : echo $key["status_order"]; endforeach;?></p>
                                 </div>    
                             <div class="form-group">
-                                    <label for="jumlah_volume">Jumlah volume yang sudah dibayar:</label>
-                                    <select class="form-control" id="jumlah_volume" name="jumlah_volume">
-                                        <option value="1"></option>
-                                    </select>
-                                    <input type="number" class="form-control form-control-user" id="jumlah_beli" name="jumlah_beli" min="0" max="<?= $max ?>">
+                                    <label for="jumlah_volume">Jumlah volume yang sudah dibayar:</label> <br>
+                                    <?php foreach ($sql as $row) : ?>
+                                    <input type="checkbox" name="volume_1" value="volume_1"> Volume 1 : <?= $row['volume_1']; ?> <?= $row['keterangan_volume1']; ?></button><br>
+                                    <input type="checkbox" name="volume_2" value="volume_2"> Volume 2 : <?= $row['volume_2']; ?> <?= $row['keterangan_volume2']; ?></button><br>
+                                    <input type="checkbox" name="volume_3" value="volume_3"> Volume 3 : <?= $row['volume_3']; ?> <?= $row['keterangan_volume3']; ?></button><br>
+                                    <input type="checkbox" name="volume_4" value="volume_4"> Volume 4 : <?= $row['volume_4']; ?> <?= $row['keterangan_volume4']; ?></button>
+                                    <?php endforeach;?>
                                 </div>
                                 <div class="form-group">
                                 <label>Tanggal Order:</label>
@@ -180,37 +182,38 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     </div>
                                 <?php 
                                 if (isset($_POST['realisasi'])) {
-                                    $jumlah = $_POST['jumlah_beli'];
-                                    $jumlahsekarang = $max - $jumlah;
-                                    $harga_query = mysqli_query($conn, "SELECT harga FROM tb_alat WHERE id_alat='$id1'");
-                                    $harga_result = $harga_query->fetch_array(MYSQLI_NUM);
-                                    $harga = $harga_result[0];
-                                    $subtotal = $harga * $jumlahsekarang;
+                                    foreach ($sql as $row) : {
+                                        # code...
+                                    if (isset($_POST['volume_1'])) {
+                                        $volume_1 = $_POST['volume_1'];
+                                    }
+                                    if (isset($_POST['volume_2'])) {
+                                        $volume_2 = $_POST['volume_2'];
+                                    }
+                                    if (isset($_POST['volume_3'])) {
+                                        $volume_3 = $_POST['volume_3'];
+                                    }
+                                    if (isset($_POST['volume_4'])) {
+                                        $volume_4 = $_POST['volume_4'];
+                                    }
+                                }endforeach;
                                     $tanggal_order = $_POST["tanggal_order"];
                                     $link = $_POST['link'];
                                     $status_bayar = $_POST['status_bayar'];
-                                    $ekstensi_gambar = array('png', 'jpg');
-                                    $gambar = $_FILES['bukti']['name'];
-                                    $x = explode('.', $gambar);
-                                    $ekstensi = strtolower(end($x));
-                                    $ukuran = $_FILES['bukti']['size'];
-                                    $file_tmp = $_FILES['bukti']['tmp_name'];
 
-                                    move_uploaded_file($file_tmp, 'foto_bukti/'.$gambar);
-
-                                    $proses = mysqli_query($conn, "UPDATE tb_alat SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar', tanggal_order = '$tanggal_order', link = '$link', status_order = 'Sudah', status_bayar = '$status_bayar' WHERE id_alat = '$id1'");
+                                    $proses = mysqli_query($conn, "UPDATE tb_kegiatan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar', tanggal_order = '$tanggal_order', link = '$link', status_order = 'Sudah', status_bayar = '$status_bayar' WHERE id_bahan = '$id1'");
                                     if ($proses) {
                                         echo "
                                         <script>
                                             alert('Data Berhasil Masuk!');
-                                            window.location.href='realisasi_alat.php?id=$id';
+                                            window.location.href='realisasi_bahan.php?id=$id';
                                         </script>
                                         ";
                                     } else {
                                         echo "
                                     <script>
                                         alert('Data Gagal Masuk');  
-                                        window.location.href='realisasi_alat.php?id=$id';
+                                        window.location.href='realisasi_bahan.php?id=$id';
                                     </script>
                                     ";
                                     }
