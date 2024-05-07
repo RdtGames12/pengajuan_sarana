@@ -180,45 +180,38 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </form>
                                 <hr> 
     </div>
-                                <?php 
-                                if (isset($_POST['realisasi'])) {
-                                    foreach ($sql as $row) : {
-                                        # code...
-                                    if (isset($_POST['volume_1'])) {
-                                        $volume_1 = $_POST['volume_1'];
-                                    }
-                                    if (isset($_POST['volume_2'])) {
-                                        $volume_2 = $_POST['volume_2'];
-                                    }
-                                    if (isset($_POST['volume_3'])) {
-                                        $volume_3 = $_POST['volume_3'];
-                                    }
-                                    if (isset($_POST['volume_4'])) {
-                                        $volume_4 = $_POST['volume_4'];
-                                    }
-                                }endforeach;
-                                    $tanggal_order = $_POST["tanggal_order"];
-                                    $link = $_POST['link'];
-                                    $status_bayar = $_POST['status_bayar'];
+    <?php
+    if (isset($_POST['realisasi'])) {
+        $volume_1 = isset($_POST['volume_1']) ? 'tuntas' : 'belum';
+        $volume_2 = isset($_POST['volume_2']) ? 'tuntas' : 'belum';
+        $volume_3 = isset($_POST['volume_3']) ? 'tuntas' : 'belum';
+        $volume_4 = isset($_POST['volume_4']) ? 'tuntas' : 'belum';
 
-                                    $proses = mysqli_query($conn, "UPDATE tb_kegiatan SET qty = '$jumlahsekarang', subtotal = '$subtotal', bukti = '$gambar', tanggal_order = '$tanggal_order', link = '$link', status_order = 'Sudah', status_bayar = '$status_bayar' WHERE id_bahan = '$id1'");
-                                    if ($proses) {
-                                        echo "
-                                        <script>
-                                            alert('Data Berhasil Masuk!');
-                                            window.location.href='realisasi_bahan.php?id=$id';
-                                        </script>
-                                        ";
-                                    } else {
-                                        echo "
-                                    <script>
-                                        alert('Data Gagal Masuk');  
-                                        window.location.href='realisasi_bahan.php?id=$id';
-                                    </script>
-                                    ";
-                                    }
-                                }
-                                ?>
+        $tanggal_order = $_POST["tanggal_order"];
+        $link = $_POST['link'];
+        $status_bayar = $_POST['status_bayar'];
+
+        // Query SQL
+        $proses = mysqli_query($conn, "UPDATE tb_kegiatan SET vol1 = '$volume_1', vol2 = '$volume_2', vol3 = '$volume_3', vol4 = '$volume_4', tanggal_order = '$tanggal_order', link = '$link', status_order = 'Sudah', status_bayar = '$status_bayar' WHERE id_kegiatan = '$id1'");
+
+        if ($proses) {
+            echo "
+                <script>
+                    alert('Data Berhasil Masuk!');
+                    window.location.href='realisasi_kegiatan.php?id=$id';
+                </script>
+            ";
+        } else {
+            echo "
+                <script>
+                    alert('Data Gagal Masuk');  
+                    window.location.href='realisasi_kegiatan.php?id=$id';
+                </script>
+            ";
+        }
+    }
+?>
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
