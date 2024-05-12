@@ -295,36 +295,79 @@ if (isset($_POST['cari'])) {
     $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE status = 'Diterima' AND tahun_ajuan = '$tahun_ajuan'");
     ?>
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <tr>
-            <th>No</th>
-            <th>Nama Kegiatan</th>
-            <th>Bulan</th>
-            <th>Biaya</th>
-            <th>Subtotal</th>
-            <th>Bukti Gambar</th>
-            <th>Aksi</th>
-        </tr>
-        <?php $no = 0;
-        foreach ($kegiatan as $row) : ?>
-            <tr>
-                <th><?= ++$no; ?></th>
-                <th><?= $row["nama_kegiatan"]; ?></th>
-                <th><?= $row["bulan"]; ?></th>
-                <th><?= $row["biaya"]; ?></th>
-                <th><?= $row["total"]; ?></th>
-                <th>
-                    <?php if (!empty($row['bukti'])) : ?>
-                        <img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px">
-                    <?php else : ?>
-                        Belum Direalisasikan/Tidak Memberikan Foto
-                    <?php endif; ?>
-                </th>
-                <th>
-                    <a href="proses_realisasi_kegiatan.php?id=<?= $id ?>&id1=<?= $row['id_kegiatan'] ?>">
-                        <b style="color: royalblue;">Realisasikan</b>
-                    </a>
-                </th>
-            </tr>
+    <tr>
+                                <th>No</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Biaya</th>
+                        <th>Volume</th>
+                        <th>Keterangan</th>
+                        <th>Keterangan Bayar</th>
+                        <th>Subtotal</th>
+                        <th>Aksi</th>
+                                    </tr>
+                                        <?php $no = 0;?>
+                                    <?php foreach ($kegiatan as $row) : ?>
+                                    <tr>
+                                    <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_kegiatan"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["biaya"]; ?></th>
+                            <th><?= $row["volume_1"]; ?></th>
+                            <th><?= $row["keterangan_volume1"]; ?></th>
+                            <th><?= $row["vol1"]; ?></th>
+                            <th></th>
+                            <th></th>
+                            <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_2"];?></th>
+                                        <th><?= $row["keterangan_volume2"]?></th>
+                                        <th><?= $row["vol2"]; ?></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_3"];?></th>
+                                        <th><?= $row["keterangan_volume3"]?></th>
+                                        <th><?= $row["vol3"]; ?></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_4"];?></th>
+                                        <th><?= $row["keterangan_volume4"]?></th>
+                                        <th><?= $row["vol4"]; ?></th>
+                                        <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                                        <?php if ($row['vol1'] == 'tuntas' && $row['vol2']  == 'tuntas') {
+                                    ?>
+                                <th>
+                                    Sudah Direalisasikan
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th>
+                                            <a href="proses_realisasi_kegiatan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>"><b style="color: royalblue;">Realisasikan</b></a>
+                                        </th>
+                                <?php }?>
+                                    </tr>
         <?php endforeach;
 } ?>
 </table>
