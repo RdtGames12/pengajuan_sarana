@@ -275,32 +275,46 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             </div>
                             <hr>
                         </div>
+                        <form action="realisasi_sarana.php?id=<?= $id ?>" method="POST">
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
+                            <select name="tahun">
+                                <option value="2024" name="tahun1"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
+                                <option value="2025" name="tahun2"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
+                                <option value="2026" name="tahun3"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
+                            </select>
+                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                                </form>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
+                        <?php
+if (isset($_POST['cari'])) {
+    $tahun_ajuan = $_POST['tahun'];
+    $kegiatan = mysqli_query($conn, "SELECT * FROM tb_sarana WHERE status = 'Diterima' AND tahun_ajuan = '$tahun_ajuan'");
+    ?>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
                                             <th>No</th>
-                                            <th>Nama Item</th>
+                                            <th>Nama Ruang</th>
+                                            <th>Jenis Sarana</th>
+                                            <th>Ajuan Sarana</th>
                                             <th>Harga</th>
                                             <th>Jumlah</th>
                                             <th>Subtotal</th>
                                             <th>Bukti Gambar</th>
                                             <th>Aksi</th>
                                     </tr>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $jurusan = $_POST['jurusan'];
-                                    $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE status = 'Diterima' AND jurusan = '$jurusan'");
-                                
-                                ?>
                                         <?php $no = 0;?>
-                                        <?php foreach ($bahan as $row) : ?>
+                                        <?php foreach ($sarana as $row) : ?>
                                         <tr>
                                         <th><?php $no += 1; echo $no;?></th>
-                                        <th><?= $row["item"]; ?> <?= $row["merk"]; ?> <?= $row["spesifikasi"]; ?></th>
+                                        <th><?= $row['nama_ruang']; ?></th>
+                                        <th><?= $row['jenis_sarana']; ?></th>
+                                        <th><?= $row['ajuan_sarana']; ?> <?= $row['keterangan_saran'] ?></th>
                                         <th><?= $row["harga"];?></th>
-                                        <th><?= $row["qty"];?></th>
+                                        <th><?= $row["jumlah"];?></th>
                                         <th><?= $row["subtotal"];?></th>
                                         <?php if ($row['bukti'] == '') {
                                     ?>
@@ -313,7 +327,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                    <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
                                 <?php }?>
 
-                                <?php if ($row['qty'] == 0) {
+                                <?php if ($row['jumlah'] == 0) {
                                     ?>
                                 <th>
                                     Sudah Direalisasikan
@@ -322,13 +336,14 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 } else {
                                     ?>
                                    <th>
-                                            <a href="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>"><b style="color: royalblue;">Realisasikan</b></a>
+                                            <a href="proses_realisasi_sarana.php?id=<?= $id ?>&id1=<?= $row['id_sarana']?>"><b style="color: royalblue;">Realisasikan</b></a>
                                         </th>
                                 <?php }?>
                                         </tr>
                                     
                                         <?php endforeach;
                                     }?>
+                                
                             </div>
                                 </table>
                             </div>
