@@ -3,8 +3,6 @@ include "koneksi.php";
 $id = $_GET['id'];
 $sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
-$bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
-$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
 $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 ?>
 
@@ -168,9 +166,9 @@ $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
                         <h6 class="collapse-header">Pilih:</h6>
                         <a class="collapse-item" href="realisasi_bahan.php?id=<?= $id ?>">Bahan Praktik</a>
                         <a class="collapse-item" href="realisasi_alat.php?id=<?= $id ?>">Alat Praktik</a>
-                        <a class="collapse-item" href="#">Kegiatan</a>
-                        <a class="collapse-item" href="#">Sarana</a>
-                        <a class="collapse-item" href="#">ATK</a>
+                        <a class="collapse-item" href="realisasi_kegiatan.php?id=<?= $id ?>">Kegiatan</a>
+                        <a class="collapse-item" href="realisasi_sarana.php?id=<?= $id ?>">Sarana</a>
+                        <a class="collapse-item" href="realisasi_atk.php?id=<?= $id ?>">ATK</a>
                     </div>
                 </div>
             </li>
