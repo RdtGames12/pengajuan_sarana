@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
+$sarana = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -275,82 +275,45 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             </div>
                             <hr>
                         </div>
-    <form action="realisasi_kegiatan.php?id=<?= $id ?>" method="POST">
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan</h6>
-                            <select name="tahun">
-                                <option value="2024" name="tahun1"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
-                                <option value="2025" name="tahun2"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
-                                <option value="2026" name="tahun3"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
-                            </select>
-                            <input class="bg-primary text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
-                                </form>
                         </div>
                         <div class="card-body">
                         <div class="table-responsive">
-                        <?php
-if (isset($_POST['cari'])) {
-    $tahun_ajuan = $_POST['tahun'];
-    $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan WHERE status = 'Diterima' AND tahun_ajuan = '$tahun_ajuan'");
-    ?>
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <tr>
-                                <th>No</th>
-                        <th>Nama Kegiatan</th>
-                        <th>Bulan</th>
-                        <th>Biaya</th>
-                        <th>Volume</th>
-                        <th>Keterangan</th>
-                        <th>Keterangan Bayar</th>
-                        <th>Subtotal</th>
-                        <th>Aksi</th>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Item</th>
+                                            <th>Harga</th>
+                                            <th>Jumlah</th>
+                                            <th>Subtotal</th>
+                                            <th>Bukti Gambar</th>
+                                            <th>Aksi</th>
                                     </tr>
+                                <?php
+                                if (isset($_POST['cari'])) {
+                                    $jurusan = $_POST['jurusan'];
+                                    $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE status = 'Diterima' AND jurusan = '$jurusan'");
+                                
+                                ?>
                                         <?php $no = 0;?>
-                                    <?php foreach ($kegiatan as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1;
-                                echo $no; ?></th>
-                            <th><?= $row["nama_kegiatan"]; ?></th>
-                            <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["biaya"]; ?></th>
-                            <th><?= $row["volume_1"]; ?></th>
-                            <th><?= $row["keterangan_volume1"]; ?></th>
-                            <th><?= $row["vol1"]; ?></th>
-                            <th></th>
-                            <th></th>
-                            <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th><?= $row["volume_2"];?></th>
-                                        <th><?= $row["keterangan_volume2"]?></th>
-                                        <th><?= $row["vol2"]; ?></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th><?= $row["volume_3"];?></th>
-                                        <th><?= $row["keterangan_volume3"]?></th>
-                                        <th><?= $row["vol3"]; ?></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th><?= $row["volume_4"];?></th>
-                                        <th><?= $row["keterangan_volume4"]?></th>
-                                        <th><?= $row["vol4"]; ?></th>
-                                        <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
-                                        <?php if ($row['vol1'] == 'tuntas' && $row['vol2']  == 'tuntas' && $row['vol3']  == 'tuntas' && $row['vol4']  == 'tuntas') {
+                                        <?php foreach ($bahan as $row) : ?>
+                                        <tr>
+                                        <th><?php $no += 1; echo $no;?></th>
+                                        <th><?= $row["item"]; ?> <?= $row["merk"]; ?> <?= $row["spesifikasi"]; ?></th>
+                                        <th><?= $row["harga"];?></th>
+                                        <th><?= $row["qty"];?></th>
+                                        <th><?= $row["subtotal"];?></th>
+                                        <?php if ($row['bukti'] == '') {
+                                    ?>
+                                <th>
+                                    Belum Direalisasikan/Tidak Memberikan Foto
+                                </th>
+                                <?php    
+                                } else {
+                                    ?>
+                                   <th><img src="foto_bukti/<?= $row['bukti']; ?>" width="100px" height="100px"></th>
+                                <?php }?>
+
+                                <?php if ($row['qty'] == 0) {
                                     ?>
                                 <th>
                                     Sudah Direalisasikan
@@ -359,14 +322,15 @@ if (isset($_POST['cari'])) {
                                 } else {
                                     ?>
                                    <th>
-                                            <a href="proses_realisasi_kegiatan.php?id=<?= $id ?>&id1=<?= $row['id_kegiatan']?>"><b style="color: royalblue;">Realisasikan</b></a>
+                                            <a href="proses_realisasi_bahan.php?id=<?= $id ?>&id1=<?= $row['id_bahan']?>"><b style="color: royalblue;">Realisasikan</b></a>
                                         </th>
                                 <?php }?>
-                                    </tr>
-        <?php endforeach;
-} ?>
-</table>
-
+                                        </tr>
+                                    
+                                        <?php endforeach;
+                                    }?>
+                            </div>
+                                </table>
                             </div>
                         </div>
                     </div>

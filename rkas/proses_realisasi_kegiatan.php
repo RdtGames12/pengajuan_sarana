@@ -172,10 +172,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <label>Link:</label>
                                 <input type="text" name="link" class="form-control form-control-user">
                                 </div>
-                                <h6>Masukkan Bukti(Gambar):</h6>
-                                <div class="form-group">
-                                <input type="file" id="bukti" name="bukti">
-                                </div>
                                 <input type="submit" name="realisasi" value="Realisasikan" style="width:100%;" class="btn btn-primary btn-user btn-block">
                                 </form>
                                 <hr> 
