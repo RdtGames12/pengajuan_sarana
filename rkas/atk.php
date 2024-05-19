@@ -226,6 +226,14 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
+                                    <label for="tahun_ajuan">Tahun Ajuan:</label>
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nama_barang" name="nama_barang" for="nama_barang"
                                         placeholder="Masukkan nama barang..">
                                 </div>

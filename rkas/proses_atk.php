@@ -7,11 +7,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if (isset($_POST['simpan'])) {
     $sumber_dana = $_POST['sumber_dana'];
     $nama_barang = $_POST['nama_barang'];
+    $tahun_ajuan = $_POST['tahun_ajuan'];
     $harga_barang = $_POST['harga_barang'];
     $jumlah = $_POST ['jumlah'];
     $satuan = $_POST['satuan'];
     $total = $jumlah * $harga_barang;
-    $proses =  mysqli_query($conn, "INSERT INTO tb_atk (sumber_dana, nama_barang, harga_barang, jumlah, satuan, status, total ) VALUES ('$sumber_dana','$nama_barang','$harga_barang', '$jumlah', '$satuan','Belum di Cek', '$total')");
+    $proses =  mysqli_query($conn, "INSERT INTO tb_atk (sumber_dana, nama_barang, tahun_ajuan, harga_barang, jumlah, satuan, status, total) VALUES ('$sumber_dana', '$nama_barang', '$tahun_ajuan', '$harga_barang', '$jumlah', '$satuan', 'Belum di Cek', '$total')");
     if ($proses) {
         echo "
         <script>

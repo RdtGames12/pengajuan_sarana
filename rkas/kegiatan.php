@@ -233,8 +233,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
                                     </select>
-                                    <!-- <input type="text" class="form-control form-control-user" id="sumber"
-                                        placeholder="Sumber Dana"> -->
                                 </div>
                                 <div class="form-group">
                                 <label for="nama_kegiatan">Nama Kegiatan</label>
