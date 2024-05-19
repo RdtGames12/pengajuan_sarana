@@ -1,7 +1,8 @@
 <?php
 include "koneksi.php";
+session_start();
 $sql = mysqli_query($conn, "SELECT * FROM tb_alat");
-$id = $_GET['id'];
+$id = $_SESSION['id'];
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if (isset($_POST['simpan'])) {
     $sumber_dana = $_POST['sumber_dana'];
@@ -39,8 +40,8 @@ if (isset($_POST['simpan'])) {
     }
     elseif ($id == 899055276) {
         $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk, jurusan, status ) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan', 'Pemesinan', 'Belum di Cek')");
-    } else {
-        $proses =  mysqli_query($conn, "INSERT INTO tb_alat (sumber_dana, tahun_ajuan, item, merk, spesifikasi, harga, qty, contoh_gambar, subtotal, kebutuhan_untuk) VALUES ('$sumber_dana','$tahun_ajuan','$nama_item','$merk','$spesifikasi', '$harga', '$qty', '$gambar', '$subtotal', '$kebutuhan')");
+    }else {
+        header("location:index.php");
     }
     endforeach;
 
