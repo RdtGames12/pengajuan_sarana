@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
-$sql = mysqli_query($conn, "SELECT * FROM tb_bahan");
 $id = $_GET['id'];
+$atk = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 <!DOCTYPE html>
@@ -268,54 +268,68 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <div class="container">
         <div class="p-5">
         <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Bahan Praktik</h1>
-                                <hr>
+                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
                             </div>
+                            <hr>
+                        </div>
+    <form action="lihatpengajuanatkadmin.php?id=<?= $id ?>" method="POST">
+                        <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
+                        <select class="animated--fade-in" name="tahun">
+                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
+                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
+                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
+                        </select>
+                            <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+                                </form>
+                        </div>
+                        <?php
+if (isset($_POST['cari'])) {
+    $tahun_terpilih = $_POST['tahun'];
+
+        $atk = "SELECT * FROM tb_atk WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $atk);
+?>
         <div class="card-body">
                         <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
                                             <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
+                                            <th>Nama Barang</th>
+                                            <th>Harga Barang</th>
                                             <th>Jumlah Beli</th>
-                                            <th>Jurusan</th>
-                                            <th>Sub Total</th>
+                                            <th>Satuan</th>
+                                            <th>Subtotal</th>
+                                            <th>Status</th>
                                     </tr>
-                                    <?php $no = 0;?>
-                                    <?php foreach ($sql as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th>Rp<?= number_format($row["harga"], 2, ',', '.'); ?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $row["jurusan"];?></th>
-                                    <th>Rp<?= number_format($row["subtotal"], 2, ',', '.'); ?></th>
-                                    <?php endforeach;
-                                $total_query = mysqli_query($conn, "SELECT SUM(subtotal) FROM tb_bahan");
-                                $total_result = $total_query->fetch_array(MYSQLI_NUM);
-                                $total = $total_result[0];
-
-                                $formatted_total = number_format($total, 2, ',', '.');
-                                    ?>
-                                    </tr>
-                                    <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>TOTAL</th>
-                                    <th>Rp.<?= $formatted_total ?></th>
-                                    </tr>
-                            
+                                        <?php $no = 0;?>
+                                        <?php foreach ($result as $row) : ?>
+                                        <tr>
+                                        <th><?php $no += 1; echo $no;?></th>
+                                        <th><?= $row["nama_barang"]; ?></th>
+                                        <th><?= $row["harga_barang"];?></th>
+                                        <th><?= $row["jumlah"];?></th>
+                                        <th><?= $row["satuan"];?></th>
+                                        <th><?= $row["total"];?></th>
+                                        <th><?= $row["status"]; ?></th>
+                                        </tr>
+                                        <?php endforeach;
+                        ?>
+                            </div>
                                 </table>
-                        </div>    
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        </form>
+
+    </div>
+<?php
+}
+?>
+                    </div>
+                        </div>
                                 <!-- <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
@@ -329,7 +343,6 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div> -->
                                 
 
-                                <hr>
                                 <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
                                 </a>
@@ -338,14 +351,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </a> -->
                             <!-- </div> -->
                                 <!-- </div> -->
-                            </form>
                         </div>
-                            <!-- <div class="text-center">
-                                <a class="small" href="forgot-password.html">Lupa Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Sudah punya akun? Login!</a>
-                            </div> -->
                         
                         <!-- </div>
                     </div>

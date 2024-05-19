@@ -1,7 +1,7 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_atk");
+$atk = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>
 
@@ -103,7 +103,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Jenis Ajuan :</h6>
-                <a class="collapse-item" href="#">ATK</a>
+                <a class="collapse-item" href="atk_admin.php?id=<?= $id ?>">ATK</a>
                 
             </div>
         </div>
@@ -131,7 +131,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <a class="collapse-item" href="statuspengajuankegiatanadmin.php?id=<?= $id ?>">Kegiatan</a>
                 
                 <a class="collapse-item" href="statuspengajuansaranaadmin.php?id=<?= $id ?>">Sarana</a>
-                <a class="collapse-item" href="#">ATK</a>
+                <a class="collapse-item" href="statuspengajuanatkadmin.php>id=<? $id ?>">ATK</a>
             </div>
         </div>
     </li>
@@ -147,7 +147,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 <h6 class="collapse-header">Bidang/Bagian:</h6>
                 <a class="collapse-item" href="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>">Wakil Kep.Sek.</a>
                 <a class="collapse-item" href="lihatpengajuanadmin.php?id=<?= $id ?>">Program Keahlian</a>
-                <a class="collapse-item" href="#">TU</a>
+                <a class="collapse-item" href="lihatpengajuanatkadmin.php?id=<?= $id ?>">TU</a>
                 
                 
             </div>
@@ -266,18 +266,14 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
         <div class="container">
         <div class="p-5">
         <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Lihat Pengajuan</h1>
+                                <h1 class="h4 text-gray-900 mb-4">ATK</h1>
                             </div>
                             <hr>
                         </div>
-    <form action="lihatpengajuanwakepsekadmin.php?id=<?= $id ?>" method="POST">
+    <form action="atk_admin.php?id=<?= $id ?>" method="POST">
                         <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
-                        <select class="animated--fade-in" name="ajuan">
-                            <option value="Ajuan Kegiatan" name="kegiatan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Kegiatan' ? 'selected' : ''; ?>>Ajuan Kegiatan</option>
-                            <option value="Ajuan Sarana" name="sarana1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Sarana' ? 'selected' : ''; ?>>Ajuan Sarana</option>
-                        </select>
                         <select class="animated--fade-in" name="tahun">
                             <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
                             <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
@@ -288,101 +284,58 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                         </div>
                         <?php
 if (isset($_POST['cari'])) {
-    $cari = $_POST['ajuan'];
     $tahun_terpilih = $_POST['tahun'];
 
-    if ($cari == 'Ajuan Kegiatan') {
-        $query = "SELECT * FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih'";
-        $result = mysqli_query($conn, $query);
+        $atk = "SELECT * FROM tb_atk WHERE tahun_ajuan = '$tahun_terpilih'";
+        $result = mysqli_query($conn, $atk);
 ?>
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Kegiatan</th>
-                        <th>Tahun Ajuan</th>
-                        <th>Bulan</th>
-                        <th>Biaya</th>
-                        <th>Volume</th>
-                        <th>Keterangan</th>
-                        <th>Total</th>
-                    </tr>
-                    <?php
-                    $no = 0;
-                    foreach ($result as $row) :
-                    ?>
-                        <tr>
-                            <th><?php $no += 1;
-                                echo $no; ?></th>
-                            <th><?= $row["nama_kegiatan"]; ?></th>
-                            <th><?= $row["tahun_ajuan"]; ?></th>
-                            <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["biaya"]; ?></th>
-                            <th><?= $row["volume_1"]; ?></th>
-                            <th><?= $row["keterangan_volume1"]; ?></th>
-                            <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
-                        </tr>
-                    <?php
-                    endforeach;
-                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih' ");
-                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
-                    $total = $total_result[0];
+                        <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <tr>
+                                            <th>No</th>
+                                            <th>Nama Barang</th>
+                                            <th>Harga Barang</th>
+                                            <th>Jumlah Beli</th>
+                                            <th>Satuan</th>
+                                            <th>Subtotal</th>
+                                    </tr>
+                                        <?php $no = 0;?>
+                                        <?php foreach ($result as $row) : ?>
+                                        <tr>
+                                        <th><?php $no += 1; echo $no;?></th>
+                                        <th><?= $row["nama_barang"]; ?></th>
+                                        <th><?= $row["harga_barang"];?></th>
+                                        <th><?= $row["jumlah"];?></th>
+                                        <th><?= $row["satuan"];?></th>
+                                        <th><?= $row["total"];?></th>
+                                        </tr>
+                                        <?php endforeach;
+                                        $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_atk");
+                                        $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                                        $total = $total_result[0];
+        
+                                        $formatted_total = number_format($total, 2, ',', '.');
+                                            ?>
+                                            </tr>
+                                            <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th>TOTAL</th>
+                                            <th>Rp.<?= $formatted_total ?></th>
+                                            </tr>
+                            </div>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                        </form>
 
-                    $formatted_total = number_format($total, 2, ',', '.');
-                    ?>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>TOTAL</th>
-                    <th>Rp<?= $formatted_total ?></th>
-                </table>
-            </div>
-        </div>
+    </div>
 <?php
-    } elseif ($cari == 'Ajuan Sarana') {
-        $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
-        $result = mysqli_query($conn, $query);
-?>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Ruang</th>
-                        <th>Tahun Ajuan</th>
-                        <th>Bulan</th>
-                        <th>Jenis Pengajuan</th>
-                        <th>Ajuan Sarana</th>
-                        <th>Jumlah</th>
-                        <th>Keterangan/Saran</th>
-                    </tr>
-                    <?php
-                    $no = 0;
-                    foreach ($result as $row) :
-                    ?>
-                        <tr>
-                            <th><?php $no += 1;
-                                echo $no; ?></th>
-                            <th><?= $row["nama_ruang"]; ?></th>
-                            <th><?= $row["tahun_ajuan"]; ?></th>
-                            <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["jenis_sarana"]; ?></th>
-                            <th><?= $row["ajuan_sarana"]; ?></th>
-                            <th><?= $row["jumlah"]; ?></th>
-                            <th><?= $row["keterangan_saran"]; ?></th>
-                        </tr>
-                    <?php
-                    endforeach;
-                    ?>
-                </table>
-            </div>
-        </div>
-<?php
-    }
 }
 ?>
                     </div>
