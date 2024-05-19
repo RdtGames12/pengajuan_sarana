@@ -273,96 +273,93 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             </div>
                             <hr>
                         </div>
-    <form action="lihatpengajuanadmin.php?id=<?= $id ?>" method="POST">
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
-                            <select class="animated--fade-in" name="ajuan">
-                            <option value="Ajuan Bahan" name="bahan1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Bahan' ? 'selected' : ''; ?>>Ajuan Bahan</option>
-                            <option value="Ajuan Alat" name="alat1"<?php echo isset($_POST['ajuan']) && $_POST['ajuan'] == 'Ajuan Alat' ? 'selected' : ''; ?>>Ajuan Alat</option>
-                        </select>
-                        <select class="animated--fade-in" name="tahun">
-                            <option value="2024" name="2024"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2024' ? 'selected' : ''; ?>>2024</option>
-                            <option value="2025" name="2025"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2025' ? 'selected' : ''; ?>>2025</option>
-                            <option value="2026" name="2026"<?php echo isset($_POST['tahun']) && $_POST['tahun'] == '2026' ? 'selected' : ''; ?>>2026</option>
-                        </select>
-                        <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
-                                </form>
-                        </div>
-                        <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Item</th>
-                                            <th>Tahun Ajuan</th>
-                                            <th>Merk</th>
-                                            <th>Spesifikasi</th>
-                                            <th>Harga</th>
-                                            <th>Jumlah Beli</th>
-                                            <th>Sub Total</th>
-                                            <th>Jurusan</th>
-                                            <th>Status</th>
-                                    </tr>
-                                <?php
-                                if (isset($_POST['cari'])) {
-                                    $cari = $_POST['ajuan'];
-                                    $tahun_terpilih = $_POST['tahun'];
-                                
-                                if ($cari == 'Ajuan Alat') {
-                                    $query = "SELECT * FROM tb_alat  WHERE tahun_ajuan = '$tahun_terpilih'";
-                                    if (($tahun_terpilih)) {
-                                        $query .= "AND tahun_ajuan = '$tahun_terpilih'";
-                                    }
-                                    $result = mysqli_query($conn, $query);
-                            ?>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($result as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"]; ?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['jurusan'];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; } ?>
-                            </div>
-                            <?php if ($cari == 'Ajuan Bahan') {
-                            $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih'";
-                            if (($tahun_terpilih)) {
-                                $query .= " AND tahun_ajuan = '$tahun_terpilih'";
-                            }
-                            $result = mysqli_query($conn, $query);
-                    ?>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($result as $row) : ?>
-                                    <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["item"];?></th>
-                                    <th><?= $row["tahun_ajuan"]; ?></th>
-                                    <th><?= $row["merk"];?></th>
-                                    <th><?= $row["spesifikasi"];?></th>
-                                    <th><?= $row["harga"];?></th>
-                                    <th><?= $row["qty"];?></th>
-                                    <th><?= $subtotal = $row["harga"] * $row["qty"];?></th>
-                                    <th><?= $row['jurusan'];?></th>
-                                    <th><?= $row['status'];?></th>
-                                    </tr>
-                                
-                                    <?php endforeach; } 
-                                }?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                        </div>
-                        </form>
+                        <form action="lihatpengajuanadmin.php?id=<?= $id ?>" method="POST">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
+            <select class="animated--fade-in" name="ajuan">
+                <option value="Ajuan Bahan" <?= ($_POST['ajuan'] ?? '') == 'Ajuan Bahan' ? 'selected' : '' ?>>Ajuan Bahan</option>
+                <option value="Ajuan Alat" <?= ($_POST['ajuan'] ?? '') == 'Ajuan Alat' ? 'selected' : '' ?>>Ajuan Alat</option>
+            </select>
+            <select class="animated--fade-in" name="tahun">
+                <option value="2024" <?= ($_POST['tahun'] ?? '') == '2024' ? 'selected' : '' ?>>2024</option>
+                <option value="2025" <?= ($_POST['tahun'] ?? '') == '2025' ? 'selected' : '' ?>>2025</option>
+                <option value="2026" <?= ($_POST['tahun'] ?? '') == '2026' ? 'selected' : '' ?>>2026</option>
+            </select>
+            <select id="jurusan" name="jurusan">
+                <option value="">Semua Jurusan</option>
+                <option value="Mekatronika" <?= ($_POST['jurusan'] ?? '') == 'Mekatronika' ? 'selected' : '' ?>>Mekatronika</option>
+                <option value="PPLG" <?= ($_POST['jurusan'] ?? '') == 'PPLG' ? 'selected' : '' ?>>PPLG</option>
+                <option value="Desain Komunikasi Visual" <?= ($_POST['jurusan'] ?? '') == 'Desain Komunikasi Visual' ? 'selected' : '' ?>>Desain Komunikasi Visual</option>
+                <option value="Animasi" <?= ($_POST['jurusan'] ?? '') == 'Animasi' ? 'selected' : '' ?>>Animasi</option>
+                <option value="Teknik Pemesinan" <?= ($_POST['jurusan'] ?? '') == 'Teknik Pemesinan' ? 'selected' : '' ?>>Teknik Pemesinan</option>
+                <option value="Kimia Industri" <?= ($_POST['jurusan'] ?? '') == 'Kimia Industri' ? 'selected' : '' ?>>Kimia Industri</option>
+            </select>
+            <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cari">
+        </div>
+    </div>
+</form>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <tr>
+                <th>No</th>
+                <th>Nama Item</th>
+                <th>Tahun Ajuan</th>
+                <th>Merk</th>
+                <th>Spesifikasi</th>
+                <th>Harga</th>
+                <th>Jumlah Beli</th>
+                <th>Sub Total</th>
+                <th>Jurusan</th>
+                <th>Status</th>
+            </tr>
+            <?php
+            if (isset($_POST['cari'])) {
+                $cari = $_POST['ajuan'];
+                $tahun_terpilih = $_POST['tahun'];
+
+                $query = "";
+                if ($cari == 'Ajuan Alat') {
+                    $query = "SELECT * FROM tb_alat WHERE tahun_ajuan = '$tahun_terpilih'";
+                } elseif ($cari == 'Ajuan Bahan') {
+                    $query = "SELECT * FROM tb_bahan WHERE tahun_ajuan = '$tahun_terpilih'";
+                }
+                
+                // Filter berdasarkan jurusan jika dipilih
+                if (!empty($_POST['jurusan'])) {
+                    $jurusan = $_POST['jurusan'];
+                    $query .= " AND jurusan = '$jurusan'";
+                }
+                
+                $result = mysqli_query($conn, $query);
+                if ($result) {
+                    $no = 0;
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $no++;
+                        $subtotal = $row["harga"] * $row["qty"];
+                        echo "<tr>";
+                        echo "<td>$no</td>";
+                        echo "<td>{$row["item"]}</td>";
+                        echo "<td>{$row["tahun_ajuan"]}</td>";
+                        echo "<td>{$row["merk"]}</td>";
+                        echo "<td>{$row["spesifikasi"]}</td>";
+                        echo "<td>{$row["harga"]}</td>";
+                        echo "<td>{$row["qty"]}</td>";
+                        echo "<td>$subtotal</td>";
+                        echo "<td>{$row['jurusan']}</td>";
+                        echo "<td>{$row['status']}</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='10'>Tidak ada data yang ditemukan.</td></tr>";
+                }
+            }
+            ?>
+        </table>
+    </div>
+</div>
+
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
                             </div>

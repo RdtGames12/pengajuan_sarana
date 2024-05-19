@@ -273,52 +273,75 @@ $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
                                 <hr>
                             </div>
                         </div>
-    <form action="statuspengajuanbahanadmin.php?id=<?= $id ?>" method="POST">
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
-                            <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cek">
-                            <input type="radio" id="Diterima" name="filtercari" value="Diterima">
-                           <label for="Diterima">Diterima</label>
-                           <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
-                           <label for="Ditolak">Ditolak</label>
-                           <input type="radio" id="Belum di Cek" name="filtercari" value="Belum di Cek">
-                           <label for="Belum di Cek">Belum di Cek</label>
-                                </form>
-                        </div>
-                        <?php
-if (isset($_POST['cari'])) {
-    $status = isset($_POST['filtercari']) ? $_POST['filtercari'] : '';
-    ?>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Item</th>
-                        <th>Jurusan</th>
-                        <th>Status</th>
-                    </tr>
-                    <?php
-                    $no = 0;
-                    foreach ($bahan as $row) :
-                        if (empty($status) || $row['status'] == $status) {
-                    ?>
-                            <tr>
-                                <th><?php $no += 1;
-                                    echo $no; ?></th>
-                                <th><?= $row["item"]; ?> <?= $row["merk"]; ?> <?= $row["spesifikasi"]; ?></th>
-                                <th><?= $row["jurusan"]; ?></th>
-                                <th><?= $row['status']; ?></th>
-                            </tr>
-                    <?php
-                        }
-                    endforeach;
-                    ?>
-                </table>
-            </div>
+                        <form action="statuspengajuanbahanadmin.php?id=<?= $id ?>" method="POST">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-dark">Daftar Ajuan</h6>
+            <input class="bg-dark text-gray-100" style="width: 10%;" type="submit" name="cari" value="Cek">
+            
+
+            <input type="radio" id="Diterima" name="filtercari" value="Diterima">
+            <label for="Diterima">Diterima</label>
+            <input type="radio" id="Ditolak" name="filtercari" value="Ditolak">
+            <label for="Ditolak">Ditolak</label>
+            <input type="radio" id="Belum di Cek" name="filtercari" value="Belum di Cek">
+            <label for="Belum di Cek">Belum di Cek</label>
+            
+
+            <select id="jurusan" name="jurusan">
+                <option value="">Semua Jurusan</option>
+                <option value="Mekatronika" <?= ($_POST['jurusan'] ?? '') == 'Mekatronika' ? 'selected' : '' ?>>Mekatronika</option>
+                <option value="PPLG" <?= ($_POST['jurusan'] ?? '') == 'PPLG' ? 'selected' : '' ?>>PPLG</option>
+                <option value="Desain Komunikasi Visual" <?= ($_POST['jurusan'] ?? '') == 'Desain Komunikasi Visual' ? 'selected' : '' ?>>Desain Komunikasi Visual</option>
+                <option value="Animasi" <?= ($_POST['jurusan'] ?? '') == 'Animasi' ? 'selected' : '' ?>>Animasi</option>
+                <option value="Teknik Pemesinan" <?= ($_POST['jurusan'] ?? '') == 'Teknik Pemesinan' ? 'selected' : '' ?>>Teknik Pemesinan</option>
+                <option value="Kimia Industri" <?= ($_POST['jurusan'] ?? '') == 'Kimia Industri' ? 'selected' : '' ?>>Kimia Industri</option>
+            </select>
+
+            <label for="jurusan">Jurusan</label>
         </div>
-        <?php } ?>
+    </div>
+</form>
+
+<?php
+if (isset($_POST['cari'])) {
+
+    $status = isset($_POST['filtercari']) ? $_POST['filtercari'] : '';
+    $jurusan = isset($_POST['jurusan']) ? $_POST['jurusan'] : '';
+
+
+    $filtered_bahan = [];
+    foreach ($bahan as $row) {
+        if (($status == '' || $row['status'] == $status) && ($jurusan == '' || $row['jurusan'] == $jurusan)) {
+            $filtered_bahan[] = $row;
+        }
+    }
+?>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tr>
+                    <th>No</th>
+                    <th>Nama Item</th>
+                    <th>Jurusan</th>
+                    <th>Status</th>
+                </tr>
+                <?php foreach ($filtered_bahan as $key => $row) : ?>
+                    <tr>
+                        <td><?= $key + 1 ?></td>
+                        <td><?= $row["item"] ?> <?= $row["merk"] ?> <?= $row["spesifikasi"] ?></td>
+                        <td><?= $row["jurusan"] ?></td>
+                        <td><?= $row['status'] ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+<?php
+}
+?>
+
                     </div>
                         </div>
                                 <!-- <div class="form-group row">
