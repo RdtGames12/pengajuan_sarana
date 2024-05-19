@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
+session_start();
+$id = $_SESSION['id'];
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 $id = $_GET['id'];
@@ -27,6 +28,8 @@ elseif ($id == 6083232) {
 elseif ($id == 899055276) {
     $jurusan =  'Pemesinan';
     $profil = '<img class="img-profile rounded-circle" src="img/logomesin.png">';
+}else {
+    header("location:index.php");
 }
 $sql = mysqli_query($conn, "SELECT * FROM tb_bahan WHERE jurusan = '$jurusan'");
 ?>
