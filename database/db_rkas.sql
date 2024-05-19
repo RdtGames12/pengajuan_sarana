@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Bulan Mei 2024 pada 12.15
+-- Waktu pembuatan: 19 Bulan Mei 2024 pada 19.35
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,38 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_rkas`
 --
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_ajuan_alat`
---
-
-CREATE TABLE `tb_ajuan_alat` (
-  `id_ajuan` int(4) NOT NULL,
-  `id_user` int(4) NOT NULL,
-  `tgl_ajuan` datetime NOT NULL,
-  `tahun` int(4) NOT NULL,
-  `total` varchar(10) NOT NULL,
-  `status` varchar(30) NOT NULL,
-  `sumber_dana` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_ajuan_keg`
---
-
-CREATE TABLE `tb_ajuan_keg` (
-  `id_ajuan_keg` int(4) NOT NULL,
-  `id_user_keg` int(4) NOT NULL,
-  `tgl_ajuan` datetime NOT NULL,
-  `tahun` int(4) NOT NULL,
-  `total` int(10) NOT NULL,
-  `status` varchar(30) NOT NULL,
-  `sumber_dana` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -119,6 +87,7 @@ INSERT INTO `tb_alat` (`id_alat`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`, 
 CREATE TABLE `tb_atk` (
   `id_atk` int(11) NOT NULL,
   `sumber_dana` varchar(10) NOT NULL,
+  `tahun_ajuan` int(4) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
   `harga_barang` int(10) NOT NULL,
   `jumlah` int(11) NOT NULL,
@@ -131,8 +100,8 @@ CREATE TABLE `tb_atk` (
 -- Dumping data untuk tabel `tb_atk`
 --
 
-INSERT INTO `tb_atk` (`id_atk`, `sumber_dana`, `nama_barang`, `harga_barang`, `jumlah`, `satuan`, `status`, `total`) VALUES
-(2, 'BOS', 'rawr', 1000, 0, 'pcs', 'Belum di Cek', 0);
+INSERT INTO `tb_atk` (`id_atk`, `sumber_dana`, `tahun_ajuan`, `nama_barang`, `harga_barang`, `jumlah`, `satuan`, `status`, `total`) VALUES
+(10, 'BOS', 2024, 'Penghapus', 8000, 3, 'pcs', 'Belum di Cek', 24000);
 
 -- --------------------------------------------------------
 
@@ -200,69 +169,7 @@ INSERT INTO `tb_bahan` (`id_bahan`, `sumber_dana`, `tahun_ajuan`, `item`, `merk`
 (13, 'BOS', 2024, 'Processor', 'intel', 'Pentium G3260', 100000, 5, 500000, '', '', '0000-00-00', '', 'cadangan pc', 'PPLG', 'Belum di Cek', 'sudah', ''),
 (16, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', '0000-00-00', '', 'tes', 'PPLG', 'Belum di Cek', 'sudah', ''),
 (17, 'BOS', 2024, 'tes', 'tes', 'tes', 12, 1, 12, 'background.jpg', '', '0000-00-00', '', 'tes', 'PPLG', 'Belum di Cek', 'sudah', ''),
-(18, 'BOS', 2024, 'Obeng', 'Obeng +', 'Panjang', 25000, 0, 0, '', '', '2024-05-06', 'https://www.youtube.com/watch?v=7VBI2wcKxGU', 'Bongkar PC', 'Mekatronika', 'Diterima', 'Sudah', 'Sudah');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_det_alat`
---
-
-CREATE TABLE `tb_det_alat` (
-  `id_det` int(4) NOT NULL,
-  `id_ajuan` int(4) NOT NULL,
-  `item` varchar(50) NOT NULL,
-  `merk` varchar(50) NOT NULL,
-  `spesifikasi` varchar(50) NOT NULL,
-  `satuan` varchar(50) NOT NULL,
-  `harga` int(10) NOT NULL,
-  `qty` int(20) NOT NULL,
-  `jumlah` int(10) NOT NULL,
-  `pajak` int(10) NOT NULL,
-  `sub_total` int(10) NOT NULL,
-  `kebutuhan_untuk` text NOT NULL,
-  `link_siplah` varchar(100) NOT NULL,
-  `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_det_keg`
---
-
-CREATE TABLE `tb_det_keg` (
-  `id_det` int(4) NOT NULL,
-  `id_ajuan` int(4) NOT NULL,
-  `kegiatan` varchar(50) NOT NULL,
-  `hari` char(7) NOT NULL,
-  `volume` varchar(50) NOT NULL,
-  `orang` varchar(50) NOT NULL,
-  `biaya` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `pajak` int(11) NOT NULL,
-  `sub_total` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_kas`
---
-
-CREATE TABLE `tb_kas` (
-  `id_trans` int(4) NOT NULL,
-  `tgl` date NOT NULL,
-  `diterima_dari` varchar(50) NOT NULL,
-  `penerima` varchar(50) NOT NULL,
-  `sumber_dana` int(11) NOT NULL,
-  `keperluan` varchar(50) NOT NULL,
-  `debit` int(11) NOT NULL,
-  `kredit` int(11) NOT NULL,
-  `keterangan` varchar(50) NOT NULL,
-  `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(18, 'BOS', 2024, 'Obeng', 'Obeng +', 'Panjang', 25000, 0, 0, '', '', '2024-05-06', 'https://www.youtube.com/watch?v=7VBI2wcKxGU', 'Bongkar PC', 'Mekatronika', 'Ditolak', 'Sudah', 'Sudah');
 
 -- --------------------------------------------------------
 
@@ -307,42 +214,6 @@ INSERT INTO `tb_kegiatan` (`id_kegiatan`, `sumber_dana`, `tahun_ajuan`, `nama_ke
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_pemasukan`
---
-
-CREATE TABLE `tb_pemasukan` (
-  `id_pemasukan` int(4) NOT NULL,
-  `keperluan` varchar(50) NOT NULL,
-  `sumber_dana` int(11) NOT NULL,
-  `tgl` date NOT NULL,
-  `diterima dari` varchar(50) NOT NULL,
-  `penerima` varchar(50) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `keterangan` varchar(50) NOT NULL,
-  `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_pengeluaran`
---
-
-CREATE TABLE `tb_pengeluaran` (
-  `id_pemasukan` int(4) NOT NULL,
-  `keperluan` varchar(50) NOT NULL,
-  `sumber_dana` int(11) NOT NULL,
-  `tgl` date NOT NULL,
-  `diterima dari` varchar(50) NOT NULL,
-  `penerima` varchar(50) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `keterangan` varchar(50) NOT NULL,
-  `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `tb_sarana`
 --
 
@@ -368,22 +239,8 @@ CREATE TABLE `tb_sarana` (
 
 INSERT INTO `tb_sarana` (`id_sarana`, `sumber_dana`, `tahun_ajuan`, `bulan`, `nama_ruang`, `jenis_sarana`, `ajuan_sarana`, `jumlah`, `harga`, `subtotal`, `foto`, `keterangan_saran`, `status`) VALUES
 (18, 'BOS', 2024, 'Januari', 'F-3', 'Pengajuan', 'Papan Mading', 1, 25000, 25000, 'ceklis.png', 'Ukuran 1M', 'Diterima'),
-(19, 'BOS', 2024, 'Januari', '', 'Pengajuan', 'tes', 1, 1, 1, '', '1', 'Belum di cek');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_status_ajuan`
---
-
-CREATE TABLE `tb_status_ajuan` (
-  `id_status` int(4) NOT NULL,
-  `id_ajuan` int(4) NOT NULL,
-  `tgl` date NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `periode_cair` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(19, 'BOS', 2024, 'Januari', '', 'Pengajuan', 'tes', 1, 1, 1, '', '1', 'Belum di cek'),
+(20, 'BOS', 2024, 'Januari', 'LAB RPL 3', 'Kerusakan', 'AC', 2, 150000, 300000, '', 'AC RUSAK', 'Belum di cek');
 
 -- --------------------------------------------------------
 
@@ -422,20 +279,6 @@ INSERT INTO `tb_user` (`id_user`, `nama_user`, `nama`, `password`, `id_bagian`, 
 --
 
 --
--- Indeks untuk tabel `tb_ajuan_alat`
---
-ALTER TABLE `tb_ajuan_alat`
-  ADD PRIMARY KEY (`id_ajuan`),
-  ADD UNIQUE KEY `id_user` (`id_user`);
-
---
--- Indeks untuk tabel `tb_ajuan_keg`
---
-ALTER TABLE `tb_ajuan_keg`
-  ADD PRIMARY KEY (`id_ajuan_keg`),
-  ADD UNIQUE KEY `id_user_keg` (`id_user_keg`);
-
---
 -- Indeks untuk tabel `tb_akses`
 --
 ALTER TABLE `tb_akses`
@@ -466,55 +309,16 @@ ALTER TABLE `tb_bahan`
   ADD PRIMARY KEY (`id_bahan`);
 
 --
--- Indeks untuk tabel `tb_det_alat`
---
-ALTER TABLE `tb_det_alat`
-  ADD PRIMARY KEY (`id_det`),
-  ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
-
---
--- Indeks untuk tabel `tb_det_keg`
---
-ALTER TABLE `tb_det_keg`
-  ADD PRIMARY KEY (`id_det`),
-  ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
-
---
--- Indeks untuk tabel `tb_kas`
---
-ALTER TABLE `tb_kas`
-  ADD PRIMARY KEY (`id_trans`);
-
---
 -- Indeks untuk tabel `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
   ADD PRIMARY KEY (`id_kegiatan`);
 
 --
--- Indeks untuk tabel `tb_pemasukan`
---
-ALTER TABLE `tb_pemasukan`
-  ADD PRIMARY KEY (`id_pemasukan`);
-
---
--- Indeks untuk tabel `tb_pengeluaran`
---
-ALTER TABLE `tb_pengeluaran`
-  ADD PRIMARY KEY (`id_pemasukan`);
-
---
 -- Indeks untuk tabel `tb_sarana`
 --
 ALTER TABLE `tb_sarana`
   ADD PRIMARY KEY (`id_sarana`);
-
---
--- Indeks untuk tabel `tb_status_ajuan`
---
-ALTER TABLE `tb_status_ajuan`
-  ADD PRIMARY KEY (`id_status`),
-  ADD UNIQUE KEY `id_ajuan` (`id_ajuan`);
 
 --
 -- Indeks untuk tabel `tb_user`
@@ -525,18 +329,6 @@ ALTER TABLE `tb_user`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
-
---
--- AUTO_INCREMENT untuk tabel `tb_ajuan_alat`
---
-ALTER TABLE `tb_ajuan_alat`
-  MODIFY `id_ajuan` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_ajuan_keg`
---
-ALTER TABLE `tb_ajuan_keg`
-  MODIFY `id_ajuan_keg` int(4) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_akses`
@@ -554,7 +346,7 @@ ALTER TABLE `tb_alat`
 -- AUTO_INCREMENT untuk tabel `tb_atk`
 --
 ALTER TABLE `tb_atk`
-  MODIFY `id_atk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_atk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_bagian`
@@ -569,52 +361,16 @@ ALTER TABLE `tb_bahan`
   MODIFY `id_bahan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_det_alat`
---
-ALTER TABLE `tb_det_alat`
-  MODIFY `id_det` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `tb_det_keg`
---
-ALTER TABLE `tb_det_keg`
-  MODIFY `id_det` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_kas`
---
-ALTER TABLE `tb_kas`
-  MODIFY `id_trans` int(4) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT untuk tabel `tb_kegiatan`
 --
 ALTER TABLE `tb_kegiatan`
   MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_pemasukan`
---
-ALTER TABLE `tb_pemasukan`
-  MODIFY `id_pemasukan` int(4) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_pengeluaran`
---
-ALTER TABLE `tb_pengeluaran`
-  MODIFY `id_pemasukan` int(4) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT untuk tabel `tb_sarana`
 --
 ALTER TABLE `tb_sarana`
-  MODIFY `id_sarana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT untuk tabel `tb_status_ajuan`
---
-ALTER TABLE `tb_status_ajuan`
-  MODIFY `id_status` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_sarana` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
