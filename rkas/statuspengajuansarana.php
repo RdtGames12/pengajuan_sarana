@@ -1,8 +1,9 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
-if ($id == 641487792) {
-    $jurusan =  'Wakil Kepala Sekolah';
+session_start();
+$id = $_SESSION['id'];
+if ($id != 641487792) {
+    header("location:index.php");
 }
 $sarana = mysqli_query($conn, "SELECT * FROM tb_sarana");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");

@@ -1,8 +1,9 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
-if ($id == 641487792) {
-    $jurusan =  'Wakil Kepala Sekolah';
+session_start();
+$id = $_SESSION['id'];
+if ($id != 641487792) {
+    header("location:index.php");
 }
 $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 $sarana = mysqli_query($conn, "SELECT * FROM tb_sarana");
@@ -395,7 +396,7 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["harga"]; ?></th>
                             <th><?= $row["subtotal"]; ?></th>
                             <th><?= $row["keterangan_saran"]; ?></th>
-                            <?php if ($row['status'] == 'Belum di cek') {
+                            <?php if ($row['status'] == 'Belum di Cek') {
                                     ?>
                                 <th>
                                     <a href="editsarana.php?id=<?= $id ?>&id1=<?= $row['id_sarana']?>">EDIT | </a> <a href="hapussarana.php?id=<?= $id ?>&id1=<?= $row['id_sarana']?>">HAPUS</a>

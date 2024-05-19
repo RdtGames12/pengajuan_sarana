@@ -1,6 +1,10 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
+session_start();
+$id = $_SESSION['id'];
+if ($id != 641487792) {
+    header("location:index.php");
+}
 $id1 = $_GET['id1'];
 if ($id == 641487792) {
     $jurusan =  'Wakil Kepala Sekolah';
