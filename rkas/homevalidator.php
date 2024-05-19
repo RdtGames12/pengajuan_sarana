@@ -1,9 +1,12 @@
 <?php
 include 'koneksi.php';
-$id = $_GET['id'];
+session_start();
+$id = $_SESSION['id'];
 $sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 if ($id == 702205615) {
     $profil = '<img class="img-profile rounded-circle" src="img/undraw_profile.svg">';
+}else {
+    header("location:index.php");
 }
 ?>
 <!DOCTYPE html>
