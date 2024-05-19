@@ -1,7 +1,11 @@
 <?php
 include "koneksi.php";
+session_start();
 $sql = mysqli_query($conn, "SELECT * FROM tb_atk");
-$id = $_GET['id'];
+$id = $_SESSION['id'];
+if ($id != 171128105) {
+    header("location:index.php");
+}
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 
 if (isset($_POST['simpan'])) {

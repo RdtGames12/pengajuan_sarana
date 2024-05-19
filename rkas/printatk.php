@@ -1,5 +1,10 @@
 <?php
 include "koneksi.php";
+session_start();
+$id = $_SESSION['id'];
+if ($id != 171128105) {
+    header("location:index.php");
+}
 $atk = mysqli_query($conn, "SELECT * FROM tb_atk");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='171128105'");
 ?>
