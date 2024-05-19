@@ -1,8 +1,9 @@
 <?php
 include "koneksi.php";
+session_start();
 if (isset($_POST['simpan'])) {
     $tahun_terpilih = $_POST['tahun'];
-    $id = $_POST['id'];
+    $id = $_SESSION['id'];
 }
 if ($id == 356758684) {
     $jurusan =  'Mekatronika';

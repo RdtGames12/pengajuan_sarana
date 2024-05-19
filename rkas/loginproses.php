@@ -1,19 +1,21 @@
 <?php 
 include "koneksi.php";
+session_start();
 
 if (isset($_POST['simpan'])) {
 $user = $_POST['user'];
 $pass = $_POST['password'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE nama_user='$user'");
+$sql = mysqli_query($conn, "SELECT * FROM tb_user WHERE nama_user='$user' AND password='$pass'");
 
 foreach ($sql as $row) :
     if ($user == $row['nama_user'] && $pass == $row['password']) {
         $id = $row['id_bagian'];
+        $_SESSION['id']=$row['id_user'];
         if ($id == 1) {
             echo "
             <script>
                 alert('Login Berhasil');
-                window.location.href='homejurusan.php?id=$row[id_user]';
+                window.location.href='homejurusan.php';
             </script>
         ";
         } elseif ($id == 2) {
