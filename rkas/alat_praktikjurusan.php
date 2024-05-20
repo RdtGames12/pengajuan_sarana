@@ -246,7 +246,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
-                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana" required>
                                         <option value="BOS">BOS</option>
                                         <option value="BOPD">BOPD</option>
                                         <option value="KOMITE">KOMITE</option>
@@ -257,7 +257,7 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
                                 </div>
                                 <div class="form-group">
                                     <label for="tahun_ajuan">Tahun Ajuan:</label>
-                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan" required>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
@@ -267,31 +267,31 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nama_item" name="nama_item"
-                                        placeholder="Masukkan nama Item..">
+                                        placeholder="Masukkan nama Item.." required>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="merk" name="merk"
-                                        placeholder="Masukkan merk..">
+                                        placeholder="Masukkan merk.." required>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="spesifikasi" name="spesifikasi"
-                                        placeholder="Masukkan spesifikasi..">
+                                        placeholder="Masukkan spesifikasi.." required>
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="harga" name="harga"
-                                        placeholder="Masukkan harga..">
+                                        placeholder="Masukkan harga.." required>
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="qty" name="qty"
-                                        placeholder="Masukkan Jumlah beli..">
+                                        placeholder="Masukkan Jumlah beli.." required>
                                 </div>
                                 <h6>Masukkan contoh gambar</h6>
                                 <div class="form-group">
-                                <input type="file" id="contoh_gambar" name="contoh_gambar">
+                                <input type="file" id="contoh_gambar" name="contoh_gambar" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="kebutuhan" name="kebutuhan"
-                                        placeholder="untuk kebutuhan..">
+                                        placeholder="untuk kebutuhan.." required>
                                 </div>
                                 
                                 

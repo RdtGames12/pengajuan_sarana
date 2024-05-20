@@ -221,7 +221,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
-                                    <select class="form-control" id="sumber_dana" name="sumber_dana">
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana" required>
                                         <option value="BOS">BOS</option>
                                         <option value="BOPD">BOPD</option>
                                         <option value="KOMITE">KOMITE</option>
@@ -232,7 +232,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <div class="form-group">
                                     <label for="tahun_ajuan">Tahun Ajuan:</label>
-                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan" required>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
@@ -263,19 +263,19 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <div class="form-group">
                                 <label for="biaya">(Biaya/Vol.)</label>
                                     <input type="number" class="form-control form-control-user" id="biaya" name="biaya"
-                                        placeholder="Masukkan harga/vol">
+                                        placeholder="Masukkan harga/vol" required>
                                 </div>
                                 <table>
                                     <tr>
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" value=1 min=1>
+                                        <input type="number" class="form-control form-control" id="vol1" name="vol1" value=1 min=1 required>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" value="Tanpa Keterangan" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket1" name="volket1" value="Tanpa Keterangan" placeholder="" required>
                                         </div>
                                     </td>
                                     </tr>
@@ -288,7 +288,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" value="Tanpa Keterangan" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket2" name="volket2" value="Tanpa Keterangan" placeholder="" required>
                                         </div>
                                     </td>
                                     </tr>
@@ -296,12 +296,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol3" name="vol3"  value=1 min=1>
+                                        <input type="number" class="form-control form-control" id="vol3" name="vol3"  value=1 min=1 required>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" value="Tanpa Keterangan" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket3" name="volket3" value="Tanpa Keterangan" placeholder="" required>
                                         </div>
                                     </td>
                                     </tr>
@@ -309,12 +309,12 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         <td>Volume :</td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" value=1 min=1>
+                                        <input type="number" class="form-control form-control" id="vol4" name="vol4" value=1 min=1 required>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
-                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" value="Tanpa Keterangan" placeholder="">
+                                        <input type="text" class="form-control form-control" id="volket4" name="volket4" value="Tanpa Keterangan" placeholder="" required>
                                         </div>
                                     </td>
                                     </tr>

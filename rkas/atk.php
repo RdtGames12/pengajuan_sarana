@@ -220,7 +220,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 <div class="form-group">
                                     <!-- <div class="col-sm-6 mb-1 mb-sm-0"> -->
                                     <label for="sumber_dana">Sumber Dana:</label>
-                                    <select class="form-control" id="sumber_dana" name="sumber_dana" for="sumber_dana">
+                                    <select class="form-control" id="sumber_dana" name="sumber_dana" for="sumber_dana" required>
                                         <option value="BOS">BOS</option>
                                         <option value="BOPD">BOPD</option>
                                         <option value="KOMITE">KOMITE</option>
@@ -231,7 +231,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <div class="form-group">
                                     <label for="tahun_ajuan">Tahun Ajuan:</label>
-                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan">
+                                    <select class="form-control" id="tahun_ajuan" name="tahun_ajuan" required>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
@@ -239,18 +239,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="nama_barang" name="nama_barang" for="nama_barang"
-                                        placeholder="Masukkan nama barang..">
+                                        placeholder="Masukkan nama barang.." required>
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="harga_barang" name="harga_barang" for="harga_barang"
-                                        placeholder="Masukkan harga barang..">
+                                        placeholder="Masukkan harga barang.." required>
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah" for="jumlah"
-                                        placeholder="Masukkan Jumlah Beli">
+                                        placeholder="Masukkan Jumlah Beli" required>
                                 </div>
                                 <div class="form-group">
-                                <label>Satuan :</label><select class="form-control" id="satuan" name="satuan" for="satuan">
+                                <label>Satuan :</label><select class="form-control" id="satuan" name="satuan" for="satuan" required>
                                         <option value="pcs">Pcs</option>
                                         <option value="pack">Pack</option>
                                         <option value="lusin">Lusin</option>
