@@ -1,6 +1,10 @@
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
+session_start();
+$id = $_SESSION['id'];
+if ($id != 892963089) {
+    header("location:index.php");
+}
 $atk = mysqli_query($conn, "SELECT * FROM tb_atk WHERE status = 'Diterima'");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>

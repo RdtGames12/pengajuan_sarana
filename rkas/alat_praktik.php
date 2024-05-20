@@ -2,7 +2,11 @@
 <html lang="en">
 <?php
 include "koneksi.php";
-$id = $_GET['id'];
+session_start();
+$id = $_SESSION['id'];
+if ($id != 892963089) {
+    header("location:index.php");
+}
 $sql = mysqli_query($conn, "SELECT * FROM tb_alat");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 ?>

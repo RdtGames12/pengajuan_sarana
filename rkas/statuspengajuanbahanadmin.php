@@ -1,10 +1,8 @@
 <?php
 include "koneksi.php";
 $id = $_GET['id'];
-$sql = mysqli_query($conn, "SELECT * FROM tb_sarana ORDER BY id_sarana DESC");
 $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 $bahan = mysqli_query($conn, "SELECT * FROM tb_bahan");
-$alat = mysqli_query($conn, "SELECT * FROM tb_alat");
 $kegiatan = mysqli_query($conn, "SELECT * FROM tb_kegiatan");
 ?>
 
