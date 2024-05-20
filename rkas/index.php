@@ -72,13 +72,6 @@
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a> -->
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Lupa Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Buat Akun!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
