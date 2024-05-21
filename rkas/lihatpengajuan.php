@@ -301,7 +301,7 @@ if (isset($_POST['cari'])) {
                                 <th><?= $row["tahun_ajuan"]; ?></th>
                                 <th><?= $row["merk"]; ?></th>
                                 <th><?= $row["spesifikasi"]; ?></th>
-                                <th><?= $row["harga"]; ?></th>
+                                <th>Rp<?= number_format($row["harga"], 2, ',', '.'); ?></th>
                                 <th><?= $row["qty"]; ?></th>
                                 <?php if ($row['contoh_gambar'] == '') {
                                     ?>

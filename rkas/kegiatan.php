@@ -261,9 +261,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                <label for="biaya">(Biaya/Vol.)</label>
-                                    <input type="number" class="form-control form-control-user" id="biaya" name="biaya"
-                                        placeholder="Masukkan harga/vol" required>
+                                    <label for="biaya">(Biaya/Vol.)</label>
+                                    <input type="text" class="form-control form-control-user" id="biaya" name="biaya"
+                                        placeholder="Masukkan harga/vol" required oninput="formatRupiah(this, 'Rp. ')">
                                 </div>
                                 <table>
                                     <tr>
@@ -365,7 +365,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <th><?= $row["nama_kegiatan"]; ?></th>
                             <th><?= $row["tahun_ajuan"]; ?></th>
                             <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["biaya"]; ?></th>
+                            <th>Rp<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
                             <th><?= $row["volume_1"]; ?></th>
                             <th><?= $row["keterangan_volume1"]; ?></th>
                             <th></th>
@@ -452,5 +452,21 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+<script>
+function formatRupiah(element, prefix) {
+    let number_string = element.value.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
+    if (ribuan) {
+        let separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
+
+    rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+    element.value = prefix + rupiah;
+}
+</script>
 </html>

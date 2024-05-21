@@ -279,9 +279,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                 </div>
                                 <div class="form-group">
                                 <label for="harga">Harga:</label>
-                                    <input type="number" class="form-control form-control-user" id="harga" name="harga" required
-                                        placeholder="Masukkan Harga" min=1>
-                                </div>
+                                <input type="number" class="form-control form-control-user" id="harga" name="harga" required placeholder="Masukkan Harga" min="1">
+                            </div>
+
                                 <h6>Masukkan Foto</h6>
                                 <div class="form-group">
                                 <input type="file" id="contoh_gambar" name="contoh_gambar" required>
@@ -413,5 +413,21 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+<script>
+function formatRupiah(element, prefix) {
+    let number_string = element.value.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+    
+    if (ribuan) {
+        let separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
 
+    rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+    element.value = prefix + rupiah;
+}
+</script>
 </html>

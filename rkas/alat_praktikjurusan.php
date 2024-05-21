@@ -278,8 +278,8 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
                                         placeholder="Masukkan spesifikasi.." required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="harga" name="harga"
-                                        placeholder="Masukkan harga.." required>
+                                    <input type="text" class="form-control form-control-user" id="harga" name="harga"
+                                        placeholder="Masukkan harga.." required oninput="formatRupiah(this, 'Rp. ')">
                                 </div>
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="qty" name="qty"
@@ -420,5 +420,21 @@ $sql = mysqli_query($conn, "SELECT * FROM tb_alat WHERE jurusan = '$jurusan'");
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+<script>
+function formatRupiah(element, prefix) {
+    let number_string = element.value.replace(/[^,\d]/g, '').toString(),
+        split = number_string.split(','),
+        sisa = split[0].length % 3,
+        rupiah = split[0].substr(0, sisa),
+        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
+    if (ribuan) {
+        let separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
+
+    rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+    element.value = prefix + rupiah;
+}
+</script>
 </html>

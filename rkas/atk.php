@@ -242,9 +242,11 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                         placeholder="Masukkan nama barang.." required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" class="form-control form-control-user" id="harga_barang" name="harga_barang" for="harga_barang"
-                                        placeholder="Masukkan harga barang.." required>
-                                </div>
+                                <input type="number" class="form-control form-control-user" id="harga_barang" name="harga_barang" 
+                                placeholder="Masukkan harga barang.." required>
+                            </div>
+
+
                                 <div class="form-group">
                                     <input type="number" class="form-control form-control-user" id="jumlah" name="jumlah" for="jumlah"
                                         placeholder="Masukkan Jumlah Beli" required>
@@ -375,5 +377,29 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
+<script>
+    function formatRupiah(angka, prefix){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   = number_string.split(','),
+        sisa    = split[0].length % 3,
+        rupiah  = split[0].substr(0, sisa),
+        ribuan  = split[0].substr(sisa).match(/\d{3}/gi);
+
+        // tambahkan titik jika yang di input sudah menjadi ribuan
+        if(ribuan){
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+
+    // Panggil fungsi formatRupiah saat nilai input berubah
+    document.getElementById('harga_barang').addEventListener('input', function(){
+        this.value = formatRupiah(this.value, 'Rp. ');
+    });
+</script>
+
 
 </html>
