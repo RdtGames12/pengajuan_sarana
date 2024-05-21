@@ -272,7 +272,7 @@ if (isset($_POST['cari'])) {
                             <th><?= $row["nama_kegiatan"]; ?></th>
                             <th><?= $row["tahun_ajuan"]; ?></th>
                             <th><?= $row["bulan"]; ?></th>
-                            <th><?= $row["biaya"]; ?></th>
+                            <th>Rp<?= number_format($row["biaya"], 2, ',', '.'); ?></th>
                             <th><?= $row["volume_1"]; ?></th>
                             <th><?= $row["keterangan_volume1"]; ?></th>
                             <th></th>
