@@ -30,8 +30,14 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                 header("Content-Disposition: attachment; filename=cetak_kegiatan.xls");
                 ?>
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Daftar Ajuan Kegiatan</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Pengajuan Kegiatan</h1>
                             </div>
+                            <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Kegiatan</h6>
+                        </div>
+                            <hr>
+                        </div>
                             <hr>
                             <div class="card-body">
             <div class="table-responsive">

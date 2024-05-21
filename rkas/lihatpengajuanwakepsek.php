@@ -347,7 +347,11 @@ if (isset($_POST['cari'])) {
         <input type="hidden" name="id" value="<?= $id ?>">
         <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
         </form>
-        <a href="excelkegiatan.php?id=<?= $id ?>">EXCEL</a>
+        <form action="excelkegiatan.php?id=<?= $id ?>" method="POST">
+        <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button>
+        </form>
 <?php
     } elseif ($cari == 'Ajuan Sarana') {
         $query = "SELECT * FROM tb_sarana WHERE tahun_ajuan = '$tahun_terpilih'";
@@ -433,8 +437,16 @@ if (isset($_POST['cari'])) {
                 </table>
             </div>
         </div>
-        <a href="printsarana.php?id=<?= $id ?>">PDF</a>
-        <a href="excelsarana.php?id=<?= $id ?>">EXCEL</a>
+        <form action="printsarana.php?id=<?= $id ?>" method="POST">
+        <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">PDF</button>
+        </form>
+        <form action="excelsarana.php?id=<?= $id ?>" method="POST">
+        <input type="hidden" name="tahun" value="<?= $tahun_terpilih ?>">
+        <input type="hidden" name="id" value="<?= $id ?>">
+        <button class="bg-primary text-gray-100" style="width: 10%; height: 10%;" name="simpan">EXCEL</button>
+        </form>
 <?php
     }
 }
