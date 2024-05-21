@@ -137,7 +137,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
 </table>
 <hr>
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Alat</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Alat Praktik</h6>
                         </div>
                                     <div class="card-body">
                         <div class="table-responsive">

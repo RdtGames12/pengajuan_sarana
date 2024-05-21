@@ -98,60 +98,108 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <!-- Dropdown - User Information -->
 
                 </nav>
-        <div class="container">
-        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Pengajuan Kegiatan</h1>
-                            </div>
-                            <hr>
+                <table width="100%">
+<tr>
+<td width="40" align="right"><img src="smk.png" width="40%"></td>
+<td width="20" align="center">
+    <b>PENGAJUAN 
+    <br>SMK NEGERI 2 CIMAHI</b>
+    <br><p>Jl.Kamarung Km. 1,5 No. 69 Kel. Citeureup Kec. Cimahi  Utara
+    <br>Telp/Fax:(022) 87805857 Website : http://smkn2cmi.sch.id E-mail : smkn2cmi@yahoo.com 
+    <br> Kota Cimahi - 40512</p><br></td>
+<td width="40" align="left"><img src="" width="60%"></td>
+</tr>
+</table>
+<hr>
+    <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold">Daftar Ajuan Kegiatan</h6>
                         </div>
-                        <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Kegiatan</h6>
-                        </div>
-                                    <div class="card-body">
-                        <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <tr>
-                                            <th>No</th>
-                                            <th>Nama Kegiatan</th>
-                                            <th>Tahun Ajuan</th>
-                                            <th>Bulan</th>
-                                            <th>Biaya</th>
-                                            <th>Volume</th>
-                                            <th>Keterangan</th> 
-                                            <th>Subtotal</th>
+                <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Kegiatan</th>
+                        <th>Tahun Ajuan</th>
+                        <th>Bulan</th>
+                        <th>Biaya</th>
+                        <th>Volume</th>
+                        <th>Keterangan</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    <?php
+                    $no = 0;
+                    foreach ($kegiatan as $row) :
+                    ?>
+                        <tr>
+                            <th><?php $no += 1;
+                                echo $no; ?></th>
+                            <th><?= $row["nama_kegiatan"]; ?></th>
+                            <th><?= $row["tahun_ajuan"]; ?></th>
+                            <th><?= $row["bulan"]; ?></th>
+                            <th><?= $row["biaya"]; ?></th>
+                            <th><?= $row["volume_1"]; ?></th>
+                            <th><?= $row["keterangan_volume1"]; ?></th>
+                            <th></th>
+                            <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_2"];?></th>
+                                        <th><?= $row["keterangan_volume2"]?></th>
+                                        <th></th>
                                     </tr>
-                                        <?php $no = 0;?>
-                                    <?php foreach ($kegiatan as $row) : ?>
                                     <tr>
-                                    <th><?php $no += 1; echo $no;?></th>
-                                    <th><?= $row["nama_kegiatan"];?></th>
-                                    <th><?= $row["tahun_ajuan"];?></th>
-                                    <th><?= $row["bulan"];?></th>
-                                    <th><?= $row["biaya"];?></th>
-                                    <th><?= $row["volume_1"];?></th>
-                                    <th><?= $row["keterangan_volume1"];?></th>
-                                    <th><?= $row["total"]; ?></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_3"];?></th>
+                                        <th><?= $row["keterangan_volume3"]?></th>
+                                        <th></th>
                                     </tr>
-                                
-                                    <?php endforeach;
-                                    $total = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan");
-                                    $gtotal = $total -> fetch_array(MYSQLI_NUM);
-                                    ?>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>TOTAL</th>
-                                    <th><?= $gtotal[0] ?></th>
-                                    </table>
-                            </div>
-                                    </div>
-                                    </div>
-                                    </div>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th><?= $row["volume_4"];?></th>
+                                        <th><?= $row["keterangan_volume4"]?></th>
+                                        <th>Rp<?= number_format($row["total"], 2, ',', '.'); ?></th>
+                            </tr>
+                        <?php
+                    endforeach;
+                    $total_query = mysqli_query($conn, "SELECT SUM(total) FROM tb_kegiatan WHERE tahun_ajuan = '$tahun_terpilih' ");
+                    $total_result = $total_query->fetch_array(MYSQLI_NUM);
+                    $total = $total_result[0];
+
+                    $formatted_total = number_format($total, 2, ',', '.');
+                    ?>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th>Rp<?= $formatted_total ?></th>
+                </table>
+            </div>
+        </div>
+        <div>
+	<div style="width:400px;float:right;text-align:right">
+		<b>Kota Cimahi, <?=  date('d-m-Y'); ?></b>
+		<br>
+        <br>
+        <br>
+		<p>Nama : <br/>NIP. 1234</p>
+	</div>
+	<div style="clear:both"></div>
+</div>
 
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
