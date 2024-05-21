@@ -121,18 +121,22 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                             <!-- Dropdown - User Information -->
 
                 </nav>
-        <div class="container">
-        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Pengajuan Bahan</h1>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="card shadow mb-4">
+                <table width="100%">
+<tr>
+<td width="40" align="right"><img src="smk.png" width="40%"></td>
+<td width="20" align="center">
+    <b>PENGAJUAN 
+    <br>SMK NEGERI 2 CIMAHI</b>
+    <br><p>Jl.Kamarung Km. 1,5 No. 69 Kel. Citeureup Kec. Cimahi  Utara
+    <br>Telp/Fax:(022) 87805857 Website : http://smkn2cmi.sch.id E-mail : smkn2cmi@yahoo.com 
+    <br> Kota Cimahi - 40512</p><br></td>
+<td width="40" align="left"><img src="" width="60%"></td>
+</tr>
+</table>
+<hr>
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Daftar Ajuan Bahan</h6>
+                            <h6 class="m-0 font-weight-bold">Daftar Ajuan Bahan</h6>
                         </div>
-                                    <div class="card-body">
                         <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <tr>
@@ -146,7 +150,9 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                             <th>Sub Total</th>
                                     </tr>
                                         <?php $no = 0;?>
-                                    <?php foreach ($bahan as $row) : ?>
+                                    <?php foreach ($bahan as $row) : 
+                                    $tahun = $row['tahun_ajuan'];    
+                                    ?>
                                     <tr>
                                     <th><?php $no += 1; echo $no;?></th>
                                     <th><?= $row["item"];?></th>
@@ -175,9 +181,18 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
                                     <th>Rp<?= $formatted_total ?></th>
                                     </table>
                             </div>
-                                    </div>
-                                    </div>
-                                    </div>
+
+                            	
+<div>
+	<div style="width:400px;float:right;text-align:right">
+		<b>Kota Cimahi, <?=  date('d-m-Y'); ?></b>
+		<br>
+        <br>
+        <br>
+		<p>Nama : <br/>NIP. 1234</p>
+	</div>
+	<div style="clear:both"></div>
+</div>
 
                             <!-- <div class="text-center">
                                 <a class="small" href="forgot-password.html">Lupa Password?</a>
@@ -235,8 +250,7 @@ $sql1 = mysqli_query($conn, "SELECT * FROM tb_user WHERE id_user='$id'");
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-    
-    <meta http-equiv="refresh" content="1; URL=http:lihatpengajuan.php?id=<?= $id ?>" />
+    <meta http-equiv="refresh" content="1; URL=http:lihatpengajuan.php" />
 </body>
 
 </html>
